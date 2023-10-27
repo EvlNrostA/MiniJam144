@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://qja4lm0cwpjg"]
+
+[ext_resource type="Script" path="res://Scripts/Enemys/noamfogle_Script.gd" id="1_ihpxf"]
+[ext_resource type="Texture2D" uid="uid://bou6g6bdrp3j7" path="res://Levels/Whackamole/noamfogle.png" id="2_r4ysj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oexi"]
+size = Vector2(32, 48)
+
+[node name="NoamFogle" type="Area2D"]
+script = ExtResource("1_ihpxf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_r4ysj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_1oexi")
+
+[node name="PositionTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RevealTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="PositionTimer" to="." method="_on_position_timer_timeout"]
+[connection signal="timeout" from="RevealTimer" to="." method="_on_reveal_timer_timeout"]
