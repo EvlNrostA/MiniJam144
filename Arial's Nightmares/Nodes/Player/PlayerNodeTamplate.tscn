@@ -1,6 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://b11hooauu7282"]
+[gd_scene load_steps=20 format=3 uid="uid://b11hooauu7282"]
 
 [ext_resource type="Texture2D" uid="uid://dskbohlfdb56p" path="res://Assets/Player/Arial_Sheet.png" id="1_hc27w"]
+
+[sub_resource type="GDScript" id="GDScript_bpl3c"]
+script/source = "extends CharacterBody2D
+
+@onready var bullet_refrance =  preload(\"res://Nodes/Enemys/enemy_bullet.tscn\")
+
+func _process(delta):
+	if Input.is_action_just_pressed(\"space\"):
+		var newBullet = bullet_refrance.instantiate()
+		get_parent().add_child(newBullet)
+		newBullet.emit_signal(\"SPAWN\",Vector2(4,2), global_position)
+	pass
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_buiqi"]
 height = 26.0
@@ -135,8 +148,12 @@ states/Idle/position = Vector2(345, 100)
 states/Run/node = SubResource("AnimationNodeBlendSpace1D_dxsfp")
 states/Run/position = Vector2(468, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_p4i88"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_jh783"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_hkk0x")]
+graph_offset = Vector2(-164, 0)
 
 [node name="Player_Tamplate" type="CharacterBody2D"]
+position = Vector2(548, 311)
+collision_mask = 7
+script = SubResource("GDScript_bpl3c")
 
 [node name="Player_Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_hc27w")
@@ -156,6 +173,5 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_txu5w")
 anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/Idle/blend_position = 0.295796
+parameters/Idle/blend_position = 0.0
 parameters/Run/blend_position = 0
