@@ -13,7 +13,7 @@ func  _ready():
 
 func _process(delta):
 	Move(delta)
-	rotate(5 * delta)
+	$Sprite2D.rotate(5 * delta)
 	pass
 
 func Move(delta) -> void:
