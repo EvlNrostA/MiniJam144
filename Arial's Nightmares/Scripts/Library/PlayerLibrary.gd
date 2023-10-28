@@ -6,7 +6,6 @@ class_name Player_library
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
 
-
 @export var speed : float = 1
 var vel := Vector2.ZERO
 
@@ -31,3 +30,6 @@ func Move2D(delta) -> void:
 
 func MovePlatform(delta) -> void:
 	pass
+
+func nextLevel():
+	print("Level Over")

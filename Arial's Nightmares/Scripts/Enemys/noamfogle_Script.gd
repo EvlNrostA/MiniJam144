@@ -1,11 +1,12 @@
 extends Area2D
 
+@onready var position_timer = $PositionTimer
+@onready var reveal_timer = $RevealTimer
+@onready var sprite = $Sprite2D
+
 var position_delay
 var reveal_delay
 var objects
-var position_timer
-var reveal_timer
-var sprite
 var current_object
 
 func start_timer_randomly(timer, delay_range) -> void:
@@ -35,10 +36,6 @@ func reposition_noam_fogle() -> void:
 	
 func start(new_objects, new_position_delay, new_reveal_delay) -> void:
 	randomize()
-	
-	position_timer = $PositionTimer
-	reveal_timer = $RevealTimer
-	sprite = $Sprite2D
 	
 	objects = new_objects
 	position_delay = new_position_delay
