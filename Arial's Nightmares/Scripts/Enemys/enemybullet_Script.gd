@@ -8,10 +8,12 @@ signal SPAWN
 
 func  _ready():
 	connect("SPAWN",Callable(self,"SetSpawn"))
+	$Sprite2D.frame = randf_range(0,4)
 	pass
 
 func _process(delta):
 	Move(delta)
+	rotate(5 * delta)
 	pass
 
 func Move(delta) -> void:
@@ -27,6 +29,9 @@ func HitPlayer(col) -> void:
 	print("GameOver")
 	pass
 
+func delete() -> void:
+	queue_free()
+	pass
 
 #var newBullet = bullet_refrance.instantiate()
 #get_parent().add_child(newBullet)
