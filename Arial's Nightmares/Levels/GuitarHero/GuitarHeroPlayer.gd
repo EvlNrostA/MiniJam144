@@ -1,19 +1,19 @@
-extends Node
+extends Player_library
 
-@onready var song_file_path = "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Midi-File.mp3"
-@onready var arrows = [
-		$"../UpArrow",
-		$"../LeftArrow",
-		$"../DownArrow",
-		$"../RightArrow"
-	]
+@onready var level_timer = $"../LevelTimer"
+@onready var manager = get_parent()
 
 func _ready():
-	#AudioStreamPlayer
-	var song_file = FileAccess.open(song_file_path, FileAccess.READ)
-	var sound = AudioStreamMP3.new() 
-	sound.data = song_file.get_buffer(song_file.get_length())
-	print(sound.data.slice(0, 100))
+	level_timer.timeout.connect(lost_game)
 
 func _process(delta):
+	# 
 	pass
+
+func lost_game():
+	print("Lost Game")
+	GManager.next_level()
+
+func won_game():
+	print("Won Game")
+	GManager.next_level()

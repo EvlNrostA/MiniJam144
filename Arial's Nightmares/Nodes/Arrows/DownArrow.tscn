@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl555ewlix1ct"]
+
+[ext_resource type="Texture2D" uid="uid://d017wyqelrtl3" path="res://Assets/Arrows/down.png" id="1_44ot7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5w8p"]
+
+[node name="DownArrow" type="Area2D"]
+scale = Vector2(2, 2)
+
+[node name="Down" type="Sprite2D" parent="."]
+texture = ExtResource("1_44ot7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x5w8p")

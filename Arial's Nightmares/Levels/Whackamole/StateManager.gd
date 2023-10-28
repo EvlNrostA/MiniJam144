@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var difficulties = {
 	"easy": {
@@ -25,8 +25,8 @@ var difficulties = {
 }
  
 @onready var noam_fogle_scene = preload("res://Nodes/Enemys/NoamFogle.tscn")
-@onready var player = $"../Player_Tamplate"
-@onready var level_timer = $"../LevelTimer"
+@onready var player = $"Player_Tamplate"
+@onready var level_timer = $"LevelTimer"
 
 var noam_fogle_count
 var noam_fogles # Remove?

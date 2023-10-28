@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://blfqbelwg3cp4"]
+
+[ext_resource type="Texture2D" uid="uid://dwo4llxmmvtkn" path="res://Assets/Arrows/left.png" id="1_08rlg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7c43s"]
+
+[node name="LeftArrow" type="Area2D"]
+scale = Vector2(2, 2)
+
+[node name="Left" type="Sprite2D" parent="."]
+texture = ExtResource("1_08rlg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7c43s")

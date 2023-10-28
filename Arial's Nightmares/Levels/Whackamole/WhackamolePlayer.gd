@@ -1,7 +1,7 @@
 extends Player_library
 
 @onready var level_timer = $"../LevelTimer"
-@onready var manager = $"../StateManager"
+@onready var manager = get_parent()
 @onready var killed_count = 0
 
 func _ready():
@@ -17,12 +17,9 @@ func killed_noam_fogle():
 	if (killed_count == manager.noam_fogle_count):
 		won_game()
 
-func game_over():
-	pass
-
 func lost_game():
 	print("Lost Game")
-	GManager.next_level()
+	GManager.game_over()
 
 func won_game():
 	print("Won Game")
