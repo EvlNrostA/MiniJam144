@@ -7,6 +7,21 @@
 radius = 40.0
 height = 986.0
 
+[sub_resource type="Animation" id="Animation_hqp4a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_lh7ec"]
 resource_name = "yam"
 length = 0.2
@@ -25,28 +40,13 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_hqp4a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6c3n"]
 _data = {
 "RESET": SubResource("Animation_hqp4a"),
 "yam": SubResource("Animation_lh7ec")
 }
 
-[node name="YAM" type="CharacterBody2D"]
+[node name="YAM" type="Area2D"]
 script = ExtResource("1_ocwsk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,3 +63,5 @@ autoplay = "yam"
 libraries = {
 "": SubResource("AnimationLibrary_p6c3n")
 }
+
+[connection signal="body_entered" from="." to="." method="_on_arielush_entered"]
