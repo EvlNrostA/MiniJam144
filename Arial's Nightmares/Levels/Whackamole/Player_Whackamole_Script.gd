@@ -5,7 +5,6 @@ extends Player_library
 @onready var killed_count = 0
 
 func _ready():
-	self.speed = 3
 	level_timer.timeout.connect(lost_game)
 	
 func _process(delta):

@@ -5,19 +5,22 @@ var difficulties = {
 		"count": 1,
 		"position_delay": [1, 2],
 		"reveal_delay": [1, 1.5],
-		"level_timer": 30
+		"level_timer": 30,
+		"speed": 2
 	},
 	"normal": {
 		"count": 3,
 		"position_delay": [1, 2],
 		"reveal_delay": [0.4, 0.7],
-		"level_timer": 30
+		"level_timer": 30,
+		"speed": 3
 	},
 	"hard": {
 		"count": 5,
 		"position_delay": [1, 2],
 		"reveal_delay": [0.4, 0.7],
-		"level_timer": 30
+		"level_timer": 30,
+		"speed": 3
 	},
 }
  
@@ -34,6 +37,8 @@ func _ready():
 func start(selected_difficulty):
 	var difficulty = difficulties[selected_difficulty]
 	noam_fogle_count = difficulty.count
+	
+	player.speed = difficulty.speed
 	
 	var holes = get_tree().get_nodes_in_group("Holes")
 	noam_fogles = []
