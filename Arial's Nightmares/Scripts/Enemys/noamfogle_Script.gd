@@ -1,9 +1,8 @@
 extends Area2D
 
-var position_delays = [1, 2]
-var reveal_delays = [2, 5] #[0.4, 0.7]
-
-var reveal_objects
+var position_delay
+var reveal_delay
+var objects
 var position_timer
 var reveal_timer
 var sprite
@@ -16,16 +15,15 @@ func start_timer_randomly(timer, delay_range) -> void:
 
 func reveal_noam_fogle() -> void:
 	sprite.visible = true
-	start_timer_randomly(reveal_timer, reveal_delays)
+	start_timer_randomly(reveal_timer, reveal_delay)
 	
 func reposition_noam_fogle() -> void:
 	sprite.visible = false
 	
 	var new_object = current_object
 	while (new_object.get_meta("occupied")):
-		var object_index = randi() % reveal_objects.size()
-		print(object_index)
-		new_object = reveal_objects[object_index]
+		var object_index = randi() % objects.size()
+		new_object = objects[object_index]
 	
 	current_object.set_meta("occupied", false)
 	new_object.set_meta("occupied", true)
@@ -33,17 +31,20 @@ func reposition_noam_fogle() -> void:
 	self.position = new_object.position
 	current_object = new_object
 	
-	start_timer_randomly(position_timer, position_delays)
+	start_timer_randomly(position_timer, position_delay)
 	
-func start(objects) -> void:
+func start(new_objects, new_position_delay, new_reveal_delay) -> void:
 	randomize()
 	
 	position_timer = $PositionTimer
 	reveal_timer = $RevealTimer
 	sprite = $Sprite2D
-	reveal_objects = objects
 	
-	current_object = reveal_objects[0]
+	objects = new_objects
+	position_delay = new_position_delay
+	reveal_delay = new_reveal_delay
+	
+	current_object = objects[0]
 	current_object.set_meta("occupied", true)
 	
 	reposition_noam_fogle()
@@ -57,5 +58,6 @@ func _on_reveal_timer_timeout():
 func _on_body_entered(body):
 	# Add animation
 	if (sprite.visible):
+		body.killed_noam_fogle()
 		current_object.set_meta("occupied", false)
 		queue_free()
