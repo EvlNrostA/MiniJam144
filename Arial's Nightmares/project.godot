@@ -14,6 +14,10 @@ config/name="Arial's Nightmares"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GManager="*res://Scripts/Library/GameManager.gd"
+
 [display]
 
 window/stretch/mode="viewport"

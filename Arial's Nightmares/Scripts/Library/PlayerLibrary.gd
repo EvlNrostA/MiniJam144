@@ -30,6 +30,3 @@ func Move2D(delta) -> void:
 
 func MovePlatform(delta) -> void:
 	pass
-
-func nextLevel():
-	print("Level Over")

@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/PlayerNodeTamplate.tscn" id="5_n5yia"]
 [ext_resource type="Script" path="res://Levels/GuitarHero/GuitarHeroPlayer.gd" id="6_ecoko"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw3ry"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd6y7"]
 size = Vector2(1152, 2)
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_y0mb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw3ry"]
 
 [node name="GuitarHero" type="Node2D"]
 
@@ -21,46 +21,10 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.215686, 0.0980392, 0.0117647, 1)
 
-[node name="Down" type="Sprite2D" parent="."]
-position = Vector2(640, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("1_rndhy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
-scale = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_uw3ry")
-
-[node name="Left" type="Sprite2D" parent="."]
-position = Vector2(448, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("2_tvp2t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
-scale = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_uw3ry")
-
-[node name="Right" type="Sprite2D" parent="."]
-position = Vector2(832, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("3_ef5r5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
-scale = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_uw3ry")
-
-[node name="Up" type="Sprite2D" parent="."]
-position = Vector2(256, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("4_x0ksa")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
-scale = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_uw3ry")
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionBar" type="Area2D" parent="."]
 position = Vector2(576, 250)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionBar"]
 shape = SubResource("RectangleShape2D_gd6y7")
 
 [node name="Player_Tamplate" parent="." instance=ExtResource("5_n5yia")]
@@ -69,3 +33,51 @@ script = ExtResource("6_ecoko")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMP3_y0mb2")
+
+[node name="DownArrow" type="Area2D" parent="."]
+
+[node name="Down" type="Sprite2D" parent="DownArrow"]
+position = Vector2(640, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_rndhy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownArrow"]
+position = Vector2(640, 0)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_uw3ry")
+
+[node name="UpArrow" type="Area2D" parent="."]
+
+[node name="Up" type="Sprite2D" parent="UpArrow"]
+position = Vector2(256, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("4_x0ksa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpArrow"]
+position = Vector2(640, 0)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_uw3ry")
+
+[node name="LeftArrow" type="Area2D" parent="."]
+
+[node name="Left" type="Sprite2D" parent="LeftArrow"]
+position = Vector2(448, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_tvp2t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArrow"]
+position = Vector2(640, 0)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_uw3ry")
+
+[node name="RightArrow" type="Area2D" parent="."]
+
+[node name="Right" type="Sprite2D" parent="RightArrow"]
+position = Vector2(832, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ef5r5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArrow"]
+position = Vector2(640, 0)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_uw3ry")

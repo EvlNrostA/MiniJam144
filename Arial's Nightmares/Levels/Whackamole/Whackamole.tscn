@@ -50,3 +50,4 @@ position = Vector2(440, 352)
 script = ExtResource("2_kdedg")
 
 [node name="LevelTimer" type="Timer" parent="."]
+one_shot = true

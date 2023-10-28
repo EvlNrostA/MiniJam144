@@ -1,18 +1,15 @@
 extends Node
 
-
-
-var arrows
-var song_file_path = "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Midi-File.mp3"
+@onready var song_file_path = "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Midi-File.mp3"
+@onready var arrows = [
+		$"../UpArrow",
+		$"../LeftArrow",
+		$"../DownArrow",
+		$"../RightArrow"
+	]
 
 func _ready():
-	arrows = [
-		$Up,
-		$Left,
-		$Down,
-		$Right
-	]
-	AudioStreamPlayer
+	#AudioStreamPlayer
 	var song_file = FileAccess.open(song_file_path, FileAccess.READ)
 	var sound = AudioStreamMP3.new() 
 	sound.data = song_file.get_buffer(song_file.get_length())

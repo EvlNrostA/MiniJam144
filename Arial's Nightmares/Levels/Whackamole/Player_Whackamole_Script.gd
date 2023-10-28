@@ -22,8 +22,8 @@ func game_over():
 
 func lost_game():
 	print("Lost Game")
-	nextLevel()
+	GManager.next_level()
 
 func won_game():
 	print("Won Game")
-	nextLevel()
+	GManager.next_level()
