@@ -1,7 +1,7 @@
 extends Node
 
 var score
-var mutex : Mutex
+var difficulty
 
 func next_level():
 	print("next_level")

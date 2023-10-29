@@ -1,78 +1,43 @@
 extends Area2D
 
-var death_delay = [0.2, 0.4]
-
-@onready var position_timer = $PositionTimer
+@onready var hide_timer = $HideTimer
 @onready var reveal_timer = $RevealTimer
-@onready var death_timer = $DeathTimer
-@onready var sprite = $Sprite2D
+@onready var sprite = $NoamFogle
 @onready var animation_player = $AnimationPlayer
+@onready var hiding = true
 
-var position_delay
-var reveal_delay
-var objects
-var current_object
+func _ready():
+	sprite.visible = false
 
-func start_timer_randomly(timer, delay_range) -> void:
-	timer.wait_time = randf_range(delay_range[0], delay_range[1])
-	#print(timer.name + " wait time: ", timer.wait_time)
-	timer.start()
-
-func reveal_noam_fogle() -> void:
+func reveal(reveal_delay) -> void:
 	sprite.visible = true
 	animation_player.play("Jumping")
 	await animation_player.animation_finished
 	
-	start_timer_randomly(reveal_timer, reveal_delay)
+	reveal_timer.start(reveal_delay)
+	await reveal_timer.timeout
 	
-func reposition_noam_fogle() -> void:
 	animation_player.play_backwards("Jumping")
 	await animation_player.animation_finished
 	sprite.visible = false
 	
-	var new_object = current_object
-	#while new_object.get_meta("occupied"):
-	var object_index = randi() % objects.size()
-	new_object = objects[object_index]
-	
-	#current_object.set_meta("occupied", false)
-	#new_object.set_meta("occupied", true)
-	print(new_object)
-	
-	self.position = new_object.position
-	current_object = new_object
-	
-	start_timer_randomly(position_timer, position_delay)
-	
-func start(objects, position_delay, reveal_delay) -> void:
-	randomize()
-	
-	self.objects = objects
-	self.position_delay = position_delay
-	self.reveal_delay = reveal_delay
-	
-	current_object = objects[0]
-	#current_object.set_meta("occupied", true)
-	
-	reposition_noam_fogle()
-
-func _on_position_timer_timeout():
-	reveal_noam_fogle()
-
-func _on_reveal_timer_timeout():
-	reposition_noam_fogle()
-
-func _on_body_entered(body):	
-	if sprite.visible:
-		body.killed_noam_fogle()
+func reveal_and_hide(reveal_delay, hide_delay) -> void:
+	if hiding:
+		hiding = false
+		await reveal(reveal_delay)
 		
-		position_timer.stop()
+		hide_timer.start(hide_delay)
+		await hide_timer.timeout
+		hiding = true
+
+func _on_body_entered(body):
+	if sprite.visible:
 		reveal_timer.stop()
+		hide_timer.stop()
+	
 		animation_player.play("Death")
 		await animation_player.animation_finished
+		sprite.visible = false
+		hiding = true
 		
-		self.visible = false
-		current_object.set_meta("occupied", false)
-
-func _on_area_entered(area):
-	print("overlap")
+		body.killed_noam_fogle(self)
