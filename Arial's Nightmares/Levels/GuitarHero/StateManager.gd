@@ -1,6 +1,6 @@
 extends Node2D
 
-var difficulties = {
+var difficulty_settings = {
 	"easy": {
 		"speed": 1,
 		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Easy.mp3"
@@ -10,20 +10,26 @@ var difficulties = {
 		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Normal.mp3"
 	},
 	"hard": {
-		"speed": 5,
+		"speed": 4,
 		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Hard.mp3"
 	},
 }
 
 const HEIGHT = 100
 const MIN_DB = 60
+const FREQ_DELTA = 100
+const MAX_FREQ = 1200
+const MIN_HEIGHT = 10
+
+const ARROW_DELAY = 3
+const MIN_TO_SEC = 60
 
 @onready var audio_player = $AudioStreamPlayer
 @onready var spectrum = AudioServer.get_bus_effect_instance(0, 0)
-
 @onready var player = $"Player_Tamplate"
-@onready var level_timer = $LevelTimer
+@onready var delay_timer = $DelayTimer
 @onready var bpm_timer = $BPMTimer
+@onready var pressing_bar = $PressingBar
 
 @onready var arrow_scene = preload("res://Nodes/Arrow.tscn")
 @onready var arrow_positions = {
@@ -32,22 +38,40 @@ const MIN_DB = 60
 	"Down": $DownArrowPosition,
 	"Right": $RightArrowPosition
 }
+@onready var arrows_on_target = []
+@onready var stopped = false
+@onready var current_data = 0
 
-@onready var current_arrows = []
 var settings
+var arrow_delay
+var beat_per_sec 
+var chunk_size
 
 func _ready():
-	start("normal")
+	settings = difficulty_settings[GManager.difficulty]
 	
+	audio_player.stream = load(settings.song_path)
+	beat_per_sec = audio_player.stream.get_bpm() / MIN_TO_SEC
+	#chunk_size = int(audio_player.stream.data.size() / audio_player.stream.get_length())
+	#var index = audio_player.get_playback_position() * chunk_size
+
+	var arrow_offset = (beat_per_sec * settings.speed * 100) * ARROW_DELAY
+	for arrow in arrow_positions.values():
+		arrow.position.y = pressing_bar.position.y - arrow_offset
+		
+	bpm_timer.start(beat_per_sec)
+	
+	var audio_delay = AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency()
+	delay_timer.start(ARROW_DELAY + audio_delay)
+	await delay_timer.timeout
+	
+	audio_player.play()
+
 func _process(_delta):
-	#for direction in arrow_positions.keys():
-	#	if Input.is_action_just_pressed(direction) and \
-	#	   arrow_positions[direction].get_overlapping_bodies().has():
 	pass
 
 func add_arrow(direction, speed):
 	var arrow = arrow_scene.instantiate()
-	current_arrows.append(arrow)
 	add_child(arrow)
 	arrow.start(arrow_positions[direction].position,
 				direction,
@@ -55,43 +79,26 @@ func add_arrow(direction, speed):
 				speed)
 				
 func _on_bpm_timer_timeout():
-	var freq_volumes = []
-	var freq_jump = 100
-	for hz in range(0, 1200, freq_jump):
-		freq_volumes.append(hz_to_height(hz, hz + freq_jump))
+	#var volume = hz_to_height(0, MAX_FREQ)
+	#if (audio_player.playing and volume > MIN_HEIGHT) or not audio_player.playing:
 	
-	if freq_volumes.max() > 10:
-		add_arrow(arrow_positions.keys().pick_random(), settings.speed)
-	
-func start(difficulty):
-	settings = difficulties[difficulty]
-	
-	audio_player.stream = load(settings.song_path)
-	bpm_timer.wait_time = audio_player.stream.get_bpm() / 60
-	
-	bpm_timer.start()
-	audio_player.play()
+	add_arrow(arrow_positions.keys().pick_random(), settings.speed)
 		
-	#level_timer.wait_time = settings.level_timer
-	#level_timer.start()
-	
-	#AudioStreamPlayer
-	#var song_file = FileAccess.open(song_file_path, FileAccess.READ)
-	#var sound = AudioStreamMP3.new()
-	#sound.data = song_file.get_buffer(song_file.get_length())
-	#print(sound.data.slice(0, 100))
+	if not stopped:
+		bpm_timer.start(beat_per_sec)
 
 func hz_to_height(min_hz, max_hz) -> float:
-	#var hz = i * FREQ_MAX / VU_COUNT;
 	var magnitude = spectrum.get_magnitude_for_frequency_range(min_hz, max_hz).length()
 	var height = clamp((MIN_DB + linear_to_db(magnitude)) / MIN_DB, 0, 1) * HEIGHT
 	
 	return height
 
 func _on_pressing_bar_area_entered(area):
-	area.is_on_target = true
+	arrows_on_target.append(area)
 
 func _on_pressing_bar_area_exited(area):
-	area.is_on_target = false
-	current_arrows[current_arrows.find(area)].queue_free()
-	current_arrows.erase(area)
+	if not area.pressed:
+		player.count_miss()
+		
+	arrows_on_target.erase(area)
+	area.queue_free()

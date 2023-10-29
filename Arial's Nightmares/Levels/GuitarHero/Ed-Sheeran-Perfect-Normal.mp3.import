@@ -14,6 +14,6 @@ dest_files=["res://.godot/imported/Ed-Sheeran-Perfect-Normal.mp3-2e5aab8b6f11c0c
 
 loop=false
 loop_offset=0
-bpm=0
+bpm=63.0
 beat_count=0
 bar_beats=4

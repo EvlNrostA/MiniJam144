@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://hvkvmexukes3"]
 
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="1_0th4n"]
-[ext_resource type="Script" path="res://Levels/Bullet Hell/BulletHell_Manager.gd" id="1_cskbd"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="1_ft5vx"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Enemys/Hand.png" id="2_6qjqq"]
+[ext_resource type="Script" path="res://Levels/Bullet Hell/StateManager.gd" id="2_heb6x"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/PlayerNodeTamplate.tscn" id="3_ctxpf"]
 [ext_resource type="Script" path="res://Levels/Bullet Hell/Player_BulletHell_Script.gd" id="4_gcvhj"]
 
@@ -80,7 +80,7 @@ offset_bottom = 648.0
 color = Color(0.054902, 0.192157, 0.364706, 1)
 
 [node name="StateManager" type="Node" parent="."]
-script = ExtResource("1_cskbd")
+script = ExtResource("2_heb6x")
 
 [node name="Timer" type="Timer" parent="StateManager"]
 wait_time = 1.5
@@ -142,4 +142,8 @@ position = Vector2(576, 640)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_bg5mv")
 
+[node name="LevelTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="StateManager/Timer" to="StateManager" method="SpawnBullets"]
+[connection signal="timeout" from="LevelTimer" to="StateManager" method="_on_level_timer_timeout"]

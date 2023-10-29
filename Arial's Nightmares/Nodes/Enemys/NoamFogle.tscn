@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dagr3r8c6pnye" path="res://Assets/Enemys/Hole.png" id="2_aul48"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oexi"]
-size = Vector2(50, 49)
+size = Vector2(50, 54)
 
 [sub_resource type="Animation" id="Animation_wgshp"]
 resource_name = "Death"
@@ -75,7 +75,7 @@ hframes = 2
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3.5)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_1oexi")
 
 [node name="HideTimer" type="Timer" parent="."]

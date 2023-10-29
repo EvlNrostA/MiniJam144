@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Levels/GuitarHero/GuitarHeroPlayer.gd" id="6_ecoko"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvhth"]
-size = Vector2(1152, 34)
+size = Vector2(1152, 24)
 
 [node name="GuitarHero" type="Node2D"]
 script = ExtResource("1_dkjhl")
@@ -19,18 +19,18 @@ color = Color(0.215686, 0.0980392, 0.0117647, 1)
 position = Vector2(576, 250)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PressingBar"]
-position = Vector2(0, -3)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_tvhth")
 
 [node name="ColorRect" type="ColorRect" parent="PressingBar"]
 offset_left = -576.0
 offset_top = -18.0
 offset_right = 576.0
-offset_bottom = 14.0
+offset_bottom = 6.0
 color = Color(0.121569, 0.0470588, 0.00392157, 1)
 
 [node name="Player_Tamplate" parent="." instance=ExtResource("5_n5yia")]
-position = Vector2(576, 379)
+position = Vector2(576, 345)
 script = ExtResource("6_ecoko")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

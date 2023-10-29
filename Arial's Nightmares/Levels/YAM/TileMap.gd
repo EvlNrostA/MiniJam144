@@ -1,10 +1,9 @@
 extends TileMap
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+@onready var manager = get_parent()
+
 func _process(delta):
-	position += Vector2.LEFT * 2
+	position += manager.LEVEL_VELOCITY
 	
 	if position == Vector2(-1500,96):
 		position = Vector2(0,96)

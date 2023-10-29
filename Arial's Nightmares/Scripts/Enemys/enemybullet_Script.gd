@@ -27,6 +27,7 @@ func SetSpawn(newDirection, spawnPos) -> void:
 	
 func HitPlayer(col) -> void:
 	print("GameOver")
+	GManager.game_over()
 	pass
 
 func delete() -> void:

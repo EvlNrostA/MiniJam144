@@ -236,4 +236,8 @@ autostart = true
 [node name="POS CHECK" type="Node2D" parent="."]
 position = Vector2(1349, 526)
 
+[node name="LevelTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

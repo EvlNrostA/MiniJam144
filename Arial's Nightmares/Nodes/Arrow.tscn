@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d017wyqelrtl3" path="res://Assets/Arrows/down.png" id="2_5vcsn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5w8p"]
-size = Vector2(32, 32)
+size = Vector2(24, 24)
 
 [node name="Arrow" type="Area2D"]
 scale = Vector2(2, 2)

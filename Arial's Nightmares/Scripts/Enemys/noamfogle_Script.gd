@@ -21,13 +21,13 @@ func reveal(reveal_delay) -> void:
 	await animation_player.animation_finished
 	sprite.visible = false
 	
-func reveal_and_hide(reveal_delay, hide_delay) -> void:
+func hide_and_reveal(reveal_delay, hide_delay) -> void:
 	if hiding:
 		hiding = false
-		await reveal(reveal_delay)
-		
 		hide_timer.start(hide_delay)
 		await hide_timer.timeout
+		
+		await reveal(reveal_delay)
 		hiding = true
 
 func _on_body_entered(body):

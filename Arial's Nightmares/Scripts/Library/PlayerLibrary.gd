@@ -13,10 +13,6 @@ var vel := Vector2.ZERO
 var JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _process(delta):
-	Move2D(delta)
-	pass
-
 func Move2D(delta) -> void:
 	vel = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
 		Input.get_action_strength("Down") - Input.get_action_strength("Up"))
@@ -52,3 +48,23 @@ func PlatformMove2D(delta) -> void:
 
 	move_and_slide()
 	pass
+	
+func Move2DRight(delta, player_speed):
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		velocity.x = (speed / 2) * delta
+
+	# Handle Jump.
+	if Input.is_action_just_pressed("space") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	
+	if is_on_floor():
+		if Input.is_action_pressed("Right"):
+			velocity.x = speed * delta
+		else:
+			velocity.x = -10000 * delta		
+	
+	move_and_slide()
