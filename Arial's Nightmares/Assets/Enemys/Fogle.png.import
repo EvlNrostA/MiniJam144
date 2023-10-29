@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1kb5w6whfsbx"
-path="res://.godot/imported/right.png-de58d73a1c5029d41eeafdde13c49103.ctex"
+uid="uid://r57ua5m7b3rg"
+path="res://.godot/imported/Fogle.png-edc06d91acc42ebba22d51a8a6ea1b19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/GuitarHero/right.png"
-dest_files=["res://.godot/imported/right.png-de58d73a1c5029d41eeafdde13c49103.ctex"]
+source_file="res://Assets/Enemys/Fogle.png"
+dest_files=["res://.godot/imported/Fogle.png-edc06d91acc42ebba22d51a8a6ea1b19.ctex"]
 
 [params]
 

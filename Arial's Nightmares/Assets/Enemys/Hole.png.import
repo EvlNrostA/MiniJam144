@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://udatplb04yiy"
-path="res://.godot/imported/up.png-148295230f995c7a184913c646d6e941.ctex"
+uid="uid://dagr3r8c6pnye"
+path="res://.godot/imported/Hole.png-a5b7e7752a1a4ed3d421c1b5259750f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/GuitarHero/up.png"
-dest_files=["res://.godot/imported/up.png-148295230f995c7a184913c646d6e941.ctex"]
+source_file="res://Assets/Enemys/Hole.png"
+dest_files=["res://.godot/imported/Hole.png-a5b7e7752a1a4ed3d421c1b5259750f0.ctex"]
 
 [params]
 

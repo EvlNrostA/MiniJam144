@@ -19,6 +19,11 @@ func killed_noam_fogle():
 
 func lost_game():
 	print("Lost Game")
+	
+	for noam_fogle in manager.noam_fogles:
+		noam_fogle.queue_free()
+	manager.noam_fogles.clear()
+	
 	GManager.game_over()
 
 func won_game():

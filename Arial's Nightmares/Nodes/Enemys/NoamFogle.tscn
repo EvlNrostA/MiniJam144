@@ -1,20 +1,76 @@
-[gd_scene load_steps=4 format=3 uid="uid://qja4lm0cwpjg"]
+[gd_scene load_steps=8 format=3 uid="uid://qja4lm0cwpjg"]
 
 [ext_resource type="Script" path="res://Scripts/Enemys/noamfogle_Script.gd" id="1_ihpxf"]
-[ext_resource type="Texture2D" uid="uid://bou6g6bdrp3j7" path="res://Levels/Whackamole/noamfogle.png" id="2_r4ysj"]
+[ext_resource type="Texture2D" uid="uid://r57ua5m7b3rg" path="res://Assets/Enemys/Fogle.png" id="2_7cvli"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oexi"]
-size = Vector2(32, 48)
+size = Vector2(49, 57)
+
+[sub_resource type="Animation" id="Animation_qu3ij"]
+resource_name = "Jumping"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_qf5tk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wgshp"]
+resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwpw2"]
+_data = {
+"Death": SubResource("Animation_wgshp"),
+"Jumping": SubResource("Animation_qu3ij"),
+"RESET": SubResource("Animation_qf5tk")
+}
 
 [node name="NoamFogle" type="Area2D"]
-y_sort_enabled = true
 script = ExtResource("1_ihpxf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_r4ysj")
+texture = ExtResource("2_7cvli")
+hframes = 2
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_1oexi")
 
 [node name="PositionTimer" type="Timer" parent="."]
@@ -23,6 +79,14 @@ one_shot = true
 [node name="RevealTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="DeathTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xwpw2")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="PositionTimer" to="." method="_on_position_timer_timeout"]
 [connection signal="timeout" from="RevealTimer" to="." method="_on_reveal_timer_timeout"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cat12w8nvcmim"]
 
 [ext_resource type="Script" path="res://Levels/GuitarHero/StateManager.gd" id="1_dkjhl"]
-[ext_resource type="AudioStream" uid="uid://c22eq0uciursj" path="res://Levels/GuitarHero/Ed-Sheeran-Perfect-Easy.mp3" id="4_68nwo"]
+[ext_resource type="AudioStream" uid="uid://c22eq0uciursj" path="res://Levels/GuitarHero/Ed-Sheeran-Perfect.mp3" id="4_x8las"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/PlayerNodeTamplate.tscn" id="5_n5yia"]
 [ext_resource type="Script" path="res://Levels/GuitarHero/GuitarHeroPlayer.gd" id="6_ecoko"]
 
@@ -35,11 +35,11 @@ position = Vector2(576, 345)
 script = ExtResource("6_ecoko")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_68nwo")
+stream = ExtResource("4_x8las")
 autoplay = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_68nwo")
+stream = ExtResource("4_x8las")
 
 [node name="UpArrowPosition" type="Node2D" parent="."]
 position = Vector2(288, -64)
@@ -57,6 +57,12 @@ position = Vector2(864, -64)
 
 [node name="BPMTimer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="PressingBar" to="." method="_on_pressing_bar_area_entered"]
-[connection signal="area_exited" from="PressingBar" to="." method="_on_pressing_bar_area_exited"]
+[node name="KillBar" type="Area2D" parent="."]
+position = Vector2(0, -384)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillBar"]
+position = Vector2(576, 696)
+shape = SubResource("RectangleShape2D_tvhth")
+
 [connection signal="timeout" from="BPMTimer" to="." method="_on_bpm_timer_timeout"]
+[connection signal="area_entered" from="KillBar" to="." method="_on_kill_bar_area_entered"]
