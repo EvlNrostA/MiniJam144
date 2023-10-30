@@ -1,26 +1,26 @@
-[gd_scene load_steps=15 format=3 uid="uid://brc1mptaep23d"]
+[gd_scene load_steps=15 format=3 uid="uid://og3id2dn88jb"]
 
-[ext_resource type="Script" path="res://Levels/StartMenu/StartMenu.gd" id="1_80c1p"]
-[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="2_1almj"]
-[ext_resource type="Texture2D" uid="uid://dqugsctmmpo4h" path="res://Assets/Player/Arial_Sleep.png" id="3_f280y"]
-[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Enemys/Hand.png" id="3_r6glw"]
-[ext_resource type="Texture2D" uid="uid://bb06dslurhegc" path="res://Assets/Player/Arial_Sleep_Hover.png" id="4_30bvw"]
-[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Tileset/Bitfantasy.ttf" id="4_dv4uc"]
-[ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="4_f18p2"]
-[ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/StartMenu/Start_Animation.png" id="8_6a74b"]
-[ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/StartMenu/Arial_Sleep_bitmap.png" id="8_8rmaa"]
-[ext_resource type="PackedScene" uid="uid://u8v0pe7gntk4" path="res://Nodes/FadeLayer.tscn" id="10_htbn2"]
+[ext_resource type="Script" path="res://Levels/EndScreen/EndMenu.gd" id="1_lss7c"]
+[ext_resource type="PackedScene" uid="uid://u8v0pe7gntk4" path="res://Nodes/FadeLayer.tscn" id="2_uw8b5"]
+[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Tileset/Bitfantasy.ttf" id="3_2331b"]
+[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="4_0dyms"]
+[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Enemys/Hand.png" id="5_8pfuv"]
+[ext_resource type="Texture2D" uid="uid://bqoiaawipbybf" path="res://Assets/Player/Arial_WakeUp.png" id="6_xnajo"]
+[ext_resource type="Texture2D" uid="uid://dowibwcsjxn7v" path="res://Assets/Player/Arial_WakeUp_Press.png" id="7_s6e4g"]
+[ext_resource type="Texture2D" uid="uid://biu2qnj4qixse" path="res://Assets/Player/Arial_WakeUp_Hover.png" id="8_q7gg4"]
+[ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/StartMenu/Arial_Sleep_bitmap.png" id="9_tqmkq"]
+[ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/StartMenu/Start_Animation.png" id="10_v5huc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_enoik"]
 line_spacing = 0.0
-font = ExtResource("4_dv4uc")
+font = ExtResource("3_2331b")
 font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8h3fw"]
 line_spacing = 0.0
-font = ExtResource("4_dv4uc")
+font = ExtResource("3_2331b")
 font_size = 100
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
@@ -47,30 +47,15 @@ _data = {
 "Start": SubResource("Animation_2vk8y")
 }
 
-[node name="StartMenu" type="Node2D"]
-script = ExtResource("1_80c1p")
+[node name="GameOverMenu" type="Node2D"]
+script = ExtResource("1_lss7c")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("10_htbn2")]
+[node name="CanvasLayer" parent="." instance=ExtResource("2_uw8b5")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.133333, 0.121569, 0.176471, 1)
-
-[node name="Father" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.137255)
-position = Vector2(576, 368)
-scale = Vector2(4.5, 4.5)
-texture = ExtResource("2_1almj")
-
-[node name="Hand" type="Sprite2D" parent="Father"]
-position = Vector2(-40, 40)
-texture = ExtResource("3_r6glw")
-
-[node name="Hand2" type="Sprite2D" parent="Father"]
-position = Vector2(40, 40)
-texture = ExtResource("3_r6glw")
-flip_h = true
 
 [node name="StaffLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.262745)
@@ -87,14 +72,27 @@ Moshe Mina
 label_settings = SubResource("LabelSettings_enoik")
 
 [node name="NameLabel" type="Label" parent="."]
-offset_left = 232.0
+offset_left = 240.0
 offset_top = 56.0
-offset_right = 945.0
+offset_right = 953.0
 offset_bottom = 216.0
-text = "Ariel's
-Nightmare"
+text = "Game Over!"
 label_settings = SubResource("LabelSettings_8h3fw")
 horizontal_alignment = 1
+
+[node name="Father2" type="Sprite2D" parent="."]
+position = Vector2(574, 369)
+scale = Vector2(2, 2)
+texture = ExtResource("4_0dyms")
+
+[node name="Hand" type="Sprite2D" parent="Father2"]
+position = Vector2(-40, 40)
+texture = ExtResource("5_8pfuv")
+
+[node name="Hand2" type="Sprite2D" parent="Father2"]
+position = Vector2(40, 40)
+texture = ExtResource("5_8pfuv")
+flip_h = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 512.0
@@ -103,15 +101,15 @@ offset_right = 640.0
 offset_bottom = 560.0
 scale = Vector2(2, 2)
 pivot_offset = Vector2(64, 64)
-texture_normal = ExtResource("3_f280y")
-texture_pressed = ExtResource("4_f18p2")
-texture_hover = ExtResource("4_30bvw")
-texture_click_mask = ExtResource("8_8rmaa")
+texture_normal = ExtResource("6_xnajo")
+texture_pressed = ExtResource("7_s6e4g")
+texture_hover = ExtResource("8_q7gg4")
+texture_click_mask = ExtResource("9_tqmkq")
 
 [node name="StartAnimation" type="Sprite2D" parent="."]
 modulate = Color(0.639216, 0.635294, 0.603922, 0.584314)
 position = Vector2(576, 568)
-texture = ExtResource("8_6a74b")
+texture = ExtResource("10_v5huc")
 hframes = 4
 vframes = 4
 

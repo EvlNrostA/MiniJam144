@@ -52,10 +52,11 @@ var beat_per_sec
 var chunk_size
 
 func _ready():
-	#GManager.difficulty = "easy"
-	settings = difficulty_settings[GManager.difficulty]
+	await GManager.fade_out(canvas_animation_player)
 	
+	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
+	heart_label.text = str(player.fail_count)
 	
 	audio_player.stream = load(settings.song_path)
 	beat_per_sec = audio_player.stream.get_bpm() / MIN_TO_SEC
@@ -73,7 +74,7 @@ func _ready():
 	audio_player.play()
 
 func _process(_delta):
-	if player:
+	if player and player.fail_count > 0:
 		heart_label.text = str(player.fail_count)
 
 func add_arrow(direction, speed):

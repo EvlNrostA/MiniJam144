@@ -1,8 +1,9 @@
 extends Node
 
-#var start_menu = "res://Levels/StartMenu/StartMenu.tscn"
 var start_menu = "res://Levels/StartMenu/StartMenu.tscn"
-var gameOver_menu = "res://Levels/StartMenu/GameOverMenu.tscn"
+var game_over_menu = "res://Levels/EndScreen/GameOverMenu.tscn"
+var win_menu = "res://Levels/EndScreen/WinMenu.tscn"
+
 var bullet_hell = "res://Levels/Bullet Hell/BullletHell.tscn"
 var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
@@ -13,12 +14,6 @@ var difficulties = ["easy", "normal", "hard"]
 var levels = [
 	[
 		{
-		"scene": start_menu,
-		}
-	],
-	# First cutscene
-	[
-		{
 		"scene": bullet_hell,
 		"difficulty": "easy"
 		},
@@ -73,23 +68,23 @@ var levels = [
 	],
 	[
 		{
-		"scene": start_menu,
+		"scene": win_menu,
 		}
 	]
-	# Final cutscene
 ]
 
+var current_batch_index : int = 0
 var levels_left : Array
-var current_batch_index : int
 var difficulty
 
 func next_level():
+	#get_tree().paused = true
 	var current_level = get_tree().get_current_scene()
 	await fade_in(current_level.canvas_animation_player)
 
-	if levels_left.size() == 0:
+	if levels_left.is_empty():
 		current_batch_index += 1
-		levels_left = levels[current_batch_index]
+		copy_array(levels_left, levels[current_batch_index])
 	
 	var next_level_settings = levels_left.pick_random()
 	levels_left.erase(next_level_settings)
@@ -98,21 +93,24 @@ func next_level():
 		difficulty = next_level_settings.difficulty
 	
 	get_tree().change_scene_to_file(next_level_settings.scene)
-	await get_tree().process_frame
-	
-	var next_level = get_tree().current_scene
-	await fade_out(next_level.canvas_animation_player)
+	#get_tree().paused = false
 
 func game_over():
 	var current_level = get_tree().get_current_scene()
-	await fade_in(current_level.canvas_animation_player)
+	fade_in(current_level.canvas_animation_player)
 	
-	get_tree().change_scene_to_file(start_menu)
-	await get_tree().process_frame
+	restart_levels()
 	
-	var next_level = get_tree().current_scene
-	await fade_out(next_level.canvas_animation_player)
+	get_tree().change_scene_to_file(game_over_menu)
+
+func restart_levels():
+	current_batch_index = 0
+	copy_array(levels_left, levels[current_batch_index])
 	
+func copy_array(array, array_to_copy):
+	array.clear()
+	array.append_array(array_to_copy.duplicate(true))
+
 func fade_in(animation_player):
 	animation_player.play("FadeIn")
 	await animation_player.animation_finished

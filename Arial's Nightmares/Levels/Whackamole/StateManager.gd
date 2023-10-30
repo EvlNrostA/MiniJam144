@@ -4,21 +4,21 @@ var difficulty_settings = {
 	"easy": {
 		"count": 1,
 		"hide_delay": [1, 2],
-		"reveal_delay": [0.5, 1],
+		"reveal_delay": [0.7, 1.2],
 		"level_timer": 30,
 		"speed": 2.5
 	},
 	"normal": {
 		"count": 3,
 		"hide_delay": [1, 2],
-		"reveal_delay": [0.5, 1],
+		"reveal_delay": [0.7, 1.2],
 		"level_timer": 30,
 		"speed": 3
 	},
 	"hard": {
 		"count": 7,
 		"hide_delay": [1, 2],
-		"reveal_delay": [0.5, 1],
+		"reveal_delay": [0.7, 1.2],
 		"level_timer": 20,
 		"speed": 3
 	},
@@ -33,6 +33,8 @@ var settings
 var noam_fogle_count
 	
 func _ready():
+	await GManager.fade_out(canvas_animation_player)
+	
 	randomize()
 
 	settings = difficulty_settings[GManager.difficulty]

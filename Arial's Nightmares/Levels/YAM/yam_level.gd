@@ -27,6 +27,10 @@ var settings
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await GManager.fade_out(canvas_animation_player)
+	
+	randomize()
+	
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
 	player.get_node("Shadow").visible = false
@@ -38,13 +42,10 @@ func _process(delta):
 	pass
 
 func _on_timer_timeout():
-	
 	var newOB = bullet_refrance.instantiate()
 	get_parent().add_child(newOB)
 	newOB.emit_signal("SPAWN",Vector2.LEFT * settings.level_velocity, Vector2(1350, 530))
 	
-	
-	randomize()
 	$Timer.wait_time = randf_range(1.6, 6.0)
 	$Timer.start()
 	

@@ -23,6 +23,7 @@ func SetSpawn(newDirection, spawnPos, speed) -> void:
 	self.speed = speed
 	
 func HitPlayer(col) -> void:
+	#if col.is_queued_for_deletion == false:
 	col.hit()
 	
 func delete():

@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7vmqq"]
 radius = 40.0
-height = 986.0
+height = 400.0
 
 [sub_resource type="Animation" id="Animation_hqp4a"]
 length = 0.001
@@ -50,7 +50,7 @@ _data = {
 script = ExtResource("1_ocwsk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -279)
+position = Vector2(0, -168)
 shape = SubResource("CapsuleShape2D_7vmqq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

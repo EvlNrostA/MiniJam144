@@ -4,6 +4,7 @@ class_name Player_library
 
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
+@onready var collision_shape = $CollisionShape2D
 @onready var animationState = animationTree.get("parameters/playback")
 
 @export var speed : float = 1

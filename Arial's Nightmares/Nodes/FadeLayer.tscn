@@ -65,6 +65,7 @@ scale = Vector2(60, 60)
 texture = ExtResource("2_itclq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
 autoplay = "Empty"
 libraries = {
 "": SubResource("AnimationLibrary_r0x3r")

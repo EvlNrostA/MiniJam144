@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://0gs5qe7lvv4j"]
+[gd_scene load_steps=13 format=3 uid="uid://0gs5qe7lvv4j"]
 
 [ext_resource type="PackedScene" uid="uid://bwa3y06aah4qt" path="res://Levels/YAM/yam.tscn" id="1_48jkt"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="1_i66ax"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Levels/YAM/PlayerNodeTamplate.gd" id="5_xioyi"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="6_ksd1w"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Enemys/Hand.png" id="7_6sosq"]
+[ext_resource type="PackedScene" uid="uid://cx16cjaq6n43b" path="res://Levels/YAM/EvilCloud.tscn" id="7_cmqcl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_el2so"]
 texture = ExtResource("1_i66ax")
@@ -189,6 +190,7 @@ size = Vector2(24.0025, 1156)
 script = ExtResource("1_ub574")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_jx5il")]
+visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(0, 96)
@@ -209,7 +211,7 @@ position = Vector2(1095, 299)
 shape = SubResource("RectangleShape2D_3vtqi")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 116)
+position = Vector2(565, 11)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_3vtqi")
 
@@ -233,6 +235,25 @@ position = Vector2(1349, 526)
 
 [node name="LevelTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="EvilCloud" parent="." instance=ExtResource("7_cmqcl")]
+position = Vector2(304, 95)
+
+[node name="EvilCloud2" parent="." instance=ExtResource("7_cmqcl")]
+position = Vector2(541, 150)
+scale = Vector2(1.2, 1.2)
+
+[node name="EvilCloud2" parent="EvilCloud2" instance=ExtResource("7_cmqcl")]
+position = Vector2(621.667, 21.6667)
+scale = Vector2(1.2, 1.2)
+
+[node name="EvilCloud3" parent="EvilCloud2" instance=ExtResource("7_cmqcl")]
+position = Vector2(-370.833, 33.3333)
+scale = Vector2(0.8, 0.8)
+
+[node name="EvilCloud3" parent="." instance=ExtResource("7_cmqcl")]
+position = Vector2(839, 83)
+scale = Vector2(0.72, 0.72)
 
 [node name="Father" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.431373)

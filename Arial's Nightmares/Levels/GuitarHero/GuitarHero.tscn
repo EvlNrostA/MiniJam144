@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cat12w8nvcmim"]
+[gd_scene load_steps=20 format=3 uid="uid://cat12w8nvcmim"]
 
 [ext_resource type="Script" path="res://Levels/GuitarHero/StateManager.gd" id="1_dkjhl"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="2_3l7vw"]
@@ -11,6 +11,10 @@
 [ext_resource type="Script" path="res://Levels/GuitarHero/GuitarHeroPlayer.gd" id="6_ecoko"]
 [ext_resource type="Texture2D" uid="uid://ctofbmn51lpss" path="res://Assets/Heart.png" id="6_y02eh"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Tileset/Bitfantasy.ttf" id="7_7dcin"]
+[ext_resource type="Texture2D" uid="uid://bpswbbcl0us3q" path="res://Levels/GuitarHero/Microphone.png" id="9_5o54e"]
+[ext_resource type="Texture2D" uid="uid://dmudurp3xt5d3" path="res://Levels/GuitarHero/Guitar.png" id="10_rbbnl"]
+[ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Light.png" id="14_codgr"]
+[ext_resource type="Texture2D" uid="uid://dh351jrw3bjr1" path="res://Assets/Evil_Cloud.png" id="15_dxd4u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8lsw"]
 texture = ExtResource("2_bnid3")
@@ -45,6 +49,7 @@ outline_color = Color(0.156863, 0.137255, 0.156863, 1)
 script = ExtResource("1_dkjhl")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_afsab")]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_top = 504.0
@@ -97,7 +102,18 @@ texture_mode = 1
 
 [node name="Player_Tamplate" parent="." instance=ExtResource("5_n5yia")]
 position = Vector2(576, 379)
+scale = Vector2(2, 2)
 script = ExtResource("6_ecoko")
+
+[node name="Microphone" type="Sprite2D" parent="."]
+position = Vector2(628, 387)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("9_5o54e")
+
+[node name="Guitar" type="Sprite2D" parent="."]
+position = Vector2(593, 407)
+rotation = 1.04147
+texture = ExtResource("10_rbbnl")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
@@ -408,6 +424,29 @@ offset_bottom = 135.0
 text = "3"
 label_settings = SubResource("LabelSettings_gsd82")
 horizontal_alignment = 1
+
+[node name="Light" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(579, 208)
+texture = ExtResource("14_codgr")
+
+[node name="EvilCloud" type="Sprite2D" parent="."]
+position = Vector2(258, 88)
+texture = ExtResource("15_dxd4u")
+
+[node name="Line2D" type="Line2D" parent="EvilCloud"]
+position = Vector2(7, -1)
+points = PackedVector2Array(-3.99994, -98, -4, -20)
+default_color = Color(0.639216, 0.635294, 0.603922, 1)
+
+[node name="EvilCloud2" type="Sprite2D" parent="."]
+position = Vector2(929, 70)
+texture = ExtResource("15_dxd4u")
+
+[node name="Line2D" type="Line2D" parent="EvilCloud2"]
+position = Vector2(7, -1)
+points = PackedVector2Array(-3.99994, -98, -4, -20)
+default_color = Color(0.639216, 0.635294, 0.603922, 1)
 
 [connection signal="area_entered" from="PressingBar" to="." method="_on_pressing_bar_area_entered"]
 [connection signal="area_exited" from="PressingBar" to="." method="_on_pressing_bar_area_exited"]
