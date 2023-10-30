@@ -8,6 +8,9 @@ const FAIL_COUNT = 3
 func _process(_delta):
 	for direction in manager.arrow_positions.keys():
 		if Input.is_action_just_pressed(direction):
+			if manager.arrows_on_target.size() == 0:
+				count_miss()
+				
 			for area in manager.arrows_on_target:
 				if direction == area.direction:
 					print("yes")

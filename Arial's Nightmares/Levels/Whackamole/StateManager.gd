@@ -4,9 +4,9 @@ var difficulty_settings = {
 	"easy": {
 		"count": 1,
 		"hide_delay": [1, 2],
-		"reveal_delay": [1, 1.5],
+		"reveal_delay": [0.5, 1],
 		"level_timer": 30,
-		"speed": 3
+		"speed": 2.5
 	},
 	"normal": {
 		"count": 3,
@@ -16,10 +16,10 @@ var difficulty_settings = {
 		"speed": 3
 	},
 	"hard": {
-		"count": 6,
+		"count": 7,
 		"hide_delay": [1, 2],
 		"reveal_delay": [0.5, 1],
-		"level_timer": 30,
+		"level_timer": 20,
 		"speed": 3
 	},
 }
@@ -41,10 +41,17 @@ func _ready():
 	level_timer.start(settings.level_timer)
 
 func _process(delta):
-	var hidden_noam_fogles = noam_fogles.filter(func(noam_fogle): return noam_fogle.hiding)
-	var revealed_noam_fogle_count = (noam_fogles.size() - hidden_noam_fogles.size())
+	if settings and noam_fogles:
+		spawn_noam_fogles(settings.count)
 	
-	if revealed_noam_fogle_count < noam_fogle_count:
+func spawn_noam_fogles(start_count):
+	var available_noam_fogles_count = clamp(noam_fogles.size(), 0, start_count)
+	var available_noam_fogles = noam_fogles.slice(0, available_noam_fogles_count)
+	
+	var hidden_noam_fogles = available_noam_fogles.filter(func(noam_fogle): return noam_fogle.hiding)
+	var revealed_noam_fogle_count = available_noam_fogles_count - hidden_noam_fogles.size()
+	
+	if not hidden_noam_fogles.is_empty() and revealed_noam_fogle_count < noam_fogle_count:
 		var noam_fogle = hidden_noam_fogles.pick_random()
 		noam_fogle.hide_and_reveal(randf_list_range(settings.reveal_delay), 
 								   randf_list_range(settings.hide_delay))

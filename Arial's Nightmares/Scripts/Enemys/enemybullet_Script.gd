@@ -1,7 +1,7 @@
 extends Area2D
 
 var dir := Vector2.LEFT
-var speed : float = 2
+var speed : float
 var hitable : bool = true
 
 signal SPAWN
@@ -13,25 +13,22 @@ func  _ready():
 
 func _process(delta):
 	Move(delta)
-	$Sprite2D.rotate(5 * delta)
+	$Sprite2D.rotate(speed * delta)
 	pass
 
 func Move(delta) -> void:
-	position = position.move_toward(position + dir, speed * delta * 100)
+	position += dir * speed * delta * 100
 	pass
 
-func SetSpawn(newDirection, spawnPos) -> void:
+func SetSpawn(newDirection, spawnPos, speed) -> void:
 	dir = newDirection
 	global_position = spawnPos
+	self.speed = speed
 	pass
 	
 func HitPlayer(col) -> void:
 	print("GameOver")
 	GManager.game_over()
-	pass
-
-func delete() -> void:
-	queue_free()
 	pass
 
 #var newBullet = bullet_refrance.instantiate()

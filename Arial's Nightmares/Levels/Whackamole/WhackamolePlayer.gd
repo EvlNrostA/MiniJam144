@@ -2,7 +2,6 @@ extends Player_library
 
 @onready var level_timer = $"../LevelTimer"
 @onready var manager = get_parent()
-@onready var killed_count = 0
 	
 func _process(delta):
 	Move2D(delta)
