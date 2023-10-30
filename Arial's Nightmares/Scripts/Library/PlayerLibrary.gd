@@ -65,6 +65,6 @@ func Move2DRight(delta, player_speed):
 		if Input.is_action_pressed("Right"):
 			velocity.x = speed * delta
 		else:
-			velocity.x = -10000 * delta		
+			velocity.x = -10000 * delta
 	
 	move_and_slide()

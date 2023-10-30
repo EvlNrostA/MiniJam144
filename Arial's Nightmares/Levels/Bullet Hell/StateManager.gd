@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var difficulty_settings = {
 	"easy": {
@@ -21,9 +21,10 @@ var difficulty_settings = {
 	}
 }
 
-@onready var level_timer = $"../LevelTimer"
-@onready var bullet_timer = $Timer
-@onready var player = $"../Player_BulletHell"
+@onready var canvas_animation_player = $"CanvasLayer/AnimationPlayer"
+@onready var level_timer = $"LevelTimer"
+@onready var bullet_timer = $BulletTimer
+@onready var player = $"Player_BulletHell"
 @onready var Bullet_Refrance = preload("res://Nodes/Enemys/enemy_bullet.tscn")
 
 var wait_time
@@ -31,7 +32,7 @@ var settings
 
 func _ready():
 	randomize()
-
+	GManager.difficulty = "easy"
 	settings = difficulty_settings[GManager.difficulty]
 	wait_time = settings.wait_time
 	player.speed = settings.speed
@@ -54,6 +55,12 @@ func SpawnBullets() -> void:
 	buttomBullet.emit_signal("SPAWN",Vector2.UP,Vector2(buttomPos,648), settings.clothes_speed)
 	rightBullet.emit_signal("SPAWN",Vector2.RIGHT,Vector2(0,leftPos), settings.clothes_speed)
 	leftBullet.emit_signal("SPAWN",Vector2.LEFT,Vector2(1128,rightPos), settings.clothes_speed)
-
-func _on_level_timer_timeout():
-	GManager.next_level()
+	
+	bullet_timer.start(wait_time)
+	
+func free_bullets():
+	var bullets = get_tree().get_nodes_in_group("Bullets")
+	for bullet in bullets:
+		bullet.queue_free()
+		
+	await get_tree().create_timer(0.01).timeout

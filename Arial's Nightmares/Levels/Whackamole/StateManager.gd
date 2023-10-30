@@ -24,6 +24,7 @@ var difficulty_settings = {
 	},
 }
  
+@onready var canvas_animation_player = $CanvasLayer/AnimationPlayer
 @onready var player = $"Player_Tamplate"
 @onready var level_timer = $"LevelTimer"
 @onready var noam_fogles = get_tree().get_nodes_in_group("NoamFogle")
@@ -42,14 +43,11 @@ func _ready():
 
 func _process(delta):
 	if settings and noam_fogles:
-		spawn_noam_fogles(settings.count)
+		spawn_noam_fogles()
 	
-func spawn_noam_fogles(start_count):
-	var available_noam_fogles_count = clamp(noam_fogles.size(), 0, start_count)
-	var available_noam_fogles = noam_fogles.slice(0, available_noam_fogles_count)
-	
-	var hidden_noam_fogles = available_noam_fogles.filter(func(noam_fogle): return noam_fogle.hiding)
-	var revealed_noam_fogle_count = available_noam_fogles_count - hidden_noam_fogles.size()
+func spawn_noam_fogles():	
+	var hidden_noam_fogles = noam_fogles.filter(func(noam_fogle): return noam_fogle.hiding)
+	var revealed_noam_fogle_count = noam_fogles.size() - hidden_noam_fogles.size()
 	
 	if not hidden_noam_fogles.is_empty() and revealed_noam_fogle_count < noam_fogle_count:
 		var noam_fogle = hidden_noam_fogles.pick_random()

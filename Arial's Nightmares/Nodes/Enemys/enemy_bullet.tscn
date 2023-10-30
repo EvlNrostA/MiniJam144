@@ -6,7 +6,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e4hfs"]
 
-[node name="EnemyBullet" type="Area2D"]
+[node name="EnemyBullet" type="Area2D" groups=["Bullets"]]
 collision_layer = 4
 script = ExtResource("1_cl1rb")
 

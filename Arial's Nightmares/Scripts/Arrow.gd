@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var sprite = $Sprite2D
+@onready var animation_player = $AnimationPlayer
 @onready var arrow_directions = {
 	"Up": preload("res://Assets/Arrows/up.png"),
 	"Left": preload("res://Assets/Arrows/left.png"),

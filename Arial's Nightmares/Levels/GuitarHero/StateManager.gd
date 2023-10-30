@@ -3,15 +3,18 @@ extends Node2D
 var difficulty_settings = {
 	"easy": {
 		"speed": 1,
-		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Easy.mp3"
+		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Easy.mp3",
+		"fail_count": 5
 	},
 	"normal": {
 		"speed": 3,
-		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Normal.mp3"
+		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Normal.mp3",
+		"fail_count": 5
 	},
 	"hard": {
 		"speed": 4,
-		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Hard.mp3"
+		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Hard.mp3",
+		"fail_count": 5
 	},
 }
 
@@ -24,13 +27,14 @@ const MIN_HEIGHT = 10
 const ARROW_DELAY = 3
 const MIN_TO_SEC = 60
 
+@onready var canvas_animation_player = $CanvasLayer/AnimationPlayer
 @onready var audio_player = $AudioStreamPlayer
 @onready var spectrum = AudioServer.get_bus_effect_instance(0, 0)
 @onready var player = $"Player_Tamplate"
 @onready var delay_timer = $DelayTimer
 @onready var bpm_timer = $BPMTimer
 @onready var pressing_bar = $PressingBar
-
+@onready var heart_label = $HeartLabel
 @onready var arrow_scene = preload("res://Nodes/Arrow.tscn")
 @onready var arrow_positions = {
 	"Up": $UpArrowPosition,
@@ -48,12 +52,13 @@ var beat_per_sec
 var chunk_size
 
 func _ready():
+	#GManager.difficulty = "easy"
 	settings = difficulty_settings[GManager.difficulty]
+	
+	player.fail_count = settings.fail_count
 	
 	audio_player.stream = load(settings.song_path)
 	beat_per_sec = audio_player.stream.get_bpm() / MIN_TO_SEC
-	#chunk_size = int(audio_player.stream.data.size() / audio_player.stream.get_length())
-	#var index = audio_player.get_playback_position() * chunk_size
 
 	var arrow_offset = (beat_per_sec * settings.speed * 100) * ARROW_DELAY
 	for arrow in arrow_positions.values():
@@ -68,7 +73,8 @@ func _ready():
 	audio_player.play()
 
 func _process(_delta):
-	pass
+	if player:
+		heart_label.text = str(player.fail_count)
 
 func add_arrow(direction, speed):
 	var arrow = arrow_scene.instantiate()

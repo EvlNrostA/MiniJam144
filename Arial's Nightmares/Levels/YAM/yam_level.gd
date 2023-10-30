@@ -3,20 +3,22 @@ extends Node2D
 var difficulty_settings = {
 	"easy": {
 		"speed": 3000,
-		"level_timer": 20
+		"level_timer": 20,
+		"level_velocity": 2
 	},
 	"normal": {
 		"speed": 2000,
-		"level_timer": 30
+		"level_timer": 30,
+		"level_velocity": 4
 	},
 	"hard": {
 		"speed": 100,
-		"level_timer": 30
+		"level_timer": 30,
+		"level_velocity": 8
 	}
 }
 
-const LEVEL_VELOCITY = Vector2.LEFT * 2
-
+@onready var canvas_animation_player = $CanvasLayer/AnimationPlayer
 @onready var bullet_refrance = preload("res://Levels/YAM/obstacle.tscn")
 @onready var player = $Player_Tamplate
 @onready var level_timer = $LevelTimer
@@ -25,9 +27,9 @@ var settings
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GManager.difficulty = "easy"
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
+	player.get_node("Shadow").visible = false
 	
 	level_timer.start(settings.level_timer)
 
@@ -39,7 +41,7 @@ func _on_timer_timeout():
 	
 	var newOB = bullet_refrance.instantiate()
 	get_parent().add_child(newOB)
-	newOB.emit_signal("SPAWN",Vector2.LEFT, Vector2(1350, 530))
+	newOB.emit_signal("SPAWN",Vector2.LEFT * settings.level_velocity, Vector2(1350, 530))
 	
 	
 	randomize()

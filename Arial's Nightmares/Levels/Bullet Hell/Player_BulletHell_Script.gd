@@ -1,9 +1,14 @@
 extends Player_library
 
-
-func _ready():
-	pass
+@onready var manager = get_parent()
 
 func _process(delta):
 	Move2D(delta)
-	pass
+	
+func hit():
+	manager.free_bullets()
+	GManager.game_over()
+
+func _on_level_timer_timeout():
+	manager.free_bullets()
+	GManager.next_level()
