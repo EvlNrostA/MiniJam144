@@ -2,6 +2,7 @@ extends Node
 
 #var start_menu = "res://Levels/StartMenu/StartMenu.tscn"
 var start_menu = "res://Levels/StartMenu/StartMenu.tscn"
+var gameOver_menu = "res://Levels/StartMenu/GameOverMenu.tscn"
 var bullet_hell = "res://Levels/Bullet Hell/BullletHell.tscn"
 var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
