@@ -23,6 +23,7 @@ buses/default_bus_layout="res://new_audio_bus_layout.tres"
 
 GManager="*res://Scripts/Library/GameManager.gd"
 Audio="*res://Nodes/Mechanics/AudioStreamPlayer.tscn"
+Fade="*res://Nodes/Mechanics/FadeLayer.tscn"
 
 [display]
 

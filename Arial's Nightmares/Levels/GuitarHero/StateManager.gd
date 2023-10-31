@@ -27,14 +27,19 @@ const MIN_HEIGHT = 10
 const ARROW_DELAY = 3
 const MIN_TO_SEC = 60
 
-@onready var canvas_animation_player = $CanvasLayer/AnimationPlayer
+#@onready var canvas = $CanvasLayer
+@onready var player = $"Player_Tamplate"
+
 @onready var audio_player = $AudioStreamPlayer
 @onready var spectrum = AudioServer.get_bus_effect_instance(0, 0)
-@onready var player = $"Player_Tamplate"
+
 @onready var delay_timer = $DelayTimer
 @onready var bpm_timer = $BPMTimer
+@onready var level_timer = $LevelTimerLabel
+
 @onready var pressing_bar = $PressingBar
 @onready var heart_label = $HeartLabel
+
 @onready var arrow_scene = preload("res://Nodes/Mechanics/Arrow.tscn")
 @onready var arrow_positions = {
 	"Up": $UpArrowPosition,
@@ -52,14 +57,18 @@ var beat_per_sec
 var chunk_size
 
 func _ready():
-	$CanvasLayer.visible = true
-	await GManager.fade_out(canvas_animation_player)
+	await GManager.fade_out()
 	
+	GManager.difficulty = "easy"
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
 	heart_label.text = str(player.fail_count)
 	
 	audio_player.stream = load(settings.song_path)
+	
+	var audio_length = audio_player.stream.get_length()
+	level_timer.set_time(audio_length)
+	
 	beat_per_sec = audio_player.stream.get_bpm() / MIN_TO_SEC
 
 	var arrow_offset = beat_per_sec * ARROW_DELAY * settings.speed * 100
@@ -74,6 +83,7 @@ func _ready():
 	await delay_timer.timeout
 	
 	audio_player.play()
+	level_timer.start(audio_length)
 
 func _process(_delta):
 	if player and player.fail_count >= 0:

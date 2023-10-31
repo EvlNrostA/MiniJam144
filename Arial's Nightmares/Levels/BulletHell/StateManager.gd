@@ -21,19 +21,20 @@ var difficulty_settings = {
 	}
 }
 
-@onready var canvas_animation_player = $"CanvasLayer/AnimationPlayer"
+#@onready var canvas = $CanvasLayer
+@onready var player = $"Player_BulletHell"
+
 @onready var level_timer = $"LevelTimer"
 @onready var bullet_timer = $BulletTimer
-@onready var player = $"Player_BulletHell"
+
+
 @onready var Bullet_Refrance = preload("res://Nodes/Enemys/enemy_bullet.tscn")
-@onready var stopped = false
 
 var wait_time
 var settings
 
 func _ready():
-	$CanvasLayer.visible = true
-	await GManager.fade_out(canvas_animation_player)
+	await GManager.fade_out()
 	
 	randomize()
 	

@@ -18,7 +18,7 @@ var difficulty_settings = {
 	}
 }
 
-@onready var canvas_animation_player = $CanvasLayer/AnimationPlayer
+#@onready var canvas = $CanvasLayer
 @onready var bullet_refrance = preload("res://Levels/EndlessRunner/Obstacle.tscn")
 @onready var player = $Player_Tamplate
 @onready var level_timer = $LevelTimer
@@ -27,8 +27,7 @@ var settings
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CanvasLayer.visible = true
-	await GManager.fade_out(canvas_animation_player)
+	await GManager.fade_out()
 	
 	randomize()
 	

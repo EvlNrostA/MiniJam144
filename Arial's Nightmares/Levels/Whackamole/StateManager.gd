@@ -24,7 +24,7 @@ var difficulty_settings = {
 	},
 }
  
-@onready var canvas_animation_player = $CanvasLayer/AnimationPlayer
+#@onready var canvas = $CanvasLayer
 @onready var player = $"Player_Tamplate"
 @onready var level_timer = $"LevelTimer"
 @onready var noam_fogles = get_tree().get_nodes_in_group("NoamFogle")
@@ -33,8 +33,7 @@ var settings
 var noam_fogle_count
 	
 func _ready():
-	$CanvasLayer.visible = true
-	await GManager.fade_out(canvas_animation_player)
+	await GManager.fade_out()
 	
 	randomize()
 

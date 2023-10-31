@@ -1,15 +1,13 @@
 extends Node2D
 
-@onready var shadow = $CanvasLayer/Shadow
-@onready var canvas_animation_player = $CanvasLayer/AnimationPlayer
+#@onready var shadow = $CanvasLayer/Shadow
 @onready var button = $TextureButton
 
 func _ready():
 	button.disabled = true
 	
 	GManager.restart_levels()
-	$CanvasLayer.visible = true
-	await GManager.fade_out(canvas_animation_player)
+	await GManager.fade_out()
 	
 	button.disabled = false
 
