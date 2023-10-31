@@ -3,17 +3,17 @@ extends Node2D
 var difficulty_settings = {
 	"easy": {
 		"speed": 1,
-		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Easy.mp3",
+		"song_path": "res://Assets/Music/Ed-Sheeran-Perfect-Easy.mp3",
 		"fail_count": 5
 	},
 	"normal": {
 		"speed": 3,
-		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Normal.mp3",
+		"song_path": "res://Assets/Music/Ed-Sheeran-Perfect-Normal.mp3",
 		"fail_count": 5
 	},
 	"hard": {
 		"speed": 4,
-		"song_path": "res://Levels/GuitarHero/Ed-Sheeran-Perfect-Hard.mp3",
+		"song_path": "res://Assets/Music/Ed-Sheeran-Perfect-Hard.mp3",
 		"fail_count": 5
 	},
 }
@@ -35,7 +35,7 @@ const MIN_TO_SEC = 60
 @onready var bpm_timer = $BPMTimer
 @onready var pressing_bar = $PressingBar
 @onready var heart_label = $HeartLabel
-@onready var arrow_scene = preload("res://Nodes/Arrow.tscn")
+@onready var arrow_scene = preload("res://Nodes/Mechanics/Arrow.tscn")
 @onready var arrow_positions = {
 	"Up": $UpArrowPosition,
 	"Left": $LeftArrowPosition,
@@ -57,7 +57,7 @@ func _ready():
 	
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
-	#heart_label.text = str(player.fail_count)
+	heart_label.text = str(player.fail_count)
 	
 	audio_player.stream = load(settings.song_path)
 	beat_per_sec = audio_player.stream.get_bpm() / MIN_TO_SEC
@@ -76,7 +76,7 @@ func _ready():
 	audio_player.play()
 
 func _process(_delta):
-	if player and player.fail_count > 0:
+	if player and player.fail_count >= 0:
 		heart_label.text = str(player.fail_count)
 
 func add_arrow(direction, speed):
@@ -93,7 +93,6 @@ func _on_bpm_timer_timeout():
 	if time_remaining > arrow_time_delay:
 		add_arrow(arrow_positions.keys().pick_random(), settings.speed)
 		
-		print(time_remaining)
 		bpm_timer.start(beat_per_sec)
 
 func hz_to_height(min_hz, max_hz) -> float:

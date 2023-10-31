@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Arial's Nightmares"
-run/main_scene="res://Levels/StartMenu/StartMenu.tscn"
+run/main_scene="res://Levels/Menu/StartMenu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,7 @@ buses/default_bus_layout="res://new_audio_bus_layout.tres"
 [autoload]
 
 GManager="*res://Scripts/Library/GameManager.gd"
+Audio="*res://Nodes/Mechanics/AudioStreamPlayer.tscn"
 
 [display]
 

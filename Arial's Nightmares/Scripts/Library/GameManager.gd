@@ -1,13 +1,13 @@
 extends Node
 
-var start_menu = "res://Levels/StartMenu/StartMenu.tscn"
-var game_over_menu = "res://Levels/EndScreen/GameOverMenu.tscn"
-var win_menu = "res://Levels/EndScreen/WinMenu.tscn"
+var start_menu = "res://Levels/Menu/StartMenu.tscn"
+var game_over_menu = "res://Levels/Menu/GameOverMenu.tscn"
+var win_menu = "res://Levels/Menu/WinMenu.tscn"
 
-var bullet_hell = "res://Levels/Bullet Hell/BullletHell.tscn"
+var bullet_hell = "res://Levels/BulletHell/BulletHell.tscn"
 var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
-var yam_level = "res://Levels/YAM/yam_level.tscn"
+var yam_level = "res://Levels/EndlessRunner/EndlessRunner.tscn"
 
 var difficulties = ["easy", "normal", "hard"]
 
@@ -97,7 +97,7 @@ func game_over():
 	var current_level = get_tree().get_current_scene()
 	await fade_in(current_level.canvas_animation_player)
 	
-	restart_levels()
+	#restart_levels()
 	
 	get_tree().change_scene_to_file(game_over_menu)
 

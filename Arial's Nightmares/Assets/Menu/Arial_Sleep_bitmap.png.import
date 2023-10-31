@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dxxh31823lxy7"
+path="res://.godot/imported/Arial_Sleep_bitmap.png-5ab50098c606ee3d01e9b959bc99e00b.res"
+
+[deps]
+
+source_file="res://Assets/Menu/Arial_Sleep_bitmap.png"
+dest_files=["res://.godot/imported/Arial_Sleep_bitmap.png-5ab50098c606ee3d01e9b959bc99e00b.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

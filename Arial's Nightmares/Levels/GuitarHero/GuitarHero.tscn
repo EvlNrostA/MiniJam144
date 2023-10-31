@@ -1,20 +1,22 @@
-[gd_scene load_steps=20 format=3 uid="uid://cat12w8nvcmim"]
+[gd_scene load_steps=22 format=3 uid="uid://cat12w8nvcmim"]
 
 [ext_resource type="Script" path="res://Levels/GuitarHero/StateManager.gd" id="1_dkjhl"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="2_3l7vw"]
-[ext_resource type="PackedScene" uid="uid://u8v0pe7gntk4" path="res://Nodes/FadeLayer.tscn" id="2_afsab"]
+[ext_resource type="PackedScene" uid="uid://u8v0pe7gntk4" path="res://Nodes/Mechanics/FadeLayer.tscn" id="2_afsab"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_bnid3"]
-[ext_resource type="Texture2D" uid="uid://u1xk7eglcfok" path="res://Levels/GuitarHero/Line.png" id="3_6hup0"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Enemys/Hand.png" id="3_sthri"]
 [ext_resource type="Texture2D" uid="uid://bl361uenlp15g" path="res://Assets/Enemys/Yam_Sheet.png" id="5_gh8rj"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/PlayerNodeTamplate.tscn" id="5_n5yia"]
 [ext_resource type="Script" path="res://Levels/GuitarHero/GuitarHeroPlayer.gd" id="6_ecoko"]
-[ext_resource type="Texture2D" uid="uid://ctofbmn51lpss" path="res://Assets/Heart.png" id="6_y02eh"]
+[ext_resource type="Texture2D" uid="uid://u1xk7eglcfok" path="res://Assets/Environment/Line.png" id="6_msk2n"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Tileset/Bitfantasy.ttf" id="7_7dcin"]
-[ext_resource type="Texture2D" uid="uid://bpswbbcl0us3q" path="res://Levels/GuitarHero/Microphone.png" id="9_5o54e"]
-[ext_resource type="Texture2D" uid="uid://dmudurp3xt5d3" path="res://Levels/GuitarHero/Guitar.png" id="10_rbbnl"]
-[ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Light.png" id="14_codgr"]
-[ext_resource type="Texture2D" uid="uid://dh351jrw3bjr1" path="res://Assets/Evil_Cloud.png" id="15_dxd4u"]
+[ext_resource type="Texture2D" uid="uid://bpswbbcl0us3q" path="res://Assets/Environment/Microphone.png" id="9_h4ayj"]
+[ext_resource type="Texture2D" uid="uid://dmudurp3xt5d3" path="res://Assets/Environment/Guitar.png" id="10_4l8db"]
+[ext_resource type="PackedScene" uid="uid://u1ebkowpbp7t" path="res://Nodes/Mechanics/AudioStreamPlayer.tscn" id="11_x4oki"]
+[ext_resource type="Texture2D" uid="uid://ctofbmn51lpss" path="res://Assets/Mechanics/Heart.png" id="13_yewnw"]
+[ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Environment/Light.png" id="15_nuuwx"]
+[ext_resource type="Texture2D" uid="uid://dh351jrw3bjr1" path="res://Assets/Environment/Evil_Cloud.png" id="16_c14sj"]
+[ext_resource type="Texture2D" uid="uid://b8fahc0bwriju" path="res://Assets/Mechanics/Rope.png" id="17_v3jon"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8lsw"]
 texture = ExtResource("2_bnid3")
@@ -97,7 +99,7 @@ position = Vector2(-581.88, -282)
 scale = Vector2(1.012, 1)
 points = PackedVector2Array(0, 280, 1150, 280)
 width = 64.0
-texture = ExtResource("3_6hup0")
+texture = ExtResource("6_msk2n")
 texture_mode = 1
 
 [node name="Player_Tamplate" parent="." instance=ExtResource("5_n5yia")]
@@ -108,14 +110,14 @@ script = ExtResource("6_ecoko")
 [node name="Microphone" type="Sprite2D" parent="."]
 position = Vector2(628, 387)
 scale = Vector2(1.6, 1.6)
-texture = ExtResource("9_5o54e")
+texture = ExtResource("9_h4ayj")
 
 [node name="Guitar" type="Sprite2D" parent="."]
 position = Vector2(593, 407)
 rotation = 1.04147
-texture = ExtResource("10_rbbnl")
+texture = ExtResource("10_4l8db")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("11_x4oki")]
 
 [node name="UpArrowPosition" type="Node2D" parent="."]
 position = Vector2(288, -64)
@@ -414,7 +416,7 @@ vframes = 4
 [node name="Heart" type="Sprite2D" parent="."]
 position = Vector2(83, 56)
 scale = Vector2(3.8, 3.8)
-texture = ExtResource("6_y02eh")
+texture = ExtResource("13_yewnw")
 
 [node name="HeartLabel" type="Label" parent="."]
 offset_left = 60.0
@@ -427,28 +429,37 @@ horizontal_alignment = 1
 
 [node name="Light" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.486275)
-position = Vector2(579, 208)
-texture = ExtResource("14_codgr")
+position = Vector2(578, 251)
+texture = ExtResource("15_nuuwx")
 
 [node name="EvilCloud" type="Sprite2D" parent="."]
-position = Vector2(258, 88)
-texture = ExtResource("15_dxd4u")
+position = Vector2(264, -13)
+texture = ExtResource("16_c14sj")
+offset = Vector2(-3, 127)
 
 [node name="Line2D" type="Line2D" parent="EvilCloud"]
-position = Vector2(7, -1)
+texture_repeat = 2
+position = Vector2(4, 98)
 points = PackedVector2Array(-3.99994, -98, -4, -20)
+width = 32.0
 default_color = Color(0.639216, 0.635294, 0.603922, 1)
+texture = ExtResource("17_v3jon")
+texture_mode = 1
 
 [node name="EvilCloud2" type="Sprite2D" parent="."]
-position = Vector2(929, 70)
-texture = ExtResource("15_dxd4u")
+position = Vector2(932, -54)
+texture = ExtResource("16_c14sj")
+offset = Vector2(-3, 125)
 
 [node name="Line2D" type="Line2D" parent="EvilCloud2"]
-position = Vector2(7, -1)
+texture_repeat = 2
+position = Vector2(4, 96)
 points = PackedVector2Array(-3.99994, -98, -4, -20)
+width = 32.0
 default_color = Color(0.639216, 0.635294, 0.603922, 1)
+texture = ExtResource("17_v3jon")
+texture_mode = 1
 
 [connection signal="area_entered" from="PressingBar" to="." method="_on_pressing_bar_area_entered"]
 [connection signal="area_exited" from="PressingBar" to="." method="_on_pressing_bar_area_exited"]
-[connection signal="finished" from="AudioStreamPlayer" to="Player_Tamplate" method="won_game"]
 [connection signal="timeout" from="BPMTimer" to="." method="_on_bpm_timer_timeout"]
