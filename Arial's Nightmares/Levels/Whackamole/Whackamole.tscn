@@ -69,6 +69,7 @@ sources/0 = SubResource("TileSetAtlasSource_vphrw")
 script = ExtResource("2_4ggw8")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_hu4lr")]
+visible = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2khyp")

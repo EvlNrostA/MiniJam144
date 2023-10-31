@@ -5,6 +5,7 @@ extends Node2D
 @onready var button = $TextureButton
 
 func _ready():
+	$CanvasLayer.visible = true
 	button.disabled = true
 	await GManager.fade_out(canvas_animation_player)
 	button.disabled = false

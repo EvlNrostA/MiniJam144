@@ -32,6 +32,7 @@ var wait_time
 var settings
 
 func _ready():
+	$CanvasLayer.visible = true
 	await GManager.fade_out(canvas_animation_player)
 	
 	randomize()

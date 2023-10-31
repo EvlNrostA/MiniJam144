@@ -52,6 +52,7 @@ var beat_per_sec
 var chunk_size
 
 func _ready():
+	$CanvasLayer.visible = true
 	await GManager.fade_out(canvas_animation_player)
 	
 	settings = difficulty_settings[GManager.difficulty]

@@ -33,6 +33,7 @@ var settings
 var noam_fogle_count
 	
 func _ready():
+	$CanvasLayer.visible = true
 	await GManager.fade_out(canvas_animation_player)
 	
 	randomize()

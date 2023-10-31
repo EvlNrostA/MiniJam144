@@ -5,6 +5,7 @@ extends Node2D
 @onready var button = $TextureButton
 
 func _ready():
+	$CanvasLayer.visible = true
 	GManager.restart_levels()
 	pass
 
