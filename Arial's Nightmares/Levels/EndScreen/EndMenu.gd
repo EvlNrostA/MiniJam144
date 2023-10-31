@@ -10,5 +10,4 @@ func _ready():
 	button.disabled = false
 
 func _on_button_pressed():
-	print(GManager.levels_left)
 	GManager.next_level()

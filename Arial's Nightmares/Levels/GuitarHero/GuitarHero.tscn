@@ -49,7 +49,6 @@ outline_color = Color(0.156863, 0.137255, 0.156863, 1)
 script = ExtResource("1_dkjhl")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_afsab")]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_top = 504.0

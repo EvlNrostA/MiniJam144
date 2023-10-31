@@ -47,8 +47,8 @@ const MIN_TO_SEC = 60
 @onready var current_data = 0
 
 var settings
-var arrow_delay
-var beat_per_sec 
+var arrow_time_delay
+var beat_per_sec
 var chunk_size
 
 func _ready():
@@ -56,19 +56,20 @@ func _ready():
 	
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
-	heart_label.text = str(player.fail_count)
+	#heart_label.text = str(player.fail_count)
 	
 	audio_player.stream = load(settings.song_path)
 	beat_per_sec = audio_player.stream.get_bpm() / MIN_TO_SEC
 
-	var arrow_offset = (beat_per_sec * settings.speed * 100) * ARROW_DELAY
+	var arrow_offset = beat_per_sec * ARROW_DELAY * settings.speed * 100
 	for arrow in arrow_positions.values():
 		arrow.position.y = pressing_bar.position.y - arrow_offset
 		
 	bpm_timer.start(beat_per_sec)
 	
 	var audio_delay = AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency()
-	delay_timer.start(ARROW_DELAY + audio_delay)
+	arrow_time_delay = ARROW_DELAY + audio_delay
+	delay_timer.start(arrow_time_delay)
 	await delay_timer.timeout
 	
 	audio_player.play()
@@ -86,12 +87,12 @@ func add_arrow(direction, speed):
 				speed)
 				
 func _on_bpm_timer_timeout():
-	#var volume = hz_to_height(0, MAX_FREQ)
-	#if (audio_player.playing and volume > MIN_HEIGHT) or not audio_player.playing:
+	var time_remaining = audio_player.stream.get_length() - audio_player.get_playback_position()
 	
-	add_arrow(arrow_positions.keys().pick_random(), settings.speed)
+	if time_remaining > arrow_time_delay:
+		add_arrow(arrow_positions.keys().pick_random(), settings.speed)
 		
-	if not stopped:
+		print(time_remaining)
 		bpm_timer.start(beat_per_sec)
 
 func hz_to_height(min_hz, max_hz) -> float:

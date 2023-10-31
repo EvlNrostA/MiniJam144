@@ -25,9 +25,9 @@ func count_miss():
 		lost_game()
 
 func lost_game():
-	manager.stopped = true
+	manager.bpm_timer.stop()
 	GManager.game_over()
 
 func won_game():
-	manager.stopped = true
+	manager.bpm_timer.stop()
 	GManager.next_level()
