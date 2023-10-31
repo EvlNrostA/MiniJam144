@@ -24,9 +24,8 @@ var difficulty_settings = {
 	},
 }
  
-#@onready var canvas = $CanvasLayer
+@onready level_timer = $LevelTimer
 @onready var player = $"Player_Tamplate"
-@onready var level_timer = $"LevelTimer"
 @onready var noam_fogles = get_tree().get_nodes_in_group("NoamFogle")
 
 var settings
@@ -41,7 +40,7 @@ func _ready():
 	noam_fogle_count = settings.count
 	player.speed = settings.speed
 
-	level_timer.start(settings.level_timer)
+	level_timer.start_timer(settings.level_timer)
 
 func _process(delta):
 	if settings and noam_fogles:

@@ -78,7 +78,6 @@ var levels_left : Array
 var difficulty
 
 func next_level():
-	#var current_level = get_tree().get_current_scene()
 	await fade_in()
 
 	if levels_left.is_empty():
@@ -94,10 +93,7 @@ func next_level():
 	get_tree().change_scene_to_file(next_level_settings.scene)
 
 func game_over():
-	#var current_level = get_tree().get_current_scene()
 	await fade_in()
-	
-	#restart_levels()
 	get_tree().change_scene_to_file(game_over_menu)
 
 func restart_levels():

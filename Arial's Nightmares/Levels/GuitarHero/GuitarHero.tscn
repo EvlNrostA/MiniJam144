@@ -462,10 +462,6 @@ texture = ExtResource("17_v3jon")
 texture_mode = 1
 
 [node name="LevelTimerLabel" parent="." instance=ExtResource("18_6kf7s")]
-offset_left = 1070.0
-offset_top = 34.0
-offset_right = 1110.0
-offset_bottom = 57.0
 
 [connection signal="area_entered" from="PressingBar" to="." method="_on_pressing_bar_area_entered"]
 [connection signal="area_exited" from="PressingBar" to="." method="_on_pressing_bar_area_exited"]

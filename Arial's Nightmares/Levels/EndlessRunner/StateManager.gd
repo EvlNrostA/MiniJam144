@@ -35,7 +35,7 @@ func _ready():
 	player.speed = settings.speed
 	player.get_node("Shadow").visible = false
 	
-	level_timer.start(settings.level_timer)
+	level_timer.start_timer(settings.level_timer)
 	$Timer.start()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

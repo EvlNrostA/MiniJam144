@@ -43,7 +43,7 @@ func _ready():
 	player.speed = settings.speed
 	
 	bullet_timer.start(wait_time)
-	level_timer.start(settings.level_timer)
+	level_timer.start_timer(settings.level_timer)
 
 func SpawnBullets() -> void:
 	var buttomBullet = Bullet_Refrance.instantiate()
