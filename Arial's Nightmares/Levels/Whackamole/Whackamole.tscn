@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://djj173xxfsnt5"]
+[gd_scene load_steps=14 format=3 uid="uid://djj173xxfsnt5"]
 
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="1_7vt5w"]
 [ext_resource type="Script" path="res://Levels/Whackamole/StateManager.gd" id="2_4ggw8"]
@@ -65,6 +65,15 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_vphrw")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40ig5"]
+size = Vector2(25.0013, 672)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvsnh"]
+size = Vector2(24.0025, 672)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwswl"]
+size = Vector2(22.0006, 1168)
+
 [node name="Whackamole" type="Node2D"]
 script = ExtResource("2_4ggw8")
 
@@ -114,5 +123,26 @@ position = Vector2(560, 239)
 position = Vector2(384, 519)
 
 [node name="LevelTimer" parent="." instance=ExtResource("9_sl48q")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-12, 336)
+shape = SubResource("RectangleShape2D_40ig5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1164, 336)
+shape = SubResource("RectangleShape2D_rvsnh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, -8)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_dwswl")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, 680)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_dwswl")
 
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

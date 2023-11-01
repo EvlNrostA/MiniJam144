@@ -21,6 +21,11 @@ var difficulty_settings = {
 	}
 }
 
+const MAX_LEFT = -50
+const MAX_RIGHT = 1200
+const MAX_TOP = -50
+const MAX_BOTTOM = 700
+
 @onready var player = $Player
 
 @onready var level_timer = $LevelTimer
@@ -50,21 +55,18 @@ func _ready():
 	right_hand.start("RightWave")
 	left_hand.start("LeftWave")
 
-func SpawnBullets() -> void:
-	var buttomBullet = clothes_scene.instantiate()
-	var buttomPos = randf_range(24,648)
-	var leftBullet = clothes_scene.instantiate()
-	var leftPos = randf_range(136,648)
-	var rightBullet = clothes_scene.instantiate()
-	var rightPos = randf_range(136,648)
+func spawn_bullets() -> void:
+	var bullet_directions = {
+		Vector2.UP: Vector2(randf_range(MAX_LEFT, MAX_RIGHT), MAX_BOTTOM),
+		Vector2.DOWN: Vector2(randf_range(MAX_LEFT, MAX_RIGHT), MAX_TOP),
+		Vector2.LEFT: Vector2(MAX_RIGHT, randf_range(MAX_TOP, MAX_BOTTOM)),
+		Vector2.RIGHT: Vector2(MAX_LEFT, randf_range(MAX_TOP, MAX_BOTTOM))
+	}
 	
-	add_child(buttomBullet)
-	add_child(leftBullet)
-	add_child(rightBullet)
-	
-	buttomBullet.emit_signal("SPAWN",Vector2.UP,Vector2(buttomPos,648), settings.clothes_speed)
-	rightBullet.emit_signal("SPAWN",Vector2.RIGHT,Vector2(0,leftPos), settings.clothes_speed)
-	leftBullet.emit_signal("SPAWN",Vector2.LEFT,Vector2(1128,rightPos), settings.clothes_speed)
+	for direction in bullet_directions.keys():
+		var bullet = clothes_scene.instantiate()
+		add_child(bullet)
+		bullet.emit_signal("SPAWN", direction, bullet_directions[direction], settings.clothes_speed)
 	
 	bullet_timer.start(wait_time)
 
