@@ -10,7 +10,7 @@
 collision_layer = 4
 script = ExtResource("1_cl1rb")
 
-[node name="ShadiwSprite2D" type="Sprite2D" parent="."]
+[node name="ShadowSprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.141176)
 position = Vector2(0, 6)
 texture = ExtResource("2_g3ugr")
@@ -23,10 +23,5 @@ vframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e4hfs")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-autostart = true
-
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="HitPlayer"]
-[connection signal="timeout" from="Timer" to="." method="delete"]

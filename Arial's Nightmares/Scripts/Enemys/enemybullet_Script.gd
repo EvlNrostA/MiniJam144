@@ -23,12 +23,8 @@ func SetSpawn(newDirection, spawnPos, speed) -> void:
 	self.speed = speed
 	
 func HitPlayer(col) -> void:
-	#if col.is_queued_for_deletion == false:
 	col.hit()
 	
-func delete():
+func _on_area_entered(area):
+	print(area)
 	queue_free()
-
-#var newBullet = bullet_refrance.instantiate()
-#get_parent().add_child(newBullet)
-#ThisBulletVar.emit_signal("SPAWN",Vector2(4,2), global_position)

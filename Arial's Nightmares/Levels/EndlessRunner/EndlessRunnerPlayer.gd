@@ -10,7 +10,7 @@ func _ready():
 
 func _physics_process(delta):
 	if hited == false:
-		Move2DRight(delta, speed)
+		Move2DRight(delta)
 	else:
 		position = position.move_toward(yam.position, 300 * delta)
 

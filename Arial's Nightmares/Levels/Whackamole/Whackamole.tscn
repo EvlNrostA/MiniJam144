@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://djj173xxfsnt5"]
+[gd_scene load_steps=11 format=3 uid="uid://djj173xxfsnt5"]
 
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/PlayerNodeTamplate.tscn" id="1_7vt5w"]
 [ext_resource type="Script" path="res://Levels/Whackamole/StateManager.gd" id="2_4ggw8"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_8wqw1"]
-[ext_resource type="PackedScene" uid="uid://u8v0pe7gntk4" path="res://Nodes/Mechanics/FadeLayer.tscn" id="2_hu4lr"]
 [ext_resource type="Script" path="res://Levels/Whackamole/WhackamolePlayer.gd" id="2_kdedg"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="5_7mqa1"]
 [ext_resource type="PackedScene" uid="uid://qja4lm0cwpjg" path="res://Nodes/Enemys/NoamFogle.tscn" id="5_aogm1"]
@@ -69,9 +68,6 @@ sources/0 = SubResource("TileSetAtlasSource_vphrw")
 [node name="Whackamole" type="Node2D"]
 script = ExtResource("2_4ggw8")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("2_hu4lr")]
-visible = false
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2khyp")
 format = 2
@@ -119,4 +115,4 @@ position = Vector2(384, 519)
 
 [node name="LevelTimer" parent="." instance=ExtResource("9_sl48q")]
 
-[connection signal="timeout" from="LevelTimer" to="Player_Tamplate" method="_on_level_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

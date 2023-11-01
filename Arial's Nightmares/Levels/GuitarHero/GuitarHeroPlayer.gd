@@ -13,10 +13,10 @@ func _process(_delta):
 				
 			for area in arrows_on_target:
 				var correct_direction = direction == area.direction
-				if not correct_direction:
+				if not correct_direction or area.pressed:
 					count_miss()
 					
-				if not area.pressed:	
+				if not area.pressed:
 					var animation_name = "PressedRight" if correct_direction else "PressedWrong"
 					area.animation_player.queue(animation_name)
 					

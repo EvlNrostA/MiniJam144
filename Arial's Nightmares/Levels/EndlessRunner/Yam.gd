@@ -5,7 +5,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	$"../Line2D".points[1] = make_canvas_position_local($"../Player_Tamplate".position)
 	pass
 

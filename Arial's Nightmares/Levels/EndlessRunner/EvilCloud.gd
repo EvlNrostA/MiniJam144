@@ -9,7 +9,7 @@ var speed
 func _ready():
 	speed = randf_range(MIN_SPEED, MAX_SPEED)
 
-func _process(delta):
+func _process(_delta):
 	position += Vector2.LEFT * speed
 	
 	if position.x < -400:

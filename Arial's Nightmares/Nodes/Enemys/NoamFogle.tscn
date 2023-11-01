@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://qja4lm0cwpjg"]
 
-[ext_resource type="Script" path="res://Scripts/Enemys/noamfogle_Script.gd" id="1_ihpxf"]
+[ext_resource type="Script" path="res://Scripts/Enemys/NoamFogle.gd" id="1_ihpxf"]
 [ext_resource type="Texture2D" uid="uid://r57ua5m7b3rg" path="res://Assets/Enemys/Fogle.png" id="2_7cvli"]
 [ext_resource type="Texture2D" uid="uid://dagr3r8c6pnye" path="res://Assets/Enemys/Hole.png" id="2_aul48"]
 

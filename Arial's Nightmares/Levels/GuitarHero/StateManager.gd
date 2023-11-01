@@ -57,8 +57,6 @@ var beat_per_sec
 var chunk_size
 
 func _ready():
-	await GManager.fade_out()
-	
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
 	heart_label.text = str(player.fail_count)
@@ -124,19 +122,8 @@ func _on_pressing_bar_area_exited(area):
 	
 	area.queue_free()
 	
-func free_nodes():
-	bpm_timer.stop()
-	
-	var arrows = get_tree().get_nodes_in_group("Arrows")
-	for area in arrows:
-		area.animation_player.stop(true)
-		area.queue_free()
-	
 func lost_game():
-	free_nodes()
 	GManager.game_over()
 
 func won_game():
-	free_nodes()
 	GManager.next_level()
-

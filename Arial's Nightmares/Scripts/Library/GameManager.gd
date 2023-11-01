@@ -78,8 +78,6 @@ var levels_left : Array
 var difficulty
 
 func next_level():
-	await fade_in()
-
 	if levels_left.is_empty():
 		current_batch_index += 1
 		copy_array(levels_left, levels[current_batch_index])
@@ -90,28 +88,35 @@ func next_level():
 	if next_level_settings.has("difficulty"):
 		difficulty = next_level_settings.difficulty
 	
-	get_tree().change_scene_to_file(next_level_settings.scene)
+	change_scene(next_level_settings.scene)
 
 func game_over():
-	await fade_in()
-	get_tree().change_scene_to_file(game_over_menu)
-
+	change_scene(game_over_menu)
+	
 func restart_levels():
 	current_batch_index = 0
 	copy_array(levels_left, levels[current_batch_index])
-	
+
 func copy_array(array, array_to_copy):
 	array.clear()
 	array.append_array(array_to_copy.duplicate(true))
-
+	
+func change_scene(scene):
+	await fade_in()
+	get_tree().change_scene_to_file(scene)
+	await fade_out()
+	
 func fade_in():
 	Fade.shadow.visible = true
 	Fade.animation_player.play("FadeIn")
 	await Fade.animation_player.animation_finished
-	Fade.shadow.visible = false
+	
+	get_tree().paused = true
+	get_tree().current_scene.queue_free()
 	
 func fade_out():
-	Fade.shadow.visible = true
 	Fade.animation_player.play_backwards("FadeIn")
 	await Fade.animation_player.animation_finished
 	Fade.shadow.visible = false
+	
+	get_tree().paused = false

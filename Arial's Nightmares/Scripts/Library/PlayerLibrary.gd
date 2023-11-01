@@ -4,8 +4,9 @@ class_name Player_library
 
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
-@onready var collision_shape = $CollisionShape2D
 @onready var animationState = animationTree.get("parameters/playback")
+@onready var collision_shape = $CollisionShape2D
+@onready var shadow = $Shadow
 
 @export var speed : float = 1
 var vel := Vector2.ZERO
@@ -50,7 +51,7 @@ func PlatformMove2D(delta) -> void:
 	move_and_slide()
 	pass
 	
-func Move2DRight(delta, player_speed):
+func Move2DRight(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		velocity.x = (speed / 2) * delta

@@ -40,4 +40,4 @@ func _on_body_entered(body):
 		sprite.visible = false
 		hiding = true
 		
-		body.killed_noam_fogle(self)
+		body.killed_noam_fogle()

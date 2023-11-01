@@ -6,15 +6,7 @@ extends Player_library
 func _process(delta):
 	Move2D(delta)
 
-func killed_noam_fogle(body):
+func killed_noam_fogle():
 	manager.noam_fogle_count -= 1
 	if (manager.noam_fogle_count == 0):
-		won_game()
-
-func won_game():
-	print("Won Game")
-	GManager.next_level()
-
-func _on_level_timer_timeout():
-	print("Lost Game")
-	GManager.game_over()
+		manager.won_game()

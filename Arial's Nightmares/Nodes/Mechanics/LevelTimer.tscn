@@ -1,13 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjgpx1v4scdof"]
+[gd_scene load_steps=3 format=3 uid="uid://cjgpx1v4scdof"]
 
 [ext_resource type="Script" path="res://Scripts/Mechanics/LevelTimer.gd" id="1_26ulp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3m1u"]
+font_size = 40
 
 [node name="LevelTimer" type="Timer"]
 one_shot = true
 script = ExtResource("1_26ulp")
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[connection signal="timeout" from="." to="Label" method="_on_level_timer_timeout"]
+offset_left = 1092.0
+offset_top = 20.0
+offset_right = 1132.0
+offset_bottom = 50.0
+label_settings = SubResource("LabelSettings_l3m1u")
