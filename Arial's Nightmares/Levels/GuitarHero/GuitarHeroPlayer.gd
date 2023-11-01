@@ -6,28 +6,24 @@ var fail_count : int
 func _process(_delta):	
 	for direction in manager.arrow_positions.keys():
 		if Input.is_action_just_pressed(direction):
-			if manager.arrows_on_target.size() == 0:
+			var arrows_on_target = manager.arrows_on_target
+			
+			if arrows_on_target.size() == 0:
 				count_miss()
 				
-			for area in manager.arrows_on_target:
-				if not area.pressed:
-					if direction == area.direction:
-						area.pressed = true
-						area.animation_player.play("PressedRight")
-					else:
-						count_miss()
-						area.animation_player.play("PressedWrong")
+			for area in arrows_on_target:
+				var correct_direction = direction == area.direction
+				if not correct_direction:
+					count_miss()
+					
+				if not area.pressed:	
+					var animation_name = "PressedRight" if correct_direction else "PressedWrong"
+					area.animation_player.queue(animation_name)
+					
+				area.pressed = true
 
 func count_miss():
-	if fail_count > 0:
-		fail_count -= 1
-	else:
-		lost_game()
-
-func lost_game():
-	manager.bpm_timer.stop()
-	GManager.game_over()
-
-func won_game():
-	manager.bpm_timer.stop()
-	GManager.next_level()
+	fail_count -= 1
+	
+	if fail_count == 0:
+		manager.lost_game()

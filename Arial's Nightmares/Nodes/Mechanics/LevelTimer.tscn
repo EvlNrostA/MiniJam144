@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://cjgpx1v4scdof"]
 
-[ext_resource type="Script" path="res://Nodes/LevelTimer.gd" id="1_n3eap"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/LevelTimer.gd" id="1_26ulp"]
 
 [node name="LevelTimer" type="Timer"]
 one_shot = true
-script = ExtResource("1_n3eap")
+script = ExtResource("1_26ulp")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0

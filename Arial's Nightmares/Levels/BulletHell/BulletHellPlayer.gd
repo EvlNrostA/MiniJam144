@@ -6,11 +6,9 @@ func _process(delta):
 	Move2D(delta)
 	
 func hit():
-	manager.bullet_timer.stop()
 	await manager.free_nodes()
 	GManager.game_over()
 
-func _on_level_timer_timeout():
-	manager.bullet_timer.stop()
-	await manager.free_bullets()
+func won_game():
+	await manager.free_nodes()
 	GManager.next_level()

@@ -35,7 +35,7 @@ const MIN_TO_SEC = 60
 
 @onready var delay_timer = $DelayTimer
 @onready var bpm_timer = $BPMTimer
-@onready var level_timer = $LevelTimerLabel
+@onready var level_timer = $LevelTimer
 
 @onready var pressing_bar = $PressingBar
 @onready var heart_label = $HeartLabel
@@ -59,7 +59,6 @@ var chunk_size
 func _ready():
 	await GManager.fade_out()
 	
-	GManager.difficulty = "easy"
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
 	heart_label.text = str(player.fail_count)
@@ -83,7 +82,7 @@ func _ready():
 	await delay_timer.timeout
 	
 	audio_player.play()
-	level_timer.start(audio_length)
+	level_timer.start_timer(audio_length)
 
 func _process(_delta):
 	if player and player.fail_count >= 0:
@@ -115,8 +114,29 @@ func _on_pressing_bar_area_entered(area):
 	arrows_on_target.append(area)
 
 func _on_pressing_bar_area_exited(area):
+	arrows_on_target.erase(area)
+	
 	if not area.pressed:
 		player.count_miss()
-		
-	arrows_on_target.erase(area)
+	
+	area.animation_player.queue("FadeOut")
+	await area.animation_player.animation_finished
+	
 	area.queue_free()
+	
+func free_nodes():
+	bpm_timer.stop()
+	
+	var arrows = get_tree().get_nodes_in_group("Arrows")
+	for area in arrows:
+		area.animation_player.stop(true)
+		area.queue_free()
+	
+func lost_game():
+	free_nodes()
+	GManager.game_over()
+
+func won_game():
+	free_nodes()
+	GManager.next_level()
+

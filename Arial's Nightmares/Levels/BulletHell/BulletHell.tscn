@@ -137,4 +137,4 @@ shape = SubResource("RectangleShape2D_bg5mv")
 [node name="LevelTimer" parent="." instance=ExtResource("8_vs58b")]
 
 [connection signal="timeout" from="BulletTimer" to="." method="SpawnBullets"]
-[connection signal="timeout" from="LevelTimer" to="Player_BulletHell" method="_on_level_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="Player_BulletHell" method="won_game"]

@@ -133,8 +133,10 @@ position = Vector2(672, -64)
 position = Vector2(864, -64)
 
 [node name="DelayTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="BPMTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Fans" type="Node" parent="."]
 
@@ -461,8 +463,9 @@ default_color = Color(0.639216, 0.635294, 0.603922, 1)
 texture = ExtResource("17_v3jon")
 texture_mode = 1
 
-[node name="LevelTimerLabel" parent="." instance=ExtResource("18_6kf7s")]
+[node name="LevelTimer" parent="." instance=ExtResource("18_6kf7s")]
 
 [connection signal="area_entered" from="PressingBar" to="." method="_on_pressing_bar_area_entered"]
 [connection signal="area_exited" from="PressingBar" to="." method="_on_pressing_bar_area_exited"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="won_game"]
 [connection signal="timeout" from="BPMTimer" to="." method="_on_bpm_timer_timeout"]

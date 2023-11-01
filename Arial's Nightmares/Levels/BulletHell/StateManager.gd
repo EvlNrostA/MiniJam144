@@ -64,6 +64,8 @@ func SpawnBullets() -> void:
 	bullet_timer.start(wait_time)
 	
 func free_nodes():
+	bullet_timer.stop()
+	
 	var bullets = get_tree().get_nodes_in_group("Bullets")
 	for bullet in bullets:
 		bullet.queue_free()

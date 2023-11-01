@@ -24,7 +24,7 @@ var difficulty_settings = {
 	},
 }
  
-@onready level_timer = $LevelTimer
+@onready var level_timer = $LevelTimer
 @onready var player = $"Player_Tamplate"
 @onready var noam_fogles = get_tree().get_nodes_in_group("NoamFogle")
 
