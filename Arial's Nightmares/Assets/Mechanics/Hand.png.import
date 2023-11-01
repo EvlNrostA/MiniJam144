@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5vbhsfmc6h7b"
-path="res://.godot/imported/Father.png-250ad1f25a73f1443a1a55af8e0fa9ff.ctex"
+uid="uid://dshf4t57oydcb"
+path="res://.godot/imported/Hand.png-19d60979277db6329d6136f85cb274b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemys/Father.png"
-dest_files=["res://.godot/imported/Father.png-250ad1f25a73f1443a1a55af8e0fa9ff.ctex"]
+source_file="res://Assets/Mechanics/Hand.png"
+dest_files=["res://.godot/imported/Hand.png-19d60979277db6329d6136f85cb274b5.ctex"]
 
 [params]
 

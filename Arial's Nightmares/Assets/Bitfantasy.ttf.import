@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://m0chc754s7es"
-path="res://.godot/imported/Bitfantasy.ttf-6b2361ac88c3d0c208e708fd1990adf2.fontdata"
+path="res://.godot/imported/Bitfantasy.ttf-6761f33d86280b85692126cb59e5afc8.fontdata"
 
 [deps]
 
-source_file="res://Assets/Tileset/Bitfantasy.ttf"
-dest_files=["res://.godot/imported/Bitfantasy.ttf-6b2361ac88c3d0c208e708fd1990adf2.fontdata"]
+source_file="res://Assets/Bitfantasy.ttf"
+dest_files=["res://.godot/imported/Bitfantasy.ttf-6761f33d86280b85692126cb59e5afc8.fontdata"]
 
 [params]
 

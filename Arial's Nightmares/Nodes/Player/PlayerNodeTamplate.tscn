@@ -1,10 +1,26 @@
-[gd_scene load_steps=20 format=3 uid="uid://b11hooauu7282"]
+[gd_scene load_steps=21 format=3 uid="uid://b11hooauu7282"]
 
 [ext_resource type="Texture2D" uid="uid://dskbohlfdb56p" path="res://Assets/Player/Arial_Sheet.png" id="1_hc27w"]
 [ext_resource type="Texture2D" uid="uid://itqy0v14a1e3" path="res://Assets/Player/Shadow.png" id="1_tvcsq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_buiqi"]
 height = 26.0
+
+[sub_resource type="Animation" id="Animation_nx6jc"]
+resource_name = "Fall"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [9, 9]
+}
 
 [sub_resource type="Animation" id="Animation_7a4yo"]
 resource_name = "Idle_Left"
@@ -89,6 +105,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4qtlf"]
 _data = {
+"Fall": SubResource("Animation_nx6jc"),
 "Idle_Left": SubResource("Animation_7a4yo"),
 "Idle_Right": SubResource("Animation_y0bar"),
 "RESET": SubResource("Animation_v0le1"),

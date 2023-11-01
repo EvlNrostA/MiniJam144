@@ -1,14 +1,14 @@
 [gd_scene load_steps=22 format=3 uid="uid://cat12w8nvcmim"]
 
 [ext_resource type="Script" path="res://Levels/GuitarHero/StateManager.gd" id="1_dkjhl"]
-[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="2_3l7vw"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_bnid3"]
-[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Enemys/Hand.png" id="3_sthri"]
+[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="2_r4flr"]
+[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="3_op42y"]
 [ext_resource type="Texture2D" uid="uid://bl361uenlp15g" path="res://Assets/Enemys/Yam_Sheet.png" id="5_gh8rj"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/PlayerNodeTamplate.tscn" id="5_n5yia"]
 [ext_resource type="Script" path="res://Levels/GuitarHero/GuitarHeroPlayer.gd" id="6_ecoko"]
 [ext_resource type="Texture2D" uid="uid://u1xk7eglcfok" path="res://Assets/Environment/Line.png" id="6_msk2n"]
-[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Tileset/Bitfantasy.ttf" id="7_7dcin"]
+[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="7_7dcin"]
 [ext_resource type="Texture2D" uid="uid://bpswbbcl0us3q" path="res://Assets/Environment/Microphone.png" id="9_h4ayj"]
 [ext_resource type="Texture2D" uid="uid://dmudurp3xt5d3" path="res://Assets/Environment/Guitar.png" id="10_4l8db"]
 [ext_resource type="PackedScene" uid="uid://u1ebkowpbp7t" path="res://Nodes/Mechanics/AudioStreamPlayer.tscn" id="11_x4oki"]
@@ -44,8 +44,9 @@ size = Vector2(1152, 16)
 font = ExtResource("7_7dcin")
 font_size = 64
 font_color = Color(0.772549, 0.411765, 0.505882, 1)
-outline_size = 8
 outline_color = Color(0.156863, 0.137255, 0.156863, 1)
+shadow_color = Color(0, 0, 0, 0.639216)
+shadow_offset = Vector2(3, 1)
 
 [node name="GuitarHero" type="Node2D"]
 script = ExtResource("1_dkjhl")
@@ -66,15 +67,15 @@ color = Color(0.156863, 0.137255, 0.156863, 1)
 modulate = Color(1, 1, 1, 0.431373)
 position = Vector2(576, 343)
 scale = Vector2(1.6, 1.6)
-texture = ExtResource("2_3l7vw")
+texture = ExtResource("2_r4flr")
 
 [node name="Hand" type="Sprite2D" parent="Father"]
 position = Vector2(-40, 40)
-texture = ExtResource("3_sthri")
+texture = ExtResource("3_op42y")
 
 [node name="Hand2" type="Sprite2D" parent="Father"]
 position = Vector2(40, 40)
-texture = ExtResource("3_sthri")
+texture = ExtResource("3_op42y")
 flip_h = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -414,14 +415,14 @@ vframes = 4
 
 [node name="Heart" type="Sprite2D" parent="."]
 position = Vector2(83, 56)
-scale = Vector2(3.8, 3.8)
+scale = Vector2(3.2, 3.2)
 texture = ExtResource("13_yewnw")
 
 [node name="HeartLabel" type="Label" parent="."]
-offset_left = 60.0
-offset_top = 30.0
-offset_right = 116.0
-offset_bottom = 135.0
+offset_left = 57.0
+offset_top = 29.0
+offset_right = 113.0
+offset_bottom = 83.0
 text = "3"
 label_settings = SubResource("LabelSettings_gsd82")
 horizontal_alignment = 1
@@ -446,7 +447,7 @@ texture = ExtResource("17_v3jon")
 texture_mode = 1
 
 [node name="EvilCloud2" type="Sprite2D" parent="."]
-position = Vector2(932, -54)
+position = Vector2(853, -55)
 texture = ExtResource("16_c14sj")
 offset = Vector2(-3, 125)
 

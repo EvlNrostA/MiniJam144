@@ -33,6 +33,9 @@ var noam_fogle_count
 	
 func _ready():
 	randomize()
+	
+	if GManager.difficulty == null:
+		GManager.difficulty = "easy"
 
 	settings = difficulty_settings[GManager.difficulty]
 	noam_fogle_count = settings.count

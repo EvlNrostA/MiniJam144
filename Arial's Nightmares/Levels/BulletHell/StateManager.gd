@@ -26,7 +26,10 @@ var difficulty_settings = {
 @onready var level_timer = $LevelTimer
 @onready var bullet_timer = $BulletTimer
 
-@onready var Bullet_Refrance = preload("res://Nodes/Enemys/enemy_bullet.tscn")
+@onready var left_hand = $LeftHand
+@onready var right_hand = $RightHand
+
+@onready var clothes_scene = preload("res://Nodes/Enemys/Clothes.tscn")
 
 var wait_time
 var settings
@@ -34,19 +37,25 @@ var settings
 func _ready():
 	randomize()
 	
+	if GManager.difficulty == null:
+		GManager.difficulty = "easy"
+	
 	settings = difficulty_settings[GManager.difficulty]
 	wait_time = settings.wait_time
 	player.speed = settings.speed
 	
 	bullet_timer.start(wait_time)
 	level_timer.start_timer(settings.level_timer)
+	
+	right_hand.start("RightWave")
+	left_hand.start("LeftWave")
 
 func SpawnBullets() -> void:
-	var buttomBullet = Bullet_Refrance.instantiate()
+	var buttomBullet = clothes_scene.instantiate()
 	var buttomPos = randf_range(24,648)
-	var leftBullet = Bullet_Refrance.instantiate()
+	var leftBullet = clothes_scene.instantiate()
 	var leftPos = randf_range(136,648)
-	var rightBullet = Bullet_Refrance.instantiate()
+	var rightBullet = clothes_scene.instantiate()
 	var rightPos = randf_range(136,648)
 	
 	add_child(buttomBullet)

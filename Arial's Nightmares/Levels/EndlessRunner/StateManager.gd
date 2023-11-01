@@ -28,6 +28,9 @@ var settings
 func _ready():
 	randomize()
 	
+	if GManager.difficulty == null:
+		GManager.difficulty = "easy"
+	
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
 	player.shadow.visible = false

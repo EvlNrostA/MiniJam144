@@ -26,5 +26,4 @@ func HitPlayer(col) -> void:
 	col.hit()
 	
 func _on_area_entered(area):
-	print(area)
 	queue_free()

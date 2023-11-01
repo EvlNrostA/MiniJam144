@@ -57,6 +57,11 @@ var beat_per_sec
 var chunk_size
 
 func _ready():
+	randomize()
+	
+	if GManager.difficulty == null:
+		GManager.difficulty = "easy"
+		
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
 	heart_label.text = str(player.fail_count)
