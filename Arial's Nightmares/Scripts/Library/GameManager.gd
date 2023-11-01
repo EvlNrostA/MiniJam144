@@ -26,7 +26,8 @@ var levels = [
 		},
 		{
 		"scene": guitar_hero,
-		"difficulty": "easy"
+		"difficulty": "easy",
+		"custom_music": true
 		},
 		{
 		"scene": yam_level,
@@ -44,7 +45,8 @@ var levels = [
 		},
 		{
 		"scene": guitar_hero,
-		"difficulty": "normal"
+		"difficulty": "normal",
+		"custom_music": true
 		},
 		{
 		"scene": yam_level,
@@ -62,7 +64,8 @@ var levels = [
 		},
 		{
 		"scene": guitar_hero,
-		"difficulty": "hard"
+		"difficulty": "hard",
+		"custom_music": true
 		},
 		{
 		"scene": yam_level,
@@ -72,6 +75,7 @@ var levels = [
 	[
 		{
 		"scene": win_menu,
+		#"custom_music": true
 		}
 	]
 ]
@@ -79,8 +83,11 @@ var levels = [
 var current_batch_index : int = 0
 var levels_left : Array
 var difficulty
+var global_music
 
 func next_level():
+	randomize()
+	
 	if levels_left.is_empty():
 		current_batch_index += 1
 		copy_array(levels_left, levels[current_batch_index])
@@ -90,6 +97,9 @@ func next_level():
 	
 	if next_level_settings.has("difficulty"):
 		difficulty = next_level_settings.difficulty
+		
+	if (not Audio.is_playing()) and (not next_level_settings.has("custom_music")):
+		play_global_music()
 	
 	change_scene(next_level_settings.scene)
 
@@ -98,6 +108,8 @@ func game_over():
 	
 func restart_levels():
 	difficulty = "easy"
+	global_music = level_music
+	
 	current_batch_index = 0
 	copy_array(levels_left, levels[current_batch_index])
 
@@ -128,9 +140,6 @@ func fade_out():
 func randf_list_range(list_range) -> float:
 	return randf_range(list_range[0], list_range[1])
 	
-func play_global_music(path):
-	Audio.stop()
-	await get_tree().create_timer(0.5).timeout
-	
-	Audio.stream = load(path)
+func play_global_music():
+	Audio.stream = load(global_music)
 	Audio.play()

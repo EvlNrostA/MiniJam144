@@ -5,7 +5,7 @@ extends Player_library
 @onready var hit = false
 
 func _ready():
-	self.JUMP_VELOCITY = -400
+	self.JUMP_VELOCITY = -500
 
 func _physics_process(delta):
 	if not hit:

@@ -2,22 +2,22 @@ extends Node2D
 
 var difficulty_settings = {
 	"easy": {
-		"speed": 3000,
+		"speed": 4000,
 		"level_timer": 20,
-		"level_velocity": 400,
-		"obstacle_wait_range": [2, 4]
+		"level_velocity": 300,
+		"obstacle_wait_range": [2, 3]
 	},
 	"normal": {
 		"speed": 2000,
 		"level_timer": 30,
-		"level_velocity": 1000,
-		"obstacle_wait_range": [1, 4]
+		"level_velocity": 700,
+		"obstacle_wait_range": [1, 2]
 	},
 	"hard": {
 		"speed": 100,
 		"level_timer": 30,
-		"level_velocity": 1500,
-		"obstacle_wait_range": [1, 3]
+		"level_velocity": 1200,
+		"obstacle_wait_range": [1, 2]
 	}
 }
 
@@ -34,6 +34,7 @@ func _ready():
 	
 	if GManager.difficulty == null:
 		GManager.restart_levels()
+		GManager.difficulty = "easy"
 	
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed

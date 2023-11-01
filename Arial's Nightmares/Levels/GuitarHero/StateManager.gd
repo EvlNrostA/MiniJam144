@@ -58,8 +58,6 @@ var chunk_size
 func _ready():
 	randomize()
 	
-	Audio.stop()
-	
 	if GManager.difficulty == null:
 		GManager.restart_levels()
 		
@@ -73,7 +71,6 @@ func _ready():
 	level_timer.set_time(audio_length)
 	
 	beat_per_sec = Audio.stream.get_bpm() / MIN_TO_SEC
-
 	var arrow_offset = beat_per_sec * ARROW_DELAY * settings.speed * 100
 	for arrow in arrow_positions.values():
 		arrow.position.y = pressing_bar.position.y - arrow_offset
@@ -132,5 +129,5 @@ func lost_game():
 	GManager.game_over()
 
 func won_game():
-	GManager.play_global_music(GManager.level_music)
+	GManager.global_music = GManager.level_music
 	GManager.next_level()
