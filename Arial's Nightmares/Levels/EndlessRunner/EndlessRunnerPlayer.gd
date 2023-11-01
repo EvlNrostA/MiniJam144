@@ -5,14 +5,13 @@ extends Player_library
 @onready var hit = false
 
 func _ready():
-	#speed = 5
-	self.JUMP_VELOCITY = -600
+	self.JUMP_VELOCITY = -400
 
 func _physics_process(delta):
 	if not hit:
 		Move2DRight(delta)
 	else:
-		position = position.move_toward(yam.position, 300 * delta)
+		position = position.move_toward(yam.position, manager.settings.level_velocity * delta)
 		animationPlayer.play("Fall")
 
 func check_hit():

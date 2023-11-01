@@ -5,14 +5,14 @@ var difficulty_settings = {
 		"count": 1,
 		"hide_delay": [1, 2],
 		"reveal_delay": [0.7, 1.2],
-		"level_timer": 30,
+		"level_timer": 15,
 		"speed": 2.5
 	},
 	"normal": {
 		"count": 3,
 		"hide_delay": [1, 2],
 		"reveal_delay": [0.7, 1.2],
-		"level_timer": 30,
+		"level_timer": 20,
 		"speed": 3
 	},
 	"hard": {
@@ -25,7 +25,7 @@ var difficulty_settings = {
 }
  
 @onready var level_timer = $LevelTimer
-@onready var player = $"Player_Tamplate"
+@onready var player = $Player
 @onready var noam_fogles = get_tree().get_nodes_in_group("NoamFogle")
 
 var settings
@@ -35,7 +35,7 @@ func _ready():
 	randomize()
 	
 	if GManager.difficulty == null:
-		GManager.difficulty = "easy"
+		GManager.restart_levels()
 
 	settings = difficulty_settings[GManager.difficulty]
 	noam_fogle_count = settings.count
@@ -53,14 +53,11 @@ func spawn_noam_fogles():
 	
 	if not hidden_noam_fogles.is_empty() and revealed_noam_fogle_count < noam_fogle_count:
 		var noam_fogle = hidden_noam_fogles.pick_random()
-		noam_fogle.hide_and_reveal(randf_list_range(settings.reveal_delay), 
-								   randf_list_range(settings.hide_delay))
+		noam_fogle.hide_and_reveal(GManager.randf_list_range(settings.reveal_delay), 
+								   GManager.randf_list_range(settings.hide_delay))
 	
 	elif revealed_noam_fogle_count > noam_fogle_count:
 		print(revealed_noam_fogle_count, " more than ", noam_fogle_count)
-
-func randf_list_range(list_range) -> float:
-	return randf_range(list_range[0], list_range[1])
 
 func won_game():
 	GManager.next_level()

@@ -28,6 +28,7 @@ Fade="*res://Nodes/Mechanics/FadeLayer.tscn"
 [display]
 
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
 
 [input]
 

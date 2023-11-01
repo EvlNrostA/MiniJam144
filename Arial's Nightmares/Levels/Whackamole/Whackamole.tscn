@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://djj173xxfsnt5"]
+[gd_scene load_steps=15 format=3 uid="uid://djj173xxfsnt5"]
 
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="1_7vt5w"]
 [ext_resource type="Script" path="res://Levels/Whackamole/StateManager.gd" id="2_4ggw8"]
@@ -71,6 +71,9 @@ size = Vector2(25.0013, 672)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvsnh"]
 size = Vector2(24.0025, 672)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60ceq"]
+size = Vector2(22.0006, 1168)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwswl"]
 size = Vector2(22.0006, 1168)
 
@@ -98,50 +101,49 @@ position = Vector2(40, 40)
 texture = ExtResource("6_n8458")
 flip_h = true
 
-[node name="Player_Tamplate" parent="." instance=ExtResource("1_7vt5w")]
+[node name="Player" parent="." instance=ExtResource("1_7vt5w")]
 z_index = 1
-position = Vector2(560, 416)
+position = Vector2(576, 336)
 script = ExtResource("2_kdedg")
 
 [node name="NoamFogle6" parent="." groups=["NoamFogle"] instance=ExtResource("5_aogm1")]
-position = Vector2(736, 318)
+position = Vector2(704, 271)
 rotation = 0.000336632
 
 [node name="NoamFogle5" parent="." groups=["NoamFogle"] instance=ExtResource("5_aogm1")]
-position = Vector2(736, 519)
+position = Vector2(704, 432)
 
 [node name="NoamFogle4" parent="." groups=["NoamFogle"] instance=ExtResource("5_aogm1")]
-position = Vector2(560, 582)
+position = Vector2(576, 486)
 
 [node name="NoamFogle3" parent="." groups=["NoamFogle"] instance=ExtResource("5_aogm1")]
-position = Vector2(384, 319)
+position = Vector2(448, 272)
 
 [node name="NoamFogle2" parent="." groups=["NoamFogle"] instance=ExtResource("5_aogm1")]
-position = Vector2(560, 239)
+position = Vector2(576, 186)
 
 [node name="NoamFogle" parent="." groups=["NoamFogle"] instance=ExtResource("5_aogm1")]
-position = Vector2(384, 519)
+position = Vector2(448, 432)
 
 [node name="LevelTimer" parent="." instance=ExtResource("9_sl48q")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-12, 336)
+position = Vector2(376, 336)
 shape = SubResource("RectangleShape2D_40ig5")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1164, 336)
+position = Vector2(776, 336)
 shape = SubResource("RectangleShape2D_rvsnh")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, -8)
+position = Vector2(576, 136)
 rotation = 1.57079
-shape = SubResource("RectangleShape2D_dwswl")
+shape = SubResource("RectangleShape2D_60ceq")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 680)
+position = Vector2(576, 536)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_dwswl")
 

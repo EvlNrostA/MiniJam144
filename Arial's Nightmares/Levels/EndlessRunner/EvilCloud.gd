@@ -1,17 +1,23 @@
 extends Area2D
 
-const MIN_SPEED = 2
-const MAX_SPEED = 4
+const MAX_LEFT = -400
+const MAX_RIGHT = 2000
 
 @onready var sprite = $Sprite2D
+@onready var manager = get_parent()
+
 var speed
 
-func _ready():
-	speed = randf_range(MIN_SPEED, MAX_SPEED)
+func start():
+	set_speed()
 
-func _process(_delta):
-	position += Vector2.LEFT * speed
+func _process(delta):
+	if speed:
+		position += Vector2.LEFT * delta * speed
 	
-	if position.x < -400:
-		position.x = 2000
-		speed = randf_range(MIN_SPEED, MAX_SPEED)
+		if position.x < MAX_LEFT:
+			position.x = MAX_RIGHT
+			set_speed()
+
+func set_speed():
+	speed = randf_range(manager.settings.level_velocity / 2, manager.settings.level_velocity)

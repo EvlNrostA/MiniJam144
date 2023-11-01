@@ -2,22 +2,22 @@ extends Node2D
 
 var difficulty_settings = {
 	"easy": {
-		"wait_time": 0.5,
-		"level_timer": 30,
+		"wait_time": 1.5,
+		"level_timer": 20,
 		"speed": 1,
 		"clothes_speed": 1
 	},	
 	"normal": {
-		"wait_time": 0.5,
+		"wait_time": 1,
 		"level_timer": 30,
 		"speed": 1,
 		"clothes_speed": 2
 	},
 	"hard": {
-		"wait_time": 1,
+		"wait_time": 0.8,
 		"level_timer": 30,
-		"speed": 0.5,
-		"clothes_speed": 3
+		"speed": 1,
+		"clothes_speed": 4
 	}
 }
 
@@ -43,7 +43,7 @@ func _ready():
 	randomize()
 	
 	if GManager.difficulty == null:
-		GManager.difficulty = "easy"
+		GManager.restart_levels()
 	
 	settings = difficulty_settings[GManager.difficulty]
 	wait_time = settings.wait_time

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cat12w8nvcmim"]
+[gd_scene load_steps=21 format=3 uid="uid://cat12w8nvcmim"]
 
 [ext_resource type="Script" path="res://Levels/GuitarHero/StateManager.gd" id="1_dkjhl"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_bnid3"]
@@ -11,7 +11,6 @@
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="7_7dcin"]
 [ext_resource type="Texture2D" uid="uid://bpswbbcl0us3q" path="res://Assets/Environment/Microphone.png" id="9_h4ayj"]
 [ext_resource type="Texture2D" uid="uid://dmudurp3xt5d3" path="res://Assets/Environment/Guitar.png" id="10_4l8db"]
-[ext_resource type="PackedScene" uid="uid://u1ebkowpbp7t" path="res://Nodes/Mechanics/AudioStreamPlayer.tscn" id="11_x4oki"]
 [ext_resource type="Texture2D" uid="uid://ctofbmn51lpss" path="res://Assets/Mechanics/Heart.png" id="13_yewnw"]
 [ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Environment/Light.png" id="15_nuuwx"]
 [ext_resource type="Texture2D" uid="uid://dh351jrw3bjr1" path="res://Assets/Environment/Evil_Cloud.png" id="16_c14sj"]
@@ -100,7 +99,7 @@ width = 64.0
 texture = ExtResource("6_msk2n")
 texture_mode = 1
 
-[node name="Player_Tamplate" parent="." instance=ExtResource("5_n5yia")]
+[node name="Player" parent="." instance=ExtResource("5_n5yia")]
 position = Vector2(576, 379)
 scale = Vector2(2, 2)
 script = ExtResource("6_ecoko")
@@ -114,8 +113,6 @@ texture = ExtResource("9_h4ayj")
 position = Vector2(593, 407)
 rotation = 1.04147
 texture = ExtResource("10_4l8db")
-
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("11_x4oki")]
 
 [node name="UpArrowPosition" type="Node2D" parent="."]
 position = Vector2(288, -64)
@@ -464,5 +461,5 @@ texture_mode = 1
 
 [connection signal="area_entered" from="PressingBar" to="." method="_on_pressing_bar_area_entered"]
 [connection signal="area_exited" from="PressingBar" to="." method="_on_pressing_bar_area_exited"]
-[connection signal="finished" from="AudioStreamPlayer" to="." method="won_game"]
 [connection signal="timeout" from="BPMTimer" to="." method="_on_bpm_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="won_game"]

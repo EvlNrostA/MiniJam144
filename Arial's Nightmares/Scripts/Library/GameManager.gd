@@ -1,5 +1,8 @@
 extends Node
 
+var menu_music = "res://Assets/Music/MenuMusic.mp3"
+var level_music = "res://Assets/Music/LevelMusic.mp3"
+
 var start_menu = "res://Levels/Menu/StartMenu.tscn"
 var game_over_menu = "res://Levels/Menu/GameOverMenu.tscn"
 var win_menu = "res://Levels/Menu/WinMenu.tscn"
@@ -94,6 +97,7 @@ func game_over():
 	change_scene(game_over_menu)
 	
 func restart_levels():
+	difficulty = "easy"
 	current_batch_index = 0
 	copy_array(levels_left, levels[current_batch_index])
 
@@ -111,7 +115,7 @@ func fade_in():
 	Fade.animation_player.play("FadeIn")
 	await Fade.animation_player.animation_finished
 	
-	get_tree().paused = true
+	#get_tree().paused = true
 	get_tree().current_scene.queue_free()
 	
 func fade_out():
@@ -119,4 +123,14 @@ func fade_out():
 	await Fade.animation_player.animation_finished
 	Fade.shadow.visible = false
 	
-	get_tree().paused = false
+	#get_tree().paused = false
+	
+func randf_list_range(list_range) -> float:
+	return randf_range(list_range[0], list_range[1])
+	
+func play_global_music(path):
+	Audio.stop()
+	await get_tree().create_timer(0.5).timeout
+	
+	Audio.stream = load(path)
+	Audio.play()

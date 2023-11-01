@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Levels/Menu/Menu.gd" id="1_pb58j"]
 [ext_resource type="PackedScene" uid="uid://u8v0pe7gntk4" path="res://Nodes/Mechanics/FadeLayer.tscn" id="2_5i7h4"]
-[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Tileset/Bitfantasy.ttf" id="3_edsyu"]
-[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="4_541qk"]
-[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Enemys/Hand.png" id="5_f441u"]
+[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="3_edsyu"]
+[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="4_541qk"]
+[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="5_f441u"]
 [ext_resource type="Texture2D" uid="uid://bqoiaawipbybf" path="res://Assets/Player/Arial_WakeUp.png" id="6_jmsp4"]
 [ext_resource type="Texture2D" uid="uid://dowibwcsjxn7v" path="res://Assets/Player/Arial_WakeUp_Press.png" id="7_fy045"]
 [ext_resource type="Texture2D" uid="uid://biu2qnj4qixse" path="res://Assets/Player/Arial_WakeUp_Hover.png" id="8_2phhn"]

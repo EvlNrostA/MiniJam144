@@ -28,9 +28,8 @@ const ARROW_DELAY = 3
 const MIN_TO_SEC = 60
 
 #@onready var canvas = $CanvasLayer
-@onready var player = $"Player_Tamplate"
+@onready var player = $Player
 
-@onready var audio_player = $AudioStreamPlayer
 @onready var spectrum = AudioServer.get_bus_effect_instance(0, 0)
 
 @onready var delay_timer = $DelayTimer
@@ -59,19 +58,21 @@ var chunk_size
 func _ready():
 	randomize()
 	
+	Audio.stop()
+	
 	if GManager.difficulty == null:
-		GManager.difficulty = "easy"
+		GManager.restart_levels()
 		
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
 	heart_label.text = str(player.fail_count)
 	
-	audio_player.stream = load(settings.song_path)
+	Audio.stream = load(settings.song_path)
 	
-	var audio_length = audio_player.stream.get_length()
+	var audio_length = Audio.stream.get_length()
 	level_timer.set_time(audio_length)
 	
-	beat_per_sec = audio_player.stream.get_bpm() / MIN_TO_SEC
+	beat_per_sec = Audio.stream.get_bpm() / MIN_TO_SEC
 
 	var arrow_offset = beat_per_sec * ARROW_DELAY * settings.speed * 100
 	for arrow in arrow_positions.values():
@@ -84,7 +85,7 @@ func _ready():
 	delay_timer.start(arrow_time_delay)
 	await delay_timer.timeout
 	
-	audio_player.play()
+	Audio.play()
 	level_timer.start_timer(audio_length)
 
 func _process(_delta):
@@ -100,7 +101,7 @@ func add_arrow(direction, speed):
 				speed)
 				
 func _on_bpm_timer_timeout():
-	var time_remaining = audio_player.stream.get_length() - audio_player.get_playback_position()
+	var time_remaining = Audio.stream.get_length() - Audio.get_playback_position()
 	
 	if time_remaining > arrow_time_delay:
 		add_arrow(arrow_positions.keys().pick_random(), settings.speed)
@@ -131,4 +132,5 @@ func lost_game():
 	GManager.game_over()
 
 func won_game():
+	GManager.play_global_music(GManager.level_music)
 	GManager.next_level()

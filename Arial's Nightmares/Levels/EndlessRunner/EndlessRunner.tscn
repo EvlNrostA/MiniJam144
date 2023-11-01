@@ -242,24 +242,24 @@ one_shot = true
 [node name="POS CHECK" type="Node2D" parent="."]
 position = Vector2(1349, 526)
 
-[node name="EvilCloud" parent="." instance=ExtResource("8_5fjyp")]
+[node name="EvilCloud" parent="." groups=["Clouds"] instance=ExtResource("8_5fjyp")]
 position = Vector2(304, 95)
 
-[node name="EvilCloud4" parent="." instance=ExtResource("8_5fjyp")]
-position = Vector2(1287, 176)
-scale = Vector2(1.44, 1.44)
-
-[node name="EvilCloud5" parent="." instance=ExtResource("8_5fjyp")]
-position = Vector2(96.0004, 190)
-scale = Vector2(0.96, 0.96)
-
-[node name="EvilCloud2" parent="." instance=ExtResource("8_5fjyp")]
+[node name="EvilCloud2" parent="." groups=["Clouds"] instance=ExtResource("8_5fjyp")]
 position = Vector2(541, 150)
 scale = Vector2(1.2, 1.2)
 
-[node name="EvilCloud3" parent="." instance=ExtResource("8_5fjyp")]
+[node name="EvilCloud3" parent="." groups=["Clouds"] instance=ExtResource("8_5fjyp")]
 position = Vector2(839, 83)
 scale = Vector2(0.72, 0.72)
+
+[node name="EvilCloud4" parent="." groups=["Clouds"] instance=ExtResource("8_5fjyp")]
+position = Vector2(1287, 176)
+scale = Vector2(1.44, 1.44)
+
+[node name="EvilCloud5" parent="." groups=["Clouds"] instance=ExtResource("8_5fjyp")]
+position = Vector2(96.0004, 190)
+scale = Vector2(0.96, 0.96)
 
 [node name="Father" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.431373)
