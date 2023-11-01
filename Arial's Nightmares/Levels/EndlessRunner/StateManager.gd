@@ -18,8 +18,9 @@ var difficulty_settings = {
 	}
 }
 
-@onready var bullet_refrance = preload("res://Levels/EndlessRunner/Obstacle.tscn")
-@onready var player = $Player_Tamplate
+@onready var obstacle_scene = preload("res://Levels/EndlessRunner/Obstacle.tscn")
+
+@onready var player = $Player
 @onready var level_timer = $LevelTimer
 @onready var tile_timer = $TileTimer
 
@@ -39,9 +40,9 @@ func _ready():
 	tile_timer.start(randf_range(1.6, 6.0))
 
 func _on_timer_timeout():
-	var newOB = bullet_refrance.instantiate()
-	get_parent().add_child(newOB)
-	newOB.emit_signal("SPAWN",Vector2.LEFT * settings.level_velocity, Vector2(1230, 530))
+	var obstacle = obstacle_scene.instantiate()
+	get_parent().add_child(obstacle)
+	obstacle.emit_signal("SPAWN",Vector2.LEFT * settings.level_velocity, Vector2(1230, 530))
 	
 	tile_timer.start(randf_range(1.6, 6.0))
 	

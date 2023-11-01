@@ -13,7 +13,7 @@ func _physics_process(delta):
 		Move2DRight(delta)
 	else:
 		position = position.move_toward(yam.position, 300 * delta)
-		animationPlayer.queue("Fall")
+		animationPlayer.play("Fall")
 
 func check_hit():
 	pass

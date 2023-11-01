@@ -21,7 +21,7 @@ var difficulty_settings = {
 	}
 }
 
-@onready var player = $Player_BulletHell
+@onready var player = $Player
 
 @onready var level_timer = $LevelTimer
 @onready var bullet_timer = $BulletTimer

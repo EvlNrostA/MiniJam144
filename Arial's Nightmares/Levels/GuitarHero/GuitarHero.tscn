@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="2_r4flr"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="3_op42y"]
 [ext_resource type="Texture2D" uid="uid://bl361uenlp15g" path="res://Assets/Enemys/Yam_Sheet.png" id="5_gh8rj"]
-[ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/PlayerNodeTamplate.tscn" id="5_n5yia"]
+[ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="5_n5yia"]
 [ext_resource type="Script" path="res://Levels/GuitarHero/GuitarHeroPlayer.gd" id="6_ecoko"]
 [ext_resource type="Texture2D" uid="uid://u1xk7eglcfok" path="res://Assets/Environment/Line.png" id="6_msk2n"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="7_7dcin"]

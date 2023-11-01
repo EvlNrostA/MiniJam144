@@ -7,6 +7,7 @@ class_name Player_library
 @onready var animationState = animationTree.get("parameters/playback")
 @onready var collision_shape = $CollisionShape2D
 @onready var shadow = $Shadow
+@onready var sprite = $Sprite2D
 
 @export var speed : float = 1
 var vel := Vector2.ZERO
@@ -15,19 +16,23 @@ var vel := Vector2.ZERO
 var JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func Move2D(delta) -> void:
-	vel = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
-		Input.get_action_strength("Down") - Input.get_action_strength("Up"))
-	move_and_collide(vel * delta * speed * 100)
+func run_animation(vel):
 	if vel != Vector2.ZERO:
 		animationPlayer.play("Run_Right")
 	else:
 		animationPlayer.play("Idle_Right")
+
+func Move2D(delta) -> void:
+	vel = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
+		Input.get_action_strength("Down") - Input.get_action_strength("Up"))
+	move_and_collide(vel * delta * speed * 100)
+	
+	run_animation(vel)
 		
 	if vel.x >= 1:
-		$Player_Sprite.flip_h = false
+		sprite.flip_h = false
 	elif vel.x <= -1:
-		$Player_Sprite.flip_h = true
+		sprite.flip_h = true
 	pass
 
 
@@ -68,5 +73,7 @@ func Move2DRight(delta):
 			velocity.x = speed * delta
 		else:
 			velocity.x = -10000 * delta
+			
+	run_animation(velocity)
 	
 	move_and_slide()

@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://0gs5qe7lvv4j"]
+[gd_scene load_steps=15 format=3 uid="uid://0gs5qe7lvv4j"]
 
 [ext_resource type="Script" path="res://Levels/EndlessRunner/StateManager.gd" id="1_0vqnj"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="3_64vg2"]
-[ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/PlayerNodeTamplate.tscn" id="4_klnbb"]
+[ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="4_klnbb"]
 [ext_resource type="Script" path="res://Levels/EndlessRunner/EndlessRunnerPlayer.gd" id="5_x4nk5"]
 [ext_resource type="Texture2D" uid="uid://b8fahc0bwriju" path="res://Assets/Mechanics/Rope.png" id="6_oypca"]
-[ext_resource type="PackedScene" uid="uid://bwa3y06aah4qt" path="res://Levels/EndlessRunner/Yam.tscn" id="7_6d3rd"]
+[ext_resource type="PackedScene" uid="uid://bwa3y06aah4qt" path="res://Nodes/Enemys/Yam.tscn" id="7_6d3rd"]
+[ext_resource type="Script" path="res://Scripts/Enemys/Yam.gd" id="7_dyrgm"]
 [ext_resource type="PackedScene" uid="uid://cx16cjaq6n43b" path="res://Levels/EndlessRunner/EvilCloud.tscn" id="8_5fjyp"]
-[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Enemys/Father.png" id="9_dieqc"]
-[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Enemys/Hand.png" id="10_4d05j"]
+[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="9_dieqc"]
+[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="10_4d05j"]
 [ext_resource type="PackedScene" uid="uid://cjgpx1v4scdof" path="res://Nodes/Mechanics/LevelTimer.tscn" id="11_5132b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_el2so"]
@@ -218,20 +219,21 @@ position = Vector2(577, 556)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_3vtqi")
 
-[node name="Player_Tamplate" parent="." groups=["player_group"] instance=ExtResource("4_klnbb")]
+[node name="Player" parent="." groups=["player_group"] instance=ExtResource("4_klnbb")]
 position = Vector2(518, 509)
 script = ExtResource("5_x4nk5")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Rope" type="Line2D" parent="."]
 texture_repeat = 2
 position = Vector2(156, 520)
-points = PackedVector2Array(-3, 3, 359, -2)
+points = PackedVector2Array(-5, 14, 359, -2)
 width = 32.0
 texture = ExtResource("6_oypca")
 texture_mode = 1
 
 [node name="Yam" parent="." instance=ExtResource("7_6d3rd")]
 position = Vector2(155, 519)
+script = ExtResource("7_dyrgm")
 
 [node name="TileTimer" type="Timer" parent="."]
 wait_time = 0.05

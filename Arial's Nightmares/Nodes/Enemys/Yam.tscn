@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwa3y06aah4qt"]
+[gd_scene load_steps=6 format=3 uid="uid://bwa3y06aah4qt"]
 
-[ext_resource type="Script" path="res://Levels/EndlessRunner/Yam.gd" id="1_xcdsg"]
 [ext_resource type="Texture2D" uid="uid://bl361uenlp15g" path="res://Assets/Enemys/Yam_Sheet.png" id="2_6gnhf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7vmqq"]
@@ -47,14 +46,15 @@ _data = {
 }
 
 [node name="Yam" type="Area2D"]
-script = ExtResource("1_xcdsg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -168)
 shape = SubResource("CapsuleShape2D_7vmqq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 16)
 texture = ExtResource("2_6gnhf")
+offset = Vector2(1, -16)
 hframes = 4
 vframes = 4
 
