@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://hvkvmexukes3"]
+[gd_scene load_steps=17 format=3 uid="uid://hvkvmexukes3"]
 
 [ext_resource type="Script" path="res://Levels/BulletHell/StateManager.gd" id="1_ha5s1"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="2_iyxed"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d57f42n4dyje" path="res://Nodes/Mechanics/Hand.tscn" id="4_2b6pw"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="6_51teh"]
 [ext_resource type="Script" path="res://Levels/BulletHell/BulletHellPlayer.gd" id="7_30vet"]
-[ext_resource type="PackedScene" uid="uid://cjgpx1v4scdof" path="res://Nodes/Mechanics/LevelTimer.tscn" id="8_vs58b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgs8j"]
 texture = ExtResource("3_ad18a")
@@ -164,7 +163,4 @@ position = Vector2(577, -100)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_4wuon")
 
-[node name="LevelTimer" parent="." instance=ExtResource("8_vs58b")]
-
 [connection signal="timeout" from="BulletTimer" to="." method="spawn_bullets"]
-[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

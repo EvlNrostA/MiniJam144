@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://0gs5qe7lvv4j"]
+[gd_scene load_steps=14 format=3 uid="uid://0gs5qe7lvv4j"]
 
 [ext_resource type="Script" path="res://Levels/EndlessRunner/StateManager.gd" id="1_0vqnj"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="3_64vg2"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://cx16cjaq6n43b" path="res://Levels/EndlessRunner/EvilCloud.tscn" id="8_5fjyp"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="9_dieqc"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="10_4d05j"]
-[ext_resource type="PackedScene" uid="uid://cjgpx1v4scdof" path="res://Nodes/Mechanics/LevelTimer.tscn" id="11_5132b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_el2so"]
 texture = ExtResource("3_64vg2")
@@ -277,7 +276,4 @@ position = Vector2(40, 40)
 texture = ExtResource("10_4d05j")
 flip_h = true
 
-[node name="LevelTimer" parent="." instance=ExtResource("11_5132b")]
-
 [connection signal="timeout" from="TileTimer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

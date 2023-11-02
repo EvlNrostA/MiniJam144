@@ -76,6 +76,7 @@ var levels = [
 		{
 		"scene": win_menu,
 		#"custom_music": true
+		"displaY_timer": false
 		}
 	]
 ]
@@ -101,11 +102,15 @@ func next_level():
 		
 	if (not Audio.is_playing()) and (not next_level_settings.has("custom_music")):
 		play_global_music()
+		
+	var display_timer = true	
+	if next_level_settings.has("display_timer"):
+		display_timer = next_level_settings.display_timer
 	
-	await change_scene(next_level_settings.scene, true)
+	await change_scene(next_level_settings.scene, true, display_timer)
 
 func game_over():
-	change_scene(game_over_menu)
+	change_scene(game_over_menu, true, false)
 	
 func restart_levels():
 	current_batch_index = 0
@@ -115,12 +120,12 @@ func copy_array(array, array_to_copy):
 	array.clear()
 	array.append_array(array_to_copy.duplicate(true))
 	
-func change_scene(scene, display_points=false):
+func change_scene(scene, display_points=false, display_timer=false):
 	await fade_in()
-	
 	get_tree().change_scene_to_file(scene)
-	if display_points:
-		Points.display()
+	
+	Points.visible = display_points
+	LVLTimer.visible = display_timer
 	
 	await fade_out()
 	

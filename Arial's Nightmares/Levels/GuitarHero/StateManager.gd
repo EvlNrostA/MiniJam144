@@ -34,7 +34,6 @@ const MIN_TO_SEC = 60
 
 @onready var delay_timer = $DelayTimer
 @onready var bpm_timer = $BPMTimer
-@onready var level_timer = $LevelTimer
 
 @onready var pressing_bar = $PressingBar
 @onready var heart_label = $HeartLabel
@@ -68,7 +67,7 @@ func _ready():
 	Audio.stream = load(settings.song_path)
 	
 	var audio_length = Audio.stream.get_length()
-	level_timer.set_time(audio_length)
+	LVLTimer.set_time(audio_length)
 	
 	beat_per_sec = Audio.stream.get_bpm() / MIN_TO_SEC
 	var arrow_offset = beat_per_sec * ARROW_DELAY * settings.speed * 100
@@ -83,7 +82,7 @@ func _ready():
 	await delay_timer.timeout
 	
 	Audio.play()
-	level_timer.start_timer(audio_length)
+	LVLTimer.start_timer(audio_length, _on_level_timer_timeout)
 
 func _process(_delta):
 	if player and player.fail_count >= 0:
@@ -128,6 +127,6 @@ func _on_pressing_bar_area_exited(area):
 func lost_game():
 	GManager.game_over()
 
-func won_game():
+func _on_level_timer_timeout():
 	GManager.global_music = GManager.level_music
 	GManager.next_level()

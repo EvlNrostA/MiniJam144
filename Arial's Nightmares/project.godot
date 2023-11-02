@@ -25,6 +25,7 @@ GManager="*res://Scripts/Library/GameManager.gd"
 Audio="*res://Nodes/Mechanics/AudioStreamPlayer.tscn"
 Fade="*res://Nodes/Mechanics/FadeLayer.tscn"
 Points="*res://Nodes/Mechanics/PointsCount.tscn"
+LVLTimer="*res://Nodes/Mechanics/LevelTimer.tscn"
 
 [display]
 

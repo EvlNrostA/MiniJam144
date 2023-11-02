@@ -24,7 +24,6 @@ var difficulty_settings = {
 @onready var obstacle_scene = preload("res://Levels/EndlessRunner/Obstacle.tscn")
 
 @onready var player = $Player
-@onready var level_timer = $LevelTimer
 @onready var tile_timer = $TileTimer
 
 var settings
@@ -44,7 +43,7 @@ func _ready():
 	for cloud in clouds:
 		cloud.start()
 	
-	level_timer.start_timer(settings.level_timer)
+	LVLTimer.start_timer(settings.level_timer, _on_level_timer_timeout)
 	start_tiles()
 
 func start_tiles():

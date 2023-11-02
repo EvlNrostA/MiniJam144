@@ -10,8 +10,7 @@ font_size = 64
 shadow_color = Color(0, 0, 0, 0.345098)
 shadow_offset = Vector2(5, 3)
 
-[node name="LevelTimer" type="Timer"]
-one_shot = true
+[node name="LevelTimer" type="CanvasLayer"]
 script = ExtResource("1_26ulp")
 
 [node name="Shadow" type="ColorRect" parent="."]
@@ -30,7 +29,9 @@ offset_left = 984.0
 offset_top = 40.0
 offset_right = 1112.0
 offset_bottom = 136.0
-text = "32"
 label_settings = SubResource("LabelSettings_l3m1u")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

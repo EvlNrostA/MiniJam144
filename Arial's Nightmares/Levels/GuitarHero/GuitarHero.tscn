@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cat12w8nvcmim"]
+[gd_scene load_steps=20 format=3 uid="uid://cat12w8nvcmim"]
 
 [ext_resource type="Script" path="res://Levels/GuitarHero/StateManager.gd" id="1_dkjhl"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_bnid3"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Environment/Light.png" id="15_nuuwx"]
 [ext_resource type="Texture2D" uid="uid://dh351jrw3bjr1" path="res://Assets/Environment/Evil_Cloud.png" id="16_c14sj"]
 [ext_resource type="Texture2D" uid="uid://b8fahc0bwriju" path="res://Assets/Mechanics/Rope.png" id="17_v3jon"]
-[ext_resource type="PackedScene" uid="uid://cjgpx1v4scdof" path="res://Nodes/Mechanics/LevelTimer.tscn" id="18_6kf7s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8lsw"]
 texture = ExtResource("2_bnid3")
@@ -457,9 +456,6 @@ default_color = Color(0.639216, 0.635294, 0.603922, 1)
 texture = ExtResource("17_v3jon")
 texture_mode = 1
 
-[node name="LevelTimer" parent="." instance=ExtResource("18_6kf7s")]
-
 [connection signal="area_entered" from="PressingBar" to="." method="_on_pressing_bar_area_entered"]
 [connection signal="area_exited" from="PressingBar" to="." method="_on_pressing_bar_area_exited"]
 [connection signal="timeout" from="BPMTimer" to="." method="_on_bpm_timer_timeout"]
-[connection signal="timeout" from="LevelTimer" to="." method="won_game"]

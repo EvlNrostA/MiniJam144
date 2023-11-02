@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://djj173xxfsnt5"]
+[gd_scene load_steps=14 format=3 uid="uid://djj173xxfsnt5"]
 
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="1_7vt5w"]
 [ext_resource type="Script" path="res://Levels/Whackamole/StateManager.gd" id="2_4ggw8"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="5_7mqa1"]
 [ext_resource type="PackedScene" uid="uid://qja4lm0cwpjg" path="res://Nodes/Enemys/NoamFogle.tscn" id="5_aogm1"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="6_n8458"]
-[ext_resource type="PackedScene" uid="uid://cjgpx1v4scdof" path="res://Nodes/Mechanics/LevelTimer.tscn" id="9_sl48q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vphrw"]
 texture = ExtResource("2_8wqw1")
@@ -125,8 +124,6 @@ position = Vector2(576, 186)
 [node name="NoamFogle" parent="." groups=["NoamFogle"] instance=ExtResource("5_aogm1")]
 position = Vector2(448, 432)
 
-[node name="LevelTimer" parent="." instance=ExtResource("9_sl48q")]
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -146,5 +143,3 @@ shape = SubResource("RectangleShape2D_60ceq")
 position = Vector2(576, 536)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_dwswl")
-
-[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

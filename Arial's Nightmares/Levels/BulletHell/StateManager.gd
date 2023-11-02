@@ -50,7 +50,7 @@ func _ready():
 	player.speed = settings.speed
 	
 	bullet_timer.start(wait_time)
-	level_timer.start_timer(settings.level_timer)
+	LVLTimer.start_timer(settings.level_timer, _on_level_timer_timeout)
 	
 	right_hand.start("RightWave")
 	left_hand.start("LeftWave")
