@@ -26,13 +26,20 @@ const MAX_RIGHT = 1200
 const MAX_TOP = -50
 const MAX_BOTTOM = 700
 
+const COIN_WAIT_RANGE = [5, 7]
+const COIN_POS_XRANGE = [152, 1000]
+const COIN_POS_YRANGE = [121, 553]
+const COIN_POINTS = 5
+
 @onready var player = $Player
 @onready var bullet_timer = $BulletTimer
+@onready var coin_timer = $CoinTimer
 
 @onready var left_hand = $LeftHand
 @onready var right_hand = $RightHand
 
 @onready var clothes_scene = preload("res://Nodes/Enemys/Clothes.tscn")
+@onready var coin_scene = preload("res://Nodes/Mechanics/Coin.tscn")
 
 var wait_time
 var settings
@@ -41,7 +48,7 @@ func _ready():
 	randomize()
 	
 	if GManager.difficulty == null:
-		GManager.restart_levels()
+		GManager.difficulty = "easy"
 	
 	settings = difficulty_settings[GManager.difficulty]
 	wait_time = settings.wait_time
@@ -49,6 +56,7 @@ func _ready():
 	
 	bullet_timer.start(wait_time)
 	LVLTimer.start_timer(settings.level_timer, _on_level_timer_timeout)
+	start_coin_timer()
 	
 	right_hand.start("RightWave")
 	left_hand.start("LeftWave")
@@ -70,3 +78,15 @@ func spawn_bullets() -> void:
 
 func _on_level_timer_timeout():
 	GManager.next_level()
+
+func start_coin_timer():
+	coin_timer.start(GManager.randf_list_range(COIN_WAIT_RANGE))
+
+func _on_coin_timer_timeout():
+	var coin = coin_scene.instantiate()
+	add_child(coin)
+	
+	coin.points = COIN_POINTS
+	coin.global_position = Vector2(GManager.randf_list_range(COIN_POS_XRANGE), GManager.randf_list_range(COIN_POS_YRANGE))
+	
+	start_coin_timer()

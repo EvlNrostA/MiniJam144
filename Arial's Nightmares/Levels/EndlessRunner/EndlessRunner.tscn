@@ -190,6 +190,7 @@ size = Vector2(24.0025, 1156)
 script = ExtResource("1_0vqnj")
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 position = Vector2(0, 96)
 tile_set = SubResource("TileSet_g83ji")
 cell_quadrant_size = 32
@@ -267,4 +268,7 @@ position = Vector2(40, 40)
 texture = ExtResource("10_4d05j")
 flip_h = true
 
+[node name="CoinTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="TileTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]

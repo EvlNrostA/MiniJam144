@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://og3id2dn88jb"]
+[gd_scene load_steps=16 format=3 uid="uid://og3id2dn88jb"]
 
-[ext_resource type="Script" path="res://Levels/Menu/Menu.gd" id="1_pb58j"]
-[ext_resource type="PackedScene" uid="uid://u8v0pe7gntk4" path="res://Nodes/Mechanics/FadeLayer.tscn" id="2_5i7h4"]
+[ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_uwa6v"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="3_edsyu"]
+[ext_resource type="Script" path="res://Scripts/Menu/PointsLabel.gd" id="3_ludx1"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="4_541qk"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="5_f441u"]
 [ext_resource type="Texture2D" uid="uid://bqoiaawipbybf" path="res://Assets/Player/Arial_WakeUp.png" id="6_jmsp4"]
@@ -17,6 +17,13 @@ font = ExtResource("3_edsyu")
 font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gggme"]
+font = ExtResource("3_edsyu")
+font_size = 64
+font_color = Color(0.882353, 0.690196, 0, 1)
+shadow_color = Color(0, 0, 0, 0.568627)
+shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vxxkr"]
 line_spacing = 0.0
@@ -48,10 +55,7 @@ _data = {
 }
 
 [node name="GameOverMenu" type="Node2D"]
-script = ExtResource("1_pb58j")
-
-[node name="CanvasLayer" parent="." instance=ExtResource("2_5i7h4")]
-visible = false
+script = ExtResource("1_uwa6v")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -72,6 +76,15 @@ Moshe Mina
 "
 label_settings = SubResource("LabelSettings_enoik")
 
+[node name="PointsLabel" type="Label" parent="."]
+offset_top = 170.0
+offset_right = 1152.0
+offset_bottom = 275.0
+text = "Points: 20"
+label_settings = SubResource("LabelSettings_gggme")
+horizontal_alignment = 1
+script = ExtResource("3_ludx1")
+
 [node name="Father2" type="Sprite2D" parent="."]
 position = Vector2(574, 369)
 scale = Vector2(2, 2)
@@ -87,9 +100,9 @@ texture = ExtResource("5_f441u")
 flip_h = true
 
 [node name="NameLabel" type="Label" parent="."]
-offset_top = 140.0
+offset_top = 30.0
 offset_right = 1152.0
-offset_bottom = 300.0
+offset_bottom = 190.0
 text = "Game Over"
 label_settings = SubResource("LabelSettings_vxxkr")
 horizontal_alignment = 1

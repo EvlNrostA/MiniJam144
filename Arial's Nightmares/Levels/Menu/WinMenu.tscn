@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjudxdxss06qe"]
+[gd_scene load_steps=15 format=3 uid="uid://cjudxdxss06qe"]
 
-[ext_resource type="Script" path="res://Levels/Menu/Menu.gd" id="1_np66w"]
+[ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_prcga"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="3_l1sei"]
 [ext_resource type="Texture2D" uid="uid://dqugsctmmpo4h" path="res://Assets/Player/Arial_Sleep.png" id="4_s31oo"]
 [ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="5_1q33g"]
@@ -8,6 +8,7 @@
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="7_cxkl7"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="8_u4ync"]
 [ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Environment/Light.png" id="9_4tmnx"]
+[ext_resource type="Script" path="res://Scripts/Menu/PointsLabel.gd" id="9_g8low"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_enoik"]
 line_spacing = 0.0
@@ -45,8 +46,15 @@ _data = {
 "Start": SubResource("Animation_2vk8y")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_f3xrc"]
+font = ExtResource("3_l1sei")
+font_size = 64
+font_color = Color(0.882353, 0.690196, 0, 1)
+shadow_color = Color(0, 0, 0, 0.568627)
+shadow_offset = Vector2(3, 3)
+
 [node name="WinMenu" type="Node2D"]
-script = ExtResource("1_np66w")
+script = ExtResource("1_prcga")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -68,10 +76,9 @@ Moshe Mina
 label_settings = SubResource("LabelSettings_enoik")
 
 [node name="NameLabel" type="Label" parent="."]
-offset_left = 240.0
-offset_top = 200.0
-offset_right = 953.0
-offset_bottom = 371.0
+offset_top = 51.0
+offset_right = 1152.0
+offset_bottom = 222.0
 text = "Ariel's dreams 
 have been
  purified"
@@ -104,8 +111,16 @@ libraries = {
 }
 
 [node name="Light" type="Sprite2D" parent="."]
-position = Vector2(596, 254)
+position = Vector2(576, 254)
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("9_4tmnx")
+
+[node name="PointsLabel" type="Label" parent="."]
+offset_top = 269.0
+offset_right = 1152.0
+offset_bottom = 374.0
+label_settings = SubResource("LabelSettings_f3xrc")
+horizontal_alignment = 1
+script = ExtResource("9_g8low")
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_button_pressed"]

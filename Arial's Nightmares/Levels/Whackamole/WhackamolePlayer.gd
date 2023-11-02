@@ -1,6 +1,5 @@
 extends Player_library
 
-@onready var level_timer = $"../LevelTimer"
 @onready var manager = get_parent()
 	
 func _process(delta):

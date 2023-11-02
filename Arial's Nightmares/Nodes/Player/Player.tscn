@@ -156,7 +156,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-164, 0)
 
 [node name="Player_Tamplate" type="CharacterBody2D"]
-collision_mask = 7
+collision_mask = 15
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.403922)

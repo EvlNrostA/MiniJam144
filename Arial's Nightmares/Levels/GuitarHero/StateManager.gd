@@ -128,5 +128,6 @@ func lost_game():
 	GManager.game_over()
 
 func _on_level_timer_timeout():
+	Audio.stop()
 	GManager.global_music = GManager.level_music
 	GManager.next_level()

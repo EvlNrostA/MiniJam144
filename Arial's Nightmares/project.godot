@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Arial's Nightmares"
-run/main_scene="res://Levels/Menu/StartMenu.tscn"
+run/main_scene="res://Nodes/Menu/StartMenu.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
@@ -71,6 +71,7 @@ space={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Obstcle"
+2d_physics/layer_4="Coin"
 
 [rendering]
 

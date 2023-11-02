@@ -85,7 +85,6 @@ script = ExtResource("1_411gl")
 [node name="Label" type="Label" parent="."]
 offset_right = 1152.0
 offset_bottom = 105.0
-text = "20"
 label_settings = SubResource("LabelSettings_mnyit")
 horizontal_alignment = 1
 
