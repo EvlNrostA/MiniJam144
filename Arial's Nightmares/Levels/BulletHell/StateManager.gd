@@ -27,8 +27,6 @@ const MAX_TOP = -50
 const MAX_BOTTOM = 700
 
 @onready var player = $Player
-
-@onready var level_timer = $LevelTimer
 @onready var bullet_timer = $BulletTimer
 
 @onready var left_hand = $LeftHand
