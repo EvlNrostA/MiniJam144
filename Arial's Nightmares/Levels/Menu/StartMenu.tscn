@@ -17,10 +17,10 @@ font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_8h3fw"]
+[sub_resource type="LabelSettings" id="LabelSettings_28lkd"]
 line_spacing = 0.0
 font = ExtResource("4_dv4uc")
-font_size = 100
+font_size = 128
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
@@ -90,7 +90,7 @@ offset_right = 945.0
 offset_bottom = 216.0
 text = "Ariel's
 Nightmare"
-label_settings = SubResource("LabelSettings_8h3fw")
+label_settings = SubResource("LabelSettings_28lkd")
 horizontal_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="."]

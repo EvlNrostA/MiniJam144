@@ -10,4 +10,7 @@ func _ready():
 func _on_button_pressed():
 	Audio.stop()
 	GManager.global_music = GManager.level_music
+	
+	Points.points = 0
+	
 	GManager.next_level()

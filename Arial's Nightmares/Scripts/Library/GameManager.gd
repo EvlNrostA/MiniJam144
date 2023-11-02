@@ -84,6 +84,7 @@ var current_batch_index : int = 0
 var levels_left : Array
 var difficulty
 var global_music
+var points : int = 0
 
 func next_level():
 	randomize()
@@ -101,15 +102,12 @@ func next_level():
 	if (not Audio.is_playing()) and (not next_level_settings.has("custom_music")):
 		play_global_music()
 	
-	change_scene(next_level_settings.scene)
+	await change_scene(next_level_settings.scene, true)
 
 func game_over():
 	change_scene(game_over_menu)
 	
 func restart_levels():
-	difficulty = "easy"
-	global_music = level_music
-	
 	current_batch_index = 0
 	copy_array(levels_left, levels[current_batch_index])
 
@@ -117,9 +115,13 @@ func copy_array(array, array_to_copy):
 	array.clear()
 	array.append_array(array_to_copy.duplicate(true))
 	
-func change_scene(scene):
+func change_scene(scene, display_points=false):
 	await fade_in()
+	
 	get_tree().change_scene_to_file(scene)
+	if display_points:
+		Points.display()
+	
 	await fade_out()
 	
 func fade_in():

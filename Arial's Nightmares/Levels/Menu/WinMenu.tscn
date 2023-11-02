@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjudxdxss06qe"]
+[gd_scene load_steps=13 format=3 uid="uid://cjudxdxss06qe"]
 
 [ext_resource type="Script" path="res://Levels/Menu/Menu.gd" id="1_np66w"]
-[ext_resource type="PackedScene" uid="uid://u8v0pe7gntk4" path="res://Nodes/Mechanics/FadeLayer.tscn" id="2_tomk7"]
-[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Tileset/Bitfantasy.ttf" id="3_l1sei"]
+[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="3_l1sei"]
 [ext_resource type="Texture2D" uid="uid://dqugsctmmpo4h" path="res://Assets/Player/Arial_Sleep.png" id="4_s31oo"]
 [ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="5_1q33g"]
 [ext_resource type="Texture2D" uid="uid://bb06dslurhegc" path="res://Assets/Player/Arial_Sleep_Hover.png" id="6_bhgwa"]
@@ -49,8 +48,6 @@ _data = {
 [node name="WinMenu" type="Node2D"]
 script = ExtResource("1_np66w")
 
-[node name="CanvasLayer" parent="." instance=ExtResource("2_tomk7")]
-
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -71,10 +68,10 @@ Moshe Mina
 label_settings = SubResource("LabelSettings_enoik")
 
 [node name="NameLabel" type="Label" parent="."]
-offset_left = 232.0
-offset_top = 56.0
-offset_right = 945.0
-offset_bottom = 216.0
+offset_left = 240.0
+offset_top = 200.0
+offset_right = 953.0
+offset_bottom = 371.0
 text = "Ariel's dreams 
 have been
  purified"

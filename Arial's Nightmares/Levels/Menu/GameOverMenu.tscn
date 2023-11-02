@@ -18,10 +18,10 @@ font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_8h3fw"]
+[sub_resource type="LabelSettings" id="LabelSettings_vxxkr"]
 line_spacing = 0.0
 font = ExtResource("3_edsyu")
-font_size = 100
+font_size = 128
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
@@ -72,15 +72,6 @@ Moshe Mina
 "
 label_settings = SubResource("LabelSettings_enoik")
 
-[node name="NameLabel" type="Label" parent="."]
-offset_left = 240.0
-offset_top = 56.0
-offset_right = 953.0
-offset_bottom = 216.0
-text = "Game Over!"
-label_settings = SubResource("LabelSettings_8h3fw")
-horizontal_alignment = 1
-
 [node name="Father2" type="Sprite2D" parent="."]
 position = Vector2(574, 369)
 scale = Vector2(2, 2)
@@ -94,6 +85,14 @@ texture = ExtResource("5_f441u")
 position = Vector2(40, 40)
 texture = ExtResource("5_f441u")
 flip_h = true
+
+[node name="NameLabel" type="Label" parent="."]
+offset_top = 140.0
+offset_right = 1152.0
+offset_bottom = 300.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_vxxkr")
+horizontal_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 512.0

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://du3xbfff3yhrw"]
+
+[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="1_2udba"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/PointsCount.gd" id="1_411gl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mnyit"]
+font = ExtResource("1_2udba")
+font_size = 128
+font_color = Color(0.882353, 0.690196, 0, 1)
+shadow_color = Color(0, 0, 0, 0.568627)
+shadow_offset = Vector2(3, 3)
+
+[node name="PointsCount" type="CanvasLayer"]
+script = ExtResource("1_411gl")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 105.0
+label_settings = SubResource("LabelSettings_mnyit")
+horizontal_alignment = 1
