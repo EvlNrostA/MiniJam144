@@ -1,5 +1,7 @@
 extends Node2D
 
+const POINT_VALUE = 2
+
 var difficulty_settings = {
 	"easy": {
 		"count": 1,
@@ -59,6 +61,7 @@ func spawn_noam_fogles():
 		print(revealed_noam_fogle_count, " more than ", noam_fogle_count)
 
 func won_game():
+	Points.add(round(LVLTimer.timer.time_left) * POINT_VALUE)
 	GManager.next_level()
 
 func _on_level_timer_timeout():

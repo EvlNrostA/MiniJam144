@@ -3,7 +3,7 @@ extends Player_library
 @onready var manager = get_parent()
 var fail_count : int
 
-func _process(_delta):	
+func _unhandled_key_input(event):	
 	for direction in manager.arrow_positions.keys():
 		if Input.is_action_just_pressed(direction):
 			var arrows_on_target = manager.arrows_on_target

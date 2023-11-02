@@ -110,7 +110,7 @@ func next_level():
 	await change_scene(next_level_settings.scene, true, display_timer)
 
 func game_over():
-	change_scene(game_over_menu, true, false)
+	await change_scene(game_over_menu, true, false)
 	
 func restart_levels():
 	current_batch_index = 0
@@ -124,6 +124,7 @@ func change_scene(scene, display_points=false, display_timer=false):
 	await fade_in()
 	get_tree().change_scene_to_file(scene)
 	
+	LVLTimer.timer.stop()
 	Points.visible = display_points
 	LVLTimer.visible = display_timer
 	
