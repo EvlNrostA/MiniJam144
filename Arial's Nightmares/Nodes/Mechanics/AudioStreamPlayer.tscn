@@ -1,9 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://u1ebkowpbp7t"]
 
-[ext_resource type="Script" path="res://Scripts/Mechanics/AudioStreamPlayer.gd" id="1_kqoou"]
-
 [sub_resource type="AudioStream" id="AudioStream_m78fc"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
 stream = SubResource("AudioStream_m78fc")
-script = ExtResource("1_kqoou")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl555ewlix1ct"]
+[gd_scene load_steps=10 format=3 uid="uid://cl555ewlix1ct"]
 
 [ext_resource type="Script" path="res://Scripts/Mechanics/Arrow.gd" id="1_kd5yn"]
 [ext_resource type="Texture2D" uid="uid://d017wyqelrtl3" path="res://Assets/Mechanics/down.png" id="2_itegl"]
+[ext_resource type="PackedScene" uid="uid://by0pq82lvxp4i" path="res://Nodes/Mechanics/FloatingText.tscn" id="3_ywbie"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5w8p"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ck4g"]
 size = Vector2(24, 24)
 
 [sub_resource type="Animation" id="Animation_bdkxq"]
@@ -124,9 +125,11 @@ modulate = Color(0.996078, 1, 1, 1)
 texture = ExtResource("2_itegl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_x5w8p")
+shape = SubResource("RectangleShape2D_1ck4g")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_p5jmr")
 }
+
+[node name="FloatingText" parent="." instance=ExtResource("3_ywbie")]

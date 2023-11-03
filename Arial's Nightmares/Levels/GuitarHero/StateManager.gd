@@ -27,16 +27,14 @@ const MIN_HEIGHT = 10
 const ARROW_DELAY = 3
 const MIN_TO_SEC = 60
 
-#@onready var canvas = $CanvasLayer
 @onready var player = $Player
 
 @onready var spectrum = AudioServer.get_bus_effect_instance(0, 0)
-
 @onready var delay_timer = $DelayTimer
 @onready var bpm_timer = $BPMTimer
 
 @onready var pressing_bar = $PressingBar
-@onready var heart_label = $HeartLabel
+@onready var heart_label = $Heart/Label
 
 @onready var arrow_scene = preload("res://Nodes/Mechanics/Arrow.tscn")
 @onready var arrow_positions = {

@@ -1,5 +1,8 @@
 extends Area2D
 
+const SPEED_MULTIPLIER = 100
+
+@onready var floating_text = $FloatingText
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var arrow_directions = {
@@ -16,7 +19,7 @@ var velocity
 
 func _process(delta):
 	if velocity and speed:
-		self.position += velocity * delta * speed * 100
+		self.position += velocity * delta * speed * SPEED_MULTIPLIER
 
 func start(start_position, direction, velocity, speed):
 	self.position = start_position

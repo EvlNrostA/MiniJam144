@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjgpx1v4scdof"]
+[gd_scene load_steps=7 format=3 uid="uid://cjgpx1v4scdof"]
 
 [ext_resource type="Script" path="res://Scripts/Mechanics/UICanvas.gd" id="1_do3og"]
 [ext_resource type="Texture2D" uid="uid://b8fahc0bwriju" path="res://Assets/Mechanics/Rope.png" id="2_4shlm"]
 [ext_resource type="Texture2D" uid="uid://bba02np8ae5gs" path="res://Assets/Mechanics/TimerPanel.png" id="2_87350"]
+[ext_resource type="PackedScene" uid="uid://by0pq82lvxp4i" path="res://Nodes/Mechanics/FloatingText.tscn" id="4_8t5nq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l3m1u"]
 font_size = 64
@@ -14,74 +15,6 @@ font_size = 96
 font_color = Color(0.882353, 0.690196, 0, 1)
 shadow_color = Color(0, 0, 0, 0.345098)
 shadow_offset = Vector2(5, 3)
-
-[sub_resource type="LabelSettings" id="LabelSettings_0xv7m"]
-font_size = 48
-font_color = Color(0.996078, 0.831373, 0.278431, 1)
-shadow_color = Color(0, 0, 0, 0.345098)
-shadow_offset = Vector2(5, 3)
-
-[sub_resource type="Animation" id="Animation_lnfc4"]
-resource_name = "Add"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointAddLabelNode/PointAddLabel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -24)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PointAddLabelNode/PointAddLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ajtdi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointAddLabelNode/PointAddLabel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PointAddLabelNode/PointAddLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_miypo"]
-_data = {
-"Add": SubResource("Animation_lnfc4"),
-"RESET": SubResource("Animation_ajtdi")
-}
 
 [node name="UICanvas" type="CanvasLayer"]
 script = ExtResource("1_do3og")
@@ -153,20 +86,7 @@ label_settings = SubResource("LabelSettings_cyaio")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PointAddLabelNode" type="Node2D" parent="."]
-position = Vector2(952, 8)
-
-[node name="PointAddLabel" type="Label" parent="PointAddLabelNode"]
-offset_right = 192.0
-offset_bottom = 128.0
-label_settings = SubResource("LabelSettings_0xv7m")
-horizontal_alignment = 1
-vertical_alignment = 2
+[node name="FloatingText" parent="." instance=ExtResource("4_8t5nq")]
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_miypo")
-}

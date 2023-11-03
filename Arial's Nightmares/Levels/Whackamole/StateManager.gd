@@ -1,31 +1,31 @@
 extends Node2D
 
-const POINT_VALUE = 2
-
 var difficulty_settings = {
 	"easy": {
-		"count": 1,
+		"count": 2,
 		"hide_delay": [1, 2],
 		"reveal_delay": [0.7, 1.2],
 		"level_timer": 15,
 		"speed": 2.5
 	},
 	"normal": {
-		"count": 3,
+		"count": 4,
 		"hide_delay": [1, 2],
 		"reveal_delay": [0.7, 1.2],
 		"level_timer": 20,
-		"speed": 3
+		"speed": 2.5
 	},
 	"hard": {
-		"count": 7,
+		"count": 8,
 		"hide_delay": [1, 2],
 		"reveal_delay": [0.7, 1.2],
 		"level_timer": 20,
-		"speed": 3
+		"speed": 2.5
 	},
 }
  
+const POINT_VALUE = 1
+
 @onready var player = $Player
 @onready var noam_fogles = get_tree().get_nodes_in_group("NoamFogle")
 

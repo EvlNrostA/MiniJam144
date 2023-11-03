@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://by0pq82lvxp4i"]
+
+[ext_resource type="Script" path="res://Scripts/Mechanics/FloatingText.gd" id="1_k6hhq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xv7m"]
+shadow_color = Color(0, 0, 0, 0.345098)
+shadow_offset = Vector2(5, 3)
+
+[sub_resource type="Animation" id="Animation_lnfc4"]
+resource_name = "Float"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ysf8x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_miypo"]
+_data = {
+"Float": SubResource("Animation_lnfc4"),
+"RESET": SubResource("Animation_ysf8x")
+}
+
+[node name="FloatingText" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
+script = ExtResource("1_k6hhq")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1.0
+offset_bottom = 38.0
+label_settings = SubResource("LabelSettings_0xv7m")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_miypo")
+}

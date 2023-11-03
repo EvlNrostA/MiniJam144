@@ -4,19 +4,19 @@ var difficulty_settings = {
 	"easy": {
 		"wait_time": 1.5,
 		"level_timer": 20,
-		"speed": 1,
+		"speed": 1.5,
 		"clothes_speed": 1
 	},	
 	"normal": {
-		"wait_time": 1,
+		"wait_time": 0.8,
 		"level_timer": 30,
-		"speed": 1,
+		"speed": 1.5,
 		"clothes_speed": 2
 	},
 	"hard": {
-		"wait_time": 0.8,
+		"wait_time": 0.5,
 		"level_timer": 30,
-		"speed": 1,
+		"speed": 1.5,
 		"clothes_speed": 4
 	}
 }
@@ -72,6 +72,9 @@ func spawn_bullets() -> void:
 	for direction in bullet_directions.keys():
 		var bullet = clothes_scene.instantiate()
 		add_child(bullet)
+		
+		bullet.z_index = 2
+		
 		bullet.emit_signal("SPAWN", direction, bullet_directions[direction], settings.clothes_speed)
 	
 	bullet_timer.start(wait_time)
@@ -86,6 +89,7 @@ func _on_coin_timer_timeout():
 	var coin = coin_scene.instantiate()
 	add_child(coin)
 	
+	coin.z_index = 1
 	coin.points = COIN_POINTS
 	coin.global_position = Vector2(GManager.randf_list_range(COIN_POS_XRANGE), GManager.randf_list_range(COIN_POS_YRANGE))
 	

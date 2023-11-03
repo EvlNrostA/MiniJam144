@@ -1,15 +1,15 @@
 extends CanvasLayer
 
-const POINT_ADD_TEXT_OFFSET = 50
-const POINT_ADD_MOVE_OFFSET = -20
+const POINT_ADD_XOFFSET = 100
+const POINT_ADD_YOFFSET = 70
+const POINT_ADD_SIZE = 32
+const POINT_ADD_COLORHEX = 0xfed447ff
 
 @onready var timer_label = $TimerLabel
 @onready var level_timer = $Timer
 
 @onready var point_label = $PointLabel
-@onready var point_add_label = $PointAddLabelNode/PointAddLabel
-@onready var point_add_label_node = $PointAddLabelNode
-@onready var animation_player = $AnimationPlayer
+@onready var floating_text = $FloatingText
 
 var points
 
@@ -33,12 +33,13 @@ func points_set(new_points):
 	point_label.text = str(points)
 	
 func points_add(new_points):
-	point_add_label.text = "+%d" % new_points
+	if new_points > 0:
+		var point_add_text = "+%d" % new_points
+		var point_add_xpos = point_label.global_position.x + point_label.get_theme_font_size(point_label.text) + POINT_ADD_XOFFSET
+		var point_add_ypos = point_label.global_position.y + POINT_ADD_YOFFSET
+		await floating_text.display(point_add_text, 
+								Vector2(point_add_xpos, point_add_ypos),
+	 							POINT_ADD_SIZE,
+								Color.hex(POINT_ADD_COLORHEX))
 	
-	var text_length = point_label.get_theme_font_size(point_label.text) + POINT_ADD_TEXT_OFFSET
-	point_add_label_node.position.x = point_label.position.x + text_length
-	
-	animation_player.play("Add")
-	await animation_player.animation_finished
-	
-	points_set(points + new_points)
+		points_set(points + new_points)
