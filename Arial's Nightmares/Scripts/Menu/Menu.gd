@@ -4,14 +4,12 @@ extends Node2D
 var delay_timer
 
 func _ready():
-	GManager.play_global_music(GManager.menu_music)
+	Audio.play_music(Audio.menu_music)
 	GManager.restart_levels()
-	delay_timer = get_tree().create_timer(0.3)
 
 func start():
-	if delay_timer.time_left == 0:
-		Audio.stop()
-		UI.points_set(0)    
+	if not Fade.fading():
+		UI.points_set(0)
 		GManager.next_level()
 
 func _unhandled_key_input(event):

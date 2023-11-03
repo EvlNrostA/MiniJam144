@@ -33,8 +33,6 @@ var settings
 var noam_fogle_count
 	
 func _ready():
-	randomize()
-	
 	if GManager.difficulty == null:
 		GManager.start_level(GManager.difficulties.easy)
 

@@ -1,25 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://68y8os1hqyue"]
+[gd_scene load_steps=5 format=3 uid="uid://68y8os1hqyue"]
 
 [ext_resource type="Script" path="res://Levels/EndlessRunner/Obstacle.gd" id="1_2j3tp"]
+[ext_resource type="Texture2D" uid="uid://itqy0v14a1e3" path="res://Assets/Mechanics/Shadow.png" id="2_nmh38"]
 [ext_resource type="Texture2D" uid="uid://c4xmupd74qq0r" path="res://Assets/Enemys/Obstacle.png" id="2_yhhni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyomr"]
-size = Vector2(46, 28.5)
+size = Vector2(46, 39.25)
 
 [node name="EnemyBullet" type="Area2D"]
 scale = Vector2(1.6, 1.6)
 collision_layer = 4
 script = ExtResource("1_2j3tp")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(0, 10)
+scale = Vector2(2, 1)
+texture = ExtResource("2_nmh38")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -5)
 texture = ExtResource("2_yhhni")
 hframes = 2
 vframes = 2
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, 0.374999)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_eyomr")
 
 [connection signal="body_entered" from="." to="." method="HitPlayer"]

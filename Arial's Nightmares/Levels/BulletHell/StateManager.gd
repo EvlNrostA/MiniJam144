@@ -80,7 +80,8 @@ func spawn_bullets() -> void:
 	bullet_timer.start(wait_time)
 
 func _on_level_timer_timeout():
-	GManager.next_level()
+	if not player.lost:
+		GManager.next_level()
 
 func start_coin_timer():
 	coin_timer.start(GManager.randf_list_range(COIN_WAIT_RANGE))

@@ -16,8 +16,8 @@ var vel := Vector2.ZERO
 var JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func run_animation(vel):
-	if vel != Vector2.ZERO:
+func run_animation(given_velocity):
+	if given_velocity != Vector2.ZERO:
 		animationPlayer.play("Run_Right")
 	else:
 		animationPlayer.play("Idle_Right")

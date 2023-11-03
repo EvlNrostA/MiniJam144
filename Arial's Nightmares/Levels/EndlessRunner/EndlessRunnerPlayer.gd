@@ -17,7 +17,6 @@ func _physics_process(delta):
 func pushed():
 	hit = true
 	velocity += Vector2(-300, -300)
-	pass	
 
 func death():
 	GManager.game_over()

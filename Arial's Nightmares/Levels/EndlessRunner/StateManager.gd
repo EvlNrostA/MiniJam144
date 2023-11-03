@@ -22,7 +22,7 @@ var difficulty_settings = {
 }
 
 const COIN_WAIT_RANGE = [3, 5]
-const ITEMS_START_POS = Vector2(1230, 550)
+const ITEMS_START_OFFSET = Vector2i(50, -160)
 const COIN_POINTS = 5
 
 @onready var obstacle_scene = preload("res://Levels/EndlessRunner/Obstacle.tscn")
@@ -32,17 +32,18 @@ const COIN_POINTS = 5
 @onready var tile_timer = $TileTimer
 @onready var coin_timer = $CoinTimer
 
+var items_start_position
 var settings
 
 func _ready():
-	randomize()
-	
 	if GManager.difficulty == null:
 		GManager.start_level(GManager.difficulties.easy)
 	
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
 	player.shadow.visible = false
+
+	items_start_position = DisplayServer.window_get_size() + ITEMS_START_OFFSET
 	
 	var clouds = get_tree().get_nodes_in_group("Clouds")
 	for cloud in clouds:
@@ -58,12 +59,13 @@ func start_tiles():
 func _on_timer_timeout():
 	var obstacle = obstacle_scene.instantiate()
 	add_child(obstacle)
-	obstacle.emit_signal("SPAWN", Vector2.LEFT, settings.level_velocity, ITEMS_START_POS)
 	
+	obstacle.emit_signal("SPAWN", Vector2.LEFT, settings.level_velocity, items_start_position)
 	start_tiles()
 	
 func _on_level_timer_timeout():
-	GManager.next_level()
+	if not player.hit:
+		GManager.next_level()
 
 func start_coin_timer():
 	coin_timer.start(GManager.randf_list_range(COIN_WAIT_RANGE))
@@ -76,6 +78,6 @@ func _on_coin_timer_timeout():
 	coin.movement_function = "endless_runner_movement"
 	coin.velocity = settings.level_velocity
 	coin.points = COIN_POINTS
-	coin.global_position = ITEMS_START_POS
+	coin.global_position = items_start_position
 	
 	start_coin_timer()

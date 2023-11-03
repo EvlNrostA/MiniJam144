@@ -15,7 +15,7 @@ func _physics_process(delta):
 	if movement_function and velocity:
 		call(movement_function, delta)
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	if not collected:
 		collected = true
 		

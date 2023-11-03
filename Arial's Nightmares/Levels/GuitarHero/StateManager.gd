@@ -52,14 +52,14 @@ const ARROW_DELAY = 3
 const MIN_TO_SEC = 60
 
 @onready var player = $Player
+@onready var pressing_bar = $PressingBar
+@onready var heart_label = $Heart/Label
 
 @onready var spectrum = AudioServer.get_bus_effect_instance(0, 0)
 @onready var delay_timer = $DelayTimer
 @onready var bpm_timer = $BPMTimer
 
-@onready var pressing_bar = $PressingBar
-@onready var heart_label = $Heart/Label
-
+@onready var floating_text_scene = preload("res://Nodes/Mechanics/FloatingText.tscn")
 @onready var arrow_scene = preload("res://Nodes/Mechanics/Arrow.tscn")
 @onready var arrow_positions = {
 	"Up": $UpArrowPosition,
@@ -67,10 +67,7 @@ const MIN_TO_SEC = 60
 	"Down": $DownArrowPosition,
 	"Right": $RightArrowPosition
 }
-@onready var floating_text_scene = preload("res://Nodes/Mechanics/FloatingText.tscn")
 @onready var arrows_on_target = []
-@onready var stopped = false
-@onready var current_data = 0
 
 var settings
 var arrow_time_delay
@@ -78,17 +75,16 @@ var beat_per_sec
 var chunk_size
 
 func _ready():
-	randomize()
-	
 	if GManager.difficulty == null:
 		GManager.start_level(GManager.difficulties.easy)
+		
+	Audio.stop()
 		
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
 	heart_label.text = str(player.fail_count)
 	
 	Audio.stream = load(settings.song_path)
-	
 	var audio_length = Audio.stream.get_length()
 	UI.set_time(audio_length)
 	
