@@ -12,7 +12,11 @@ var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
 var yam_level = "res://Levels/EndlessRunner/EndlessRunner.tscn"
 
-var difficulties = ["easy", "normal", "hard"]
+var difficulties = {
+	"easy": 0,
+	"normal": 1, 
+	"hard": 2
+}
 
 var levels = [
 	[
@@ -90,8 +94,9 @@ func start_level(index):
 	UI.points_set(0)
 	UI.visible = true
 	
-	levels_left = levels[index]
+	copy_array(levels_left, levels[index])
 	var scene_path = get_tree().get_current_scene().scene_file_path
+	
 	var level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
 	
 	prepare_level(level_settings)

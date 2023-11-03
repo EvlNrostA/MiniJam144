@@ -16,6 +16,9 @@ var points
 func _ready():
 	visible = false
 	pass
+	
+func timer_running() -> bool:
+	return UI.level_timer.time_left > 0
 
 func start_timer(time, function):
 	level_timer.timeout.connect(function)

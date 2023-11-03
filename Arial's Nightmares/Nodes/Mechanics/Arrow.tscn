@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl555ewlix1ct"]
+[gd_scene load_steps=9 format=3 uid="uid://cl555ewlix1ct"]
 
 [ext_resource type="Script" path="res://Scripts/Mechanics/Arrow.gd" id="1_kd5yn"]
 [ext_resource type="Texture2D" uid="uid://d017wyqelrtl3" path="res://Assets/Mechanics/down.png" id="2_itegl"]
-[ext_resource type="PackedScene" uid="uid://by0pq82lvxp4i" path="res://Nodes/Mechanics/FloatingText.tscn" id="3_ywbie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ck4g"]
-size = Vector2(24, 24)
+size = Vector2(32, 32)
 
 [sub_resource type="Animation" id="Animation_bdkxq"]
 resource_name = "FadeOut"
@@ -131,5 +130,3 @@ shape = SubResource("RectangleShape2D_1ck4g")
 libraries = {
 "": SubResource("AnimationLibrary_p5jmr")
 }
-
-[node name="FloatingText" parent="." instance=ExtResource("3_ywbie")]

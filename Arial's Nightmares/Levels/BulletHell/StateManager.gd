@@ -48,7 +48,7 @@ func _ready():
 	randomize()
 	
 	if GManager.difficulty == null:
-		GManager.start_level(0)
+		GManager.start_level(GManager.difficulties.easy)
 	
 	settings = difficulty_settings[GManager.difficulty]
 	wait_time = settings.wait_time

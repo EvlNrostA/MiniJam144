@@ -29,6 +29,7 @@ func hide_and_reveal(reveal_delay, hide_delay) -> void:
 		
 		await reveal(reveal_delay)
 		hiding = true
+		print(hiding)
 
 func _on_body_entered(body):
 	if sprite.visible:

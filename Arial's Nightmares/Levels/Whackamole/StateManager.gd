@@ -19,7 +19,7 @@ var difficulty_settings = {
 		"count": 8,
 		"hide_delay": [1, 2],
 		"reveal_delay": [0.7, 1.2],
-		"level_timer": 20,
+		"level_timer": 30,
 		"speed": 2.5
 	},
 }
@@ -36,7 +36,7 @@ func _ready():
 	randomize()
 	
 	if GManager.difficulty == null:
-		GManager.start_level(1)
+		GManager.start_level(GManager.difficulties.easy)
 
 	settings = difficulty_settings[GManager.difficulty]
 	noam_fogle_count = settings.count
@@ -45,16 +45,16 @@ func _ready():
 	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
 
 func _process(_delta):
-	if settings and noam_fogles:
+	if UI.timer_running():
 		spawn_noam_fogles()
 	
-func spawn_noam_fogles():	
+func spawn_noam_fogles():
 	var hidden_noam_fogles = noam_fogles.filter(func(noam_fogle): return noam_fogle.hiding)
 	var revealed_noam_fogle_count = noam_fogles.size() - hidden_noam_fogles.size()
 	
 	if not hidden_noam_fogles.is_empty() and revealed_noam_fogle_count < noam_fogle_count:
 		var noam_fogle = hidden_noam_fogles.pick_random()
-		noam_fogle.hide_and_reveal(GManager.randf_list_range(settings.reveal_delay), 
+		noam_fogle.hide_and_reveal(GManager.randf_list_range(settings.reveal_delay),
 								   GManager.randf_list_range(settings.hide_delay))
 	
 	elif revealed_noam_fogle_count > noam_fogle_count:

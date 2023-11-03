@@ -7,5 +7,6 @@ func _process(delta):
 
 func killed_noam_fogle():
 	manager.noam_fogle_count -= 1
+	print(manager.noam_fogle_count)
 	if (manager.noam_fogle_count == 0):
 		manager.won_game()
