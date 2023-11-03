@@ -28,4 +28,5 @@ position = Vector2(0, 0.374999)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_eyomr")
 
+[connection signal="area_entered" from="." to="." method="delete"]
 [connection signal="body_entered" from="." to="." method="HitPlayer"]

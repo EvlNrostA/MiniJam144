@@ -22,7 +22,7 @@ var difficulty_settings = {
 }
 
 const COIN_WAIT_RANGE = [3, 5]
-const ITEMS_START_OFFSET = Vector2i(50, -160)
+const ITEMS_START_OFFSET = Vector2i(50, -180)
 const COIN_POINTS = 5
 
 @onready var obstacle_scene = preload("res://Levels/EndlessRunner/Obstacle.tscn")

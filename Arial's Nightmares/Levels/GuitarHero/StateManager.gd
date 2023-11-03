@@ -36,7 +36,7 @@ const SCORE_TEXT_OPTIONS = {
 	}
 }
 
-const GREAT_DISTANCE = 15
+const GREAT_DISTANCE = 10
 const PERFECT_DISTANCE = 5
 
 const FLOATING_TEXT_OFFSET = Vector2(5, -20)
@@ -53,6 +53,7 @@ const MIN_TO_SEC = 60
 
 @onready var player = $Player
 @onready var pressing_bar = $PressingBar
+@onready var heart_animation_player = $Heart/AnimationPlayer
 @onready var heart_label = $Heart/Label
 
 @onready var spectrum = AudioServer.get_bus_effect_instance(0, 0)
@@ -73,6 +74,7 @@ var settings
 var arrow_time_delay
 var beat_per_sec
 var chunk_size
+var fail_count : int
 
 func _ready():
 	if GManager.difficulty == null:
@@ -81,8 +83,8 @@ func _ready():
 	Audio.stop()
 		
 	settings = difficulty_settings[GManager.difficulty]
-	player.fail_count = settings.fail_count
-	heart_label.text = str(player.fail_count)
+	fail_count = settings.fail_count
+	heart_label.text = str(fail_count)
 	
 	Audio.stream = load(settings.song_path)
 	var audio_length = Audio.stream.get_length()
@@ -104,8 +106,7 @@ func _ready():
 	UI.start_timer(audio_length, _on_level_timer_timeout)
 
 func _process(_delta):
-	if player and player.fail_count >= 0:
-		heart_label.text = str(player.fail_count)
+	heart_label.text = str(fail_count)
 
 func add_arrow(direction):
 	var arrow = arrow_scene.instantiate()
@@ -117,16 +118,44 @@ func add_arrow(direction):
 
 	add_child(arrow)
 	
-func score(area):
-	var distance = abs(area.global_position.y - pressing_bar.global_position.y)
-	var options
+func check_arrows(direction):
+	if arrows_on_target.size() == 0:
+		count_miss()
 	
-	if distance <= PERFECT_DISTANCE:
+	for area in arrows_on_target:
+		var correct_direction = direction == area.direction
+		if not correct_direction or area.pressed:
+			count_miss()
+					
+		if not area.pressed:
+			var animation_name = "PressedRight" if correct_direction else "PressedWrong"
+			area.animation_player.queue(animation_name)
+			
+			if correct_direction:
+				score(area)
+	
+		area.pressed = true
+		
+func count_miss():
+	fail_count -= 1
+	
+	player.play_sound(player.death_sound)
+	heart_animation_player.play("Beat")
+	
+	if fail_count == 0:
+		GManager.game_over()
+
+func score(area):
+	var area_size = area.sprite.get_rect().size.y
+	var distance = pressing_bar.global_position.y - area.global_position.y 
+
+	var options
+	if distance > GREAT_DISTANCE or distance < 0:
+		options = SCORE_TEXT_OPTIONS.OKAY
+	elif distance <= PERFECT_DISTANCE:
 		options = SCORE_TEXT_OPTIONS.PERFECT
 	elif distance <= GREAT_DISTANCE:
-		options = SCORE_TEXT_OPTIONS.GREAT
-	else:
-		options = SCORE_TEXT_OPTIONS.OKAY
+		options = SCORE_TEXT_OPTIONS.GREAT	
 	
 	var floating_text = floating_text_scene.instantiate()
 	add_child(floating_text)
@@ -161,15 +190,12 @@ func _on_pressing_bar_area_exited(area):
 	arrows_on_target.erase(area)
 	
 	if not area.pressed:
-		player.count_miss()
+		count_miss()
 	
 	area.animation_player.queue("FadeOut")
 	await area.animation_player.animation_finished
 	
 	area.queue_free()
-	
-func lost_game():
-	GManager.game_over()
 
 func _on_level_timer_timeout():
 	Audio.stop()

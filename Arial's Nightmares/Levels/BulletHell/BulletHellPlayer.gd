@@ -9,6 +9,8 @@ func _process(delta):
 	
 func hit():
 	lost = true
+	
+	play_sound(death_sound)
 	animationPlayer.play("Fall")
 	await animationPlayer.animation_finished
 	

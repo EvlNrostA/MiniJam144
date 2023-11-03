@@ -5,17 +5,21 @@ extends Player_library
 @onready var hit = false
 
 func _ready():
-	self.JUMP_VELOCITY = -400
+	audio_stream_player.stream = footstep_sound
 
 func _physics_process(delta):
 	if not hit:
 		Move2DRight(delta)
+		if not audio_stream_player.playing:
+			audio_stream_player.play()
+			print("play")
 	else:
 		position = position.move_toward(yam.position, manager.settings.level_velocity * delta)
 		animationPlayer.play("Fall")
 
 func pushed():
 	hit = true
+	play_sound(death_sound)
 	velocity += Vector2(-300, -300)
 
 func death():

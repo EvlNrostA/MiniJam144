@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkl762skexmar"]
+[gd_scene load_steps=7 format=3 uid="uid://dkl762skexmar"]
 
 [ext_resource type="Script" path="res://Scripts/Mechanics/Coin.gd" id="1_80ubp"]
 [ext_resource type="Texture2D" uid="uid://dbufa78dm4bty" path="res://Assets/Mechanics/Pizza.png" id="1_jjahr"]
@@ -28,8 +28,9 @@ _data = {
 "Spawn": SubResource("Animation_dku8d")
 }
 
+[sub_resource type="AudioStream" id="AudioStream_g267n"]
+
 [node name="Coin" type="Area2D"]
-y_sort_enabled = true
 collision_layer = 8
 script = ExtResource("1_80ubp")
 
@@ -46,5 +47,8 @@ autoplay = "Spawn"
 libraries = {
 "": SubResource("AnimationLibrary_wqwkp")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_g267n")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

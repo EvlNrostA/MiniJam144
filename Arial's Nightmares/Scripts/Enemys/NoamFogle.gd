@@ -1,13 +1,18 @@
 extends Area2D
 
+@onready var explosion_sound = preload("res://Assets/Music/missile-explosion-168600.wav")
+@onready var audio_stream_player = $AudioStreamPlayer
+
 @onready var hide_timer = $HideTimer
 @onready var reveal_timer = $RevealTimer
 @onready var sprite = $NoamFogle
 @onready var animation_player = $AnimationPlayer
+
 @onready var hiding = true
 
 func _ready():
 	sprite.visible = false
+	audio_stream_player.stream = explosion_sound
 
 func reveal(reveal_delay) -> void:
 	sprite.visible = true
@@ -36,6 +41,7 @@ func _on_body_entered(body):
 		reveal_timer.stop()
 		hide_timer.stop()
 	
+		audio_stream_player.play()
 		animation_player.play("Death")
 		await animation_player.animation_finished
 		sprite.visible = false

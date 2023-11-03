@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d017wyqelrtl3" path="res://Assets/Mechanics/down.png" id="2_itegl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ck4g"]
-size = Vector2(32, 32)
+size = Vector2(32, 24)
 
 [sub_resource type="Animation" id="Animation_bdkxq"]
 resource_name = "FadeOut"

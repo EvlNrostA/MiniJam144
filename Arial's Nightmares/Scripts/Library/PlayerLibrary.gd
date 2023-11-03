@@ -1,7 +1,9 @@
 extends CharacterBody2D
 class_name Player_library
 
-
+@onready var footstep_sound = preload("res://Assets/Music/concrete-footsteps-6752.wav")
+@onready var death_sound = preload("res://Assets/Music/8bit-lose-life-sound-wav-97245.wav")
+@onready var audio_stream_player = $AudioStreamPlayer
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
@@ -13,8 +15,12 @@ class_name Player_library
 var vel := Vector2.ZERO
 
 
-var JUMP_VELOCITY = -400.0
+var JUMP_VELOCITY = -400
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func play_sound(sound):
+	audio_stream_player.stream = sound
+	audio_stream_player.play()
 
 func run_animation(given_velocity):
 	if given_velocity != Vector2.ZERO:
@@ -28,6 +34,8 @@ func Move2D(delta) -> void:
 	move_and_collide(vel * delta * speed * 100)
 	
 	run_animation(vel)
+	if vel != Vector2.ZERO and not audio_stream_player.playing:
+		play_sound(footstep_sound)
 		
 	if vel.x >= 1:
 		sprite.flip_h = false

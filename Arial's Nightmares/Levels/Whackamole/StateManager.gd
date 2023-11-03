@@ -63,4 +63,8 @@ func won_game():
 	GManager.next_level()
 
 func _on_level_timer_timeout():
+	player.play_sound(player.death_sound)
+	player.sprite.frame = 9
+	await player.animationPlayer.animation_finished
+	
 	GManager.game_over()

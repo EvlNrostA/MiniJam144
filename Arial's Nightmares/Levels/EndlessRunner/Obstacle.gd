@@ -25,5 +25,5 @@ func SetSpawn(new_direction, new_speed, spawn_pos) -> void:
 func HitPlayer(col) -> void:
 	col.pushed()
 	
-func delete() -> void:
+func delete(col) -> void:
 	queue_free()

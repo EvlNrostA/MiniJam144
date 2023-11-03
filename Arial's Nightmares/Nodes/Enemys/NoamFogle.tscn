@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qja4lm0cwpjg"]
+[gd_scene load_steps=11 format=3 uid="uid://qja4lm0cwpjg"]
 
 [ext_resource type="Script" path="res://Scripts/Enemys/NoamFogle.gd" id="1_ihpxf"]
 [ext_resource type="Texture2D" uid="uid://r57ua5m7b3rg" path="res://Assets/Enemys/Fogle.png" id="2_7cvli"]
@@ -112,6 +112,8 @@ _data = {
 "RESET": SubResource("Animation_qf5tk")
 }
 
+[sub_resource type="AudioStream" id="AudioStream_rs1ut"]
+
 [node name="NoamFogle" type="Area2D"]
 script = ExtResource("1_ihpxf")
 
@@ -140,6 +142,9 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_xwpw2")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_rs1ut")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
