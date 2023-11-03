@@ -24,13 +24,18 @@ buses/default_bus_layout="res://new_audio_bus_layout.tres"
 GManager="*res://Scripts/Library/GameManager.gd"
 Audio="*res://Nodes/Mechanics/AudioStreamPlayer.tscn"
 Fade="*res://Nodes/Mechanics/FadeLayer.tscn"
-Points="*res://Nodes/Mechanics/PointsCount.tscn"
-LVLTimer="*res://Nodes/Mechanics/LevelTimer.tscn"
+Cam="*res://Nodes/Mechanics/Camera.tscn"
+UI="*res://Nodes/Mechanics/UICanvas.tscn"
 
 [display]
 
+window/size/resizable=false
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
+
+[gui]
+
+theme/custom_font="res://Assets/Bitfantasy.ttf"
 
 [input]
 
@@ -72,6 +77,7 @@ space={
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Obstcle"
 2d_physics/layer_4="Coin"
+2d_physics/layer_5="Border"
 
 [rendering]
 

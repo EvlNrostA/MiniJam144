@@ -1,0 +1,172 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjgpx1v4scdof"]
+
+[ext_resource type="Script" path="res://Scripts/Mechanics/UICanvas.gd" id="1_do3og"]
+[ext_resource type="Texture2D" uid="uid://b8fahc0bwriju" path="res://Assets/Mechanics/Rope.png" id="2_4shlm"]
+[ext_resource type="Texture2D" uid="uid://bba02np8ae5gs" path="res://Assets/Mechanics/TimerPanel.png" id="2_87350"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3m1u"]
+font_size = 64
+shadow_color = Color(0, 0, 0, 0.345098)
+shadow_offset = Vector2(5, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cyaio"]
+font_size = 96
+font_color = Color(0.882353, 0.690196, 0, 1)
+shadow_color = Color(0, 0, 0, 0.345098)
+shadow_offset = Vector2(5, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xv7m"]
+font_size = 48
+font_color = Color(0.996078, 0.831373, 0.278431, 1)
+shadow_color = Color(0, 0, 0, 0.345098)
+shadow_offset = Vector2(5, 3)
+
+[sub_resource type="Animation" id="Animation_lnfc4"]
+resource_name = "Add"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointAddLabelNode/PointAddLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointAddLabelNode/PointAddLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ajtdi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointAddLabelNode/PointAddLabel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointAddLabelNode/PointAddLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_miypo"]
+_data = {
+"Add": SubResource("Animation_lnfc4"),
+"RESET": SubResource("Animation_ajtdi")
+}
+
+[node name="UICanvas" type="CanvasLayer"]
+script = ExtResource("1_do3og")
+
+[node name="Panels" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Panels"]
+texture_repeat = 2
+position = Vector2(1019.2, 107.2)
+scale = Vector2(3.2, 3.2)
+points = PackedVector2Array(-6, 24.8572, -6, 14)
+width = 16.0
+texture = ExtResource("2_4shlm")
+texture_mode = 1
+
+[node name="Line2D2" type="Line2D" parent="Panels"]
+texture_repeat = 2
+position = Vector2(1115.2, 107.2)
+scale = Vector2(3.2, 3.2)
+points = PackedVector2Array(-6, 24, -6, 14)
+width = 16.0
+texture = ExtResource("2_4shlm")
+texture_mode = 1
+
+[node name="PointPanel" type="Node2D" parent="Panels"]
+position = Vector2(1048, 88)
+scale = Vector2(1.5, 1.5)
+
+[node name="Shadow" type="ColorRect" parent="Panels/PointPanel"]
+offset_left = 990.0
+offset_top = 46.0
+offset_right = 1118.0
+offset_bottom = 142.0
+color = Color(0, 0, 0, 0.184314)
+
+[node name="Sprite2D" type="Sprite2D" parent="Panels/PointPanel"]
+position = Vector2(0, -5.33333)
+texture = ExtResource("2_87350")
+
+[node name="TimerPanel" type="Node2D" parent="Panels"]
+position = Vector2(1048, 216)
+
+[node name="Shadow" type="ColorRect" parent="Panels/TimerPanel"]
+offset_left = 990.0
+offset_top = 46.0
+offset_right = 1118.0
+offset_bottom = 142.0
+color = Color(0, 0, 0, 0.184314)
+
+[node name="Sprite2D" type="Sprite2D" parent="Panels/TimerPanel"]
+texture = ExtResource("2_87350")
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 984.0
+offset_top = 168.0
+offset_right = 1112.0
+offset_bottom = 256.0
+theme_override_constants/line_spacing = 0
+label_settings = SubResource("LabelSettings_l3m1u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointLabel" type="Label" parent="."]
+offset_left = 952.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 136.0
+label_settings = SubResource("LabelSettings_cyaio")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointAddLabelNode" type="Node2D" parent="."]
+position = Vector2(952, 8)
+
+[node name="PointAddLabel" type="Label" parent="PointAddLabelNode"]
+offset_right = 192.0
+offset_bottom = 128.0
+label_settings = SubResource("LabelSettings_0xv7m")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_miypo")
+}

@@ -26,7 +26,7 @@ const MAX_RIGHT = 1200
 const MAX_TOP = -50
 const MAX_BOTTOM = 700
 
-const COIN_WAIT_RANGE = [5, 7]
+const COIN_WAIT_RANGE = [3, 5]
 const COIN_POS_XRANGE = [152, 1000]
 const COIN_POS_YRANGE = [121, 553]
 const COIN_POINTS = 5
@@ -48,14 +48,14 @@ func _ready():
 	randomize()
 	
 	if GManager.difficulty == null:
-		GManager.difficulty = "easy"
+		GManager.start_level(0)
 	
 	settings = difficulty_settings[GManager.difficulty]
 	wait_time = settings.wait_time
 	player.speed = settings.speed
 	
 	bullet_timer.start(wait_time)
-	LVLTimer.start_timer(settings.level_timer, _on_level_timer_timeout)
+	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
 	start_coin_timer()
 	
 	right_hand.start("RightWave")

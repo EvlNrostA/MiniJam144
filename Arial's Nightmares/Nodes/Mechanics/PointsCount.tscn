@@ -1,106 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://du3xbfff3yhrw"]
+[gd_scene load_steps=2 format=3 uid="uid://bqmko52r2bemt"]
 
-[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="1_2udba"]
-[ext_resource type="Script" path="res://Scripts/Mechanics/PointsCount.gd" id="1_411gl"]
+[sub_resource type="GDScript" id="GDScript_jdlbh"]
+script/source = "extends CanvasLayer
 
-[sub_resource type="LabelSettings" id="LabelSettings_mnyit"]
-font = ExtResource("1_2udba")
-font_size = 128
-font_color = Color(0.882353, 0.690196, 0, 1)
-shadow_color = Color(0, 0, 0, 0.568627)
-shadow_offset = Vector2(3, 3)
+const ADD_TEXT_OFFSET = 50
+const ADD_MOVE_OFFSET = -20
+const ANIMATION_TIME = 0.5
 
-[sub_resource type="LabelSettings" id="LabelSettings_quvn0"]
-font = ExtResource("1_2udba")
-font_size = 64
-font_color = Color(0.996078, 0.831373, 0.278431, 1)
-shadow_color = Color(0, 0, 0, 0.568627)
-shadow_offset = Vector2(3, 3)
+@onready var label = $Label
+@onready var add_label = $AddLabelNode/AddLabel
+@onready var add_label_node = $AddLabelNode
+@onready var animation_player = $AnimationPlayer
+@onready var points = 0
 
-[sub_resource type="Animation" id="Animation_lnfc4"]
-resource_name = "Add"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AddLabelNode/AddLabel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -20)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AddLabelNode/AddLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
+func _ready():
+	visible = false
 
-[sub_resource type="Animation" id="Animation_ajtdi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AddLabelNode/AddLabel:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -20)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AddLabelNode/AddLabel:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_miypo"]
-_data = {
-"Add": SubResource("Animation_lnfc4"),
-"RESET": SubResource("Animation_ajtdi")
-}
+func points_set(new_points):
+	points = new_points
+	label.text = str(points)
+	
+func points_add(new_points):
+	# Display smaller fading +nwe_points next to label
+	add_label.text = \"+%d\" % new_points
+	
+	var text_length = label.label_settings.font.get_string_size(label.text).x * label.text.length() + ADD_TEXT_OFFSET
+	add_label_node.position.x = label.position.x + text_length
+	
+	animation_player.play(\"Add\")
+	await animation_player.animation_finished
+	
+	set_to(points + new_points)
+"
 
 [node name="PointsCount" type="CanvasLayer"]
-script = ExtResource("1_411gl")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 1152.0
-offset_bottom = 105.0
-label_settings = SubResource("LabelSettings_mnyit")
-horizontal_alignment = 1
-
-[node name="AddLabelNode" type="Node2D" parent="."]
-
-[node name="AddLabel" type="Label" parent="AddLabelNode"]
-modulate = Color(1, 1, 1, 0)
-offset_top = -20.0
-offset_right = 1152.0
-offset_bottom = 85.0
-text = "1"
-label_settings = SubResource("LabelSettings_quvn0")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_miypo")
-}
+script = SubResource("GDScript_jdlbh")

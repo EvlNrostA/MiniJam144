@@ -1,4 +1,4 @@
 extends Label
 
 func _ready():
-	text = "Points: %d" % Points.points
+	text = "Points: %d" % UI.points

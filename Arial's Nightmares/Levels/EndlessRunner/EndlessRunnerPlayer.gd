@@ -5,7 +5,7 @@ extends Player_library
 @onready var hit = false
 
 func _ready():
-	self.JUMP_VELOCITY = -500
+	self.JUMP_VELOCITY = -400
 
 func _physics_process(delta):
 	if not hit:
@@ -13,9 +13,6 @@ func _physics_process(delta):
 	else:
 		position = position.move_toward(yam.position, manager.settings.level_velocity * delta)
 		animationPlayer.play("Fall")
-
-func check_hit():
-	pass
 
 func pushed():
 	hit = true

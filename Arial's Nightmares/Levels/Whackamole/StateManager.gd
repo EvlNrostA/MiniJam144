@@ -36,13 +36,13 @@ func _ready():
 	randomize()
 	
 	if GManager.difficulty == null:
-		GManager.difficulty = "easy"
+		GManager.start_level(1)
 
 	settings = difficulty_settings[GManager.difficulty]
 	noam_fogle_count = settings.count
 	player.speed = settings.speed
 
-	LVLTimer.start_timer(settings.level_timer, _on_level_timer_timeout)
+	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
 
 func _process(_delta):
 	if settings and noam_fogles:
@@ -61,7 +61,7 @@ func spawn_noam_fogles():
 		print(revealed_noam_fogle_count, " more than ", noam_fogle_count)
 
 func won_game():
-	Points.add(round(LVLTimer.timer.time_left) * POINT_VALUE)
+	UI.points_add(round(UI.level_timer.time_left) * POINT_VALUE)
 	GManager.next_level()
 
 func _on_level_timer_timeout():

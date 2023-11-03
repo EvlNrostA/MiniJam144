@@ -86,6 +86,25 @@ var difficulty
 var global_music
 var points : int = 0
 
+func start_level(index):
+	UI.points_set(0)
+	UI.visible = true
+	
+	levels_left = levels[index]
+	var scene_path = get_tree().get_current_scene().scene_file_path
+	var level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
+	
+	prepare_level(level_settings)
+
+func prepare_level(level_settings):
+	levels_left.erase(level_settings)
+	
+	if level_settings.has("difficulty"):
+		difficulty = level_settings.difficulty
+	
+	if not (Audio.is_playing() or level_settings.has("custom_music")):
+		play_global_music(level_music)
+	
 func next_level():
 	randomize()
 	
@@ -94,13 +113,7 @@ func next_level():
 		copy_array(levels_left, levels[current_batch_index])
 	
 	var next_level_settings = levels_left.pick_random()
-	levels_left.erase(next_level_settings)
-	
-	if next_level_settings.has("difficulty"):
-		difficulty = next_level_settings.difficulty
-		
-	if not (Audio.is_playing() or next_level_settings.has("custom_music")):
-		play_global_music()
+	prepare_level(next_level_settings)
 	
 	await change_scene(next_level_settings.scene, true)
 
@@ -116,13 +129,12 @@ func copy_array(array, array_to_copy):
 	array.append_array(array_to_copy.duplicate(true))
 	
 func change_scene(scene, is_level):
-	LVLTimer.timer.stop()
+	UI.level_timer.stop()
 	
 	await fade_in()
 	get_tree().change_scene_to_file(scene)
 	
-	LVLTimer.visible = is_level
-	Points.visible = is_level
+	UI.visible = is_level
 	
 	await fade_out()
 	
@@ -131,7 +143,6 @@ func fade_in():
 	Fade.animation_player.play("FadeIn")
 	await Fade.animation_player.animation_finished
 	
-	#get_tree().paused = true
 	get_tree().current_scene.queue_free()
 	
 func fade_out():
@@ -139,11 +150,10 @@ func fade_out():
 	await Fade.animation_player.animation_finished
 	Fade.shadow.visible = false
 	
-	#get_tree().paused = false
-	
 func randf_list_range(list_range) -> float:
 	return randf_range(list_range[0], list_range[1])
 	
-func play_global_music():
+func play_global_music(music):
+	global_music = music
 	Audio.stream = load(global_music)
 	Audio.play()

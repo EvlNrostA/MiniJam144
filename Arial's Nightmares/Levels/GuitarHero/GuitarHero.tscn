@@ -40,7 +40,7 @@ size = Vector2(1152, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gsd82"]
 font = ExtResource("7_7dcin")
-font_size = 64
+font_size = 32
 font_color = Color(0.772549, 0.411765, 0.505882, 1)
 outline_color = Color(0.156863, 0.137255, 0.156863, 1)
 shadow_color = Color(0, 0, 0, 0.639216)
@@ -410,15 +410,15 @@ hframes = 4
 vframes = 4
 
 [node name="Heart" type="Sprite2D" parent="."]
-position = Vector2(83, 56)
+position = Vector2(576, 70)
 scale = Vector2(3.2, 3.2)
 texture = ExtResource("13_yewnw")
 
-[node name="HeartLabel" type="Label" parent="."]
-offset_left = 57.0
-offset_top = 29.0
-offset_right = 113.0
-offset_bottom = 83.0
+[node name="HeartLabel" type="Label" parent="Heart"]
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 48.0
 text = "3"
 label_settings = SubResource("LabelSettings_gsd82")
 horizontal_alignment = 1

@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://mi660d85koh"]
+
+[sub_resource type="Curve" id="Curve_tm0hd"]
+_data = [Vector2(0.0060241, 0), 0.0, 0.0, 0, 0, Vector2(0.493976, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dtmlo"]
+curve = SubResource("Curve_tm0hd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pjgeu"]
+lifetime_randomness = 0.06
+emission_shape = 1
+emission_sphere_radius = 0.01
+particle_flag_disable_z = true
+angular_velocity_min = 60.63
+angular_velocity_max = 60.63
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_min = 6.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_dtmlo")
+color = Color(0.636719, 0.632813, 0.601563, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w2y1p"]
+lifetime_randomness = 0.01
+emission_shape = 1
+emission_sphere_radius = 0.01
+particle_flag_disable_z = true
+angular_velocity_min = 60.63
+angular_velocity_max = 60.63
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_dtmlo")
+color = Color(0.328125, 0.359375, 0.492188, 1)
+
+[node name="Explosion" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+sub_emitter = NodePath(".")
+process_material = SubResource("ParticleProcessMaterial_pjgeu")
+lifetime = 1.5
+one_shot = true
+speed_scale = 7.0
+trail_section_subdivisions = 1
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+rotation = 0.422692
+emitting = false
+amount = 100
+sub_emitter = NodePath(".")
+process_material = SubResource("ParticleProcessMaterial_w2y1p")
+lifetime = 1.5
+one_shot = true
+speed_scale = 7.0
+trail_section_subdivisions = 1

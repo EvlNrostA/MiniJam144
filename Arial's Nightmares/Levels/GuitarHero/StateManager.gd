@@ -58,7 +58,7 @@ func _ready():
 	randomize()
 	
 	if GManager.difficulty == null:
-		GManager.restart_levels()
+		GManager.start_level(0)
 		
 	settings = difficulty_settings[GManager.difficulty]
 	player.fail_count = settings.fail_count
@@ -67,7 +67,7 @@ func _ready():
 	Audio.stream = load(settings.song_path)
 	
 	var audio_length = Audio.stream.get_length()
-	LVLTimer.set_time(audio_length)
+	UI.set_time(audio_length)
 	
 	beat_per_sec = Audio.stream.get_bpm() / MIN_TO_SEC
 	var arrow_offset = beat_per_sec * ARROW_DELAY * settings.speed * 100
@@ -82,7 +82,7 @@ func _ready():
 	await delay_timer.timeout
 	
 	Audio.play()
-	LVLTimer.start_timer(audio_length, _on_level_timer_timeout)
+	UI.start_timer(audio_length, _on_level_timer_timeout)
 
 func _process(_delta):
 	if player and player.fail_count >= 0:
@@ -129,5 +129,4 @@ func lost_game():
 
 func _on_level_timer_timeout():
 	Audio.stop()
-	GManager.global_music = GManager.level_music
 	GManager.next_level()
