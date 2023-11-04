@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d57f42n4dyje" path="res://Nodes/Mechanics/Hand.tscn" id="4_2b6pw"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="6_51teh"]
 [ext_resource type="Script" path="res://Levels/BulletHell/BulletHellPlayer.gd" id="7_30vet"]
-[ext_resource type="PackedScene" uid="uid://c2xl7q7iaufej" path="res://Nodes/Mechanics/joystick.tscn" id="7_vhad4"]
+[ext_resource type="PackedScene" uid="uid://c2xl7q7iaufej" path="res://Nodes/Mechanics/Joystick.tscn" id="7_vhad4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgs8j"]
 texture = ExtResource("3_ad18a")

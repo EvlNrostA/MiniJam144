@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cat12w8nvcmim"]
+[gd_scene load_steps=29 format=3 uid="uid://cat12w8nvcmim"]
 
 [ext_resource type="Script" path="res://Levels/GuitarHero/StateManager.gd" id="1_dkjhl"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_bnid3"]
@@ -12,8 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://dmudurp3xt5d3" path="res://Assets/Environment/Guitar.png" id="10_4l8db"]
 [ext_resource type="Texture2D" uid="uid://ctofbmn51lpss" path="res://Assets/Mechanics/Heart.png" id="13_yewnw"]
 [ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Environment/Light.png" id="15_nuuwx"]
+[ext_resource type="Texture2D" uid="uid://frdkp0pggvih" path="res://Assets/Mechanics/up.png" id="15_o0l2v"]
 [ext_resource type="Texture2D" uid="uid://dh351jrw3bjr1" path="res://Assets/Environment/Evil_Cloud.png" id="16_c14sj"]
+[ext_resource type="BitMap" uid="uid://ch55way23u4te" path="res://Assets/Mechanics/upBitmask.png" id="16_t02t2"]
+[ext_resource type="Texture2D" uid="uid://0su8gflp2xt2" path="res://Assets/Mechanics/right.png" id="17_puw1l"]
 [ext_resource type="Texture2D" uid="uid://b8fahc0bwriju" path="res://Assets/Mechanics/Rope.png" id="17_v3jon"]
+[ext_resource type="BitMap" uid="uid://wv11qjavc6dr" path="res://Assets/Mechanics/rightBitmask.png" id="18_utegu"]
+[ext_resource type="Texture2D" uid="uid://d017wyqelrtl3" path="res://Assets/Mechanics/down.png" id="19_7shnr"]
+[ext_resource type="BitMap" uid="uid://cuwp4e7aauhil" path="res://Assets/Mechanics/downBitmask.png" id="20_ylx4b"]
+[ext_resource type="Texture2D" uid="uid://dwo4llxmmvtkn" path="res://Assets/Mechanics/left.png" id="21_vlg5b"]
+[ext_resource type="BitMap" uid="uid://ermpvym7lkrs" path="res://Assets/Mechanics/leftBitmask.png" id="22_y2chc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8lsw"]
 texture = ExtResource("2_bnid3")
@@ -123,7 +131,7 @@ default_color = Color(0.639216, 0.635294, 0.603922, 1)
 texture = ExtResource("17_v3jon")
 texture_mode = 1
 
-[node name="Fans" type="Node" parent="Background"]
+[node name="Fans" type="Node2D" parent="Background"]
 
 [node name="YamSheet" type="Sprite2D" parent="Background/Fans"]
 position = Vector2(40, 528)
@@ -477,6 +485,42 @@ libraries = {
 modulate = Color(1, 1, 1, 0.486275)
 position = Vector2(583, 208)
 texture = ExtResource("15_nuuwx")
+
+[node name="UpButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.682353)
+position = Vector2(224, 510)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("15_o0l2v")
+bitmask = ExtResource("16_t02t2")
+action = "Up"
+visibility_mode = 1
+
+[node name="LeftButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.682353)
+position = Vector2(416, 510)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("21_vlg5b")
+bitmask = ExtResource("22_y2chc")
+action = "Left"
+visibility_mode = 1
+
+[node name="DownButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.682353)
+position = Vector2(608, 510)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("19_7shnr")
+bitmask = ExtResource("20_ylx4b")
+action = "Down"
+visibility_mode = 1
+
+[node name="RightButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.682353)
+position = Vector2(800, 510)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("17_puw1l")
+bitmask = ExtResource("18_utegu")
+action = "Right"
+visibility_mode = 1
 
 [connection signal="area_entered" from="PressingBar" to="." method="_on_pressing_bar_area_entered"]
 [connection signal="area_exited" from="PressingBar" to="." method="_on_pressing_bar_area_exited"]

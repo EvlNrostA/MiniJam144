@@ -31,7 +31,7 @@ func run_animation(given_velocity):
 func Move2D(delta) -> void:
 	vel = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
 		Input.get_action_strength("Down") - Input.get_action_strength("Up"))
-	print(vel)
+
 	move_and_collide(vel * delta * speed * 100)
 	
 	run_animation(vel)

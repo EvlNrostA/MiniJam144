@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://cuwp4e7aauhil"
+path="res://.godot/imported/downBitmask.png-a3b5c76bf5b254cca99b0ace474df9cb.res"
+
+[deps]
+
+source_file="res://Assets/Mechanics/downBitmask.png"
+dest_files=["res://.godot/imported/downBitmask.png-a3b5c76bf5b254cca99b0ace474df9cb.res"]
+
+[params]
+
+create_from=1
+threshold=0.5
