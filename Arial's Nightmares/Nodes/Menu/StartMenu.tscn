@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brc1mptaep23d"]
+[gd_scene load_steps=15 format=3 uid="uid://brc1mptaep23d"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_80c1p"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="2_1almj"]
@@ -23,6 +23,8 @@ font = ExtResource("4_dv4uc")
 font_size = 128
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfnn8"]
 
 [sub_resource type="Animation" id="Animation_2vk8y"]
 resource_name = "Start"
@@ -54,20 +56,24 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.133333, 0.121569, 0.176471, 1)
 
-[node name="Father" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.137255)
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+self_modulate = Color(1, 1, 1, 0.0666667)
+
+[node name="Hand" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(396, 548)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("3_r6glw")
+
+[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(756, 548)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("3_r6glw")
+flip_h = true
+
+[node name="Father" type="Sprite2D" parent="CanvasGroup"]
 position = Vector2(576, 368)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("2_1almj")
-
-[node name="Hand" type="Sprite2D" parent="Father"]
-position = Vector2(-40, 40)
-texture = ExtResource("3_r6glw")
-
-[node name="Hand2" type="Sprite2D" parent="Father"]
-position = Vector2(40, 40)
-texture = ExtResource("3_r6glw")
-flip_h = true
 
 [node name="StaffLabel" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.262745)
@@ -94,16 +100,26 @@ label_settings = SubResource("LabelSettings_28lkd")
 horizontal_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 512.0
-offset_top = 432.0
-offset_right = 640.0
-offset_bottom = 560.0
+offset_left = 576.0
+offset_top = 524.0
+offset_right = 704.0
+offset_bottom = 652.0
 scale = Vector2(2, 2)
-pivot_offset = Vector2(64, 64)
+pivot_offset = Vector2(128, 128)
 texture_normal = ExtResource("3_f280y")
 texture_pressed = ExtResource("4_f18p2")
 texture_hover = ExtResource("4_30bvw")
 texture_click_mask = ExtResource("9_gqfqk")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(448, 396)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("3_f280y")
+bitmask = ExtResource("9_gqfqk")
+shape = SubResource("RectangleShape2D_nfnn8")
+shape_visible = false
+visibility_mode = 1
 
 [node name="StartAnimation" type="Sprite2D" parent="."]
 modulate = Color(0.639216, 0.635294, 0.603922, 0.584314)
@@ -119,3 +135,4 @@ libraries = {
 }
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

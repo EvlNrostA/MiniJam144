@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://wv11qjavc6dr"
+path="res://.godot/imported/rightBitmask.png-078861df110fac9be48170029c77c93f.res"
+
+[deps]
+
+source_file="res://Assets/Mechanics/rightBitmask.png"
+dest_files=["res://.godot/imported/rightBitmask.png-078861df110fac9be48170029c77c93f.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

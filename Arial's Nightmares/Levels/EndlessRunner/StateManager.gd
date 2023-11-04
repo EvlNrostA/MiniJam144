@@ -32,6 +32,9 @@ const COIN_POINTS = 5
 @onready var tile_timer = $TileTimer
 @onready var coin_timer = $CoinTimer
 
+@onready var up_button = $UpButton
+@onready var right_button = $RightButton
+
 var items_start_position
 var settings
 
@@ -74,7 +77,8 @@ func _on_coin_timer_timeout():
 	var coin = coin_scene.instantiate()
 	add_child(coin)
 
-	coin.z_index = 5
+	coin.scale.y = 0.5
+	coin.z_index = -1
 	coin.movement_function = "endless_runner_movement"
 	coin.velocity = settings.level_velocity
 	coin.points = COIN_POINTS

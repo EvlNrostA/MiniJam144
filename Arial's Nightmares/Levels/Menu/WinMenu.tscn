@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjudxdxss06qe"]
+[gd_scene load_steps=16 format=3 uid="uid://cjudxdxss06qe"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_prcga"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="3_l1sei"]
@@ -24,6 +24,15 @@ font_size = 72
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_f3xrc"]
+font = ExtResource("3_l1sei")
+font_size = 64
+font_color = Color(0.882353, 0.690196, 0, 1)
+shadow_color = Color(0, 0, 0, 0.568627)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsukk"]
+
 [sub_resource type="Animation" id="Animation_2vk8y"]
 resource_name = "Start"
 length = 1.2
@@ -45,13 +54,6 @@ tracks/0/keys = {
 _data = {
 "Start": SubResource("Animation_2vk8y")
 }
-
-[sub_resource type="LabelSettings" id="LabelSettings_f3xrc"]
-font = ExtResource("3_l1sei")
-font_size = 64
-font_color = Color(0.882353, 0.690196, 0, 1)
-shadow_color = Color(0, 0, 0, 0.568627)
-shadow_offset = Vector2(3, 3)
 
 [node name="WinMenu" type="Node2D"]
 script = ExtResource("1_prcga")
@@ -85,17 +87,35 @@ have been
 label_settings = SubResource("LabelSettings_8h3fw")
 horizontal_alignment = 1
 
+[node name="PointsLabel" type="Label" parent="."]
+offset_top = 269.0
+offset_right = 1152.0
+offset_bottom = 374.0
+label_settings = SubResource("LabelSettings_f3xrc")
+horizontal_alignment = 1
+script = ExtResource("9_g8low")
+
 [node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 512.0
-offset_top = 432.0
-offset_right = 640.0
-offset_bottom = 560.0
+offset_left = 576.0
+offset_top = 498.0
+offset_right = 704.0
+offset_bottom = 626.0
 scale = Vector2(2, 2)
-pivot_offset = Vector2(64, 64)
+pivot_offset = Vector2(128, 128)
 texture_normal = ExtResource("4_s31oo")
 texture_pressed = ExtResource("5_1q33g")
 texture_hover = ExtResource("6_bhgwa")
 texture_click_mask = ExtResource("7_cxkl7")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(448, 396)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_s31oo")
+bitmask = ExtResource("7_cxkl7")
+shape = SubResource("RectangleShape2D_lsukk")
+shape_visible = false
+visibility_mode = 1
 
 [node name="StartAnimation" type="Sprite2D" parent="."]
 modulate = Color(0.639216, 0.635294, 0.603922, 0.584314)
@@ -114,13 +134,3 @@ libraries = {
 position = Vector2(576, 254)
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("9_4tmnx")
-
-[node name="PointsLabel" type="Label" parent="."]
-offset_top = 269.0
-offset_right = 1152.0
-offset_bottom = 374.0
-label_settings = SubResource("LabelSettings_f3xrc")
-horizontal_alignment = 1
-script = ExtResource("9_g8low")
-
-[connection signal="pressed" from="TextureButton" to="." method="_on_button_pressed"]

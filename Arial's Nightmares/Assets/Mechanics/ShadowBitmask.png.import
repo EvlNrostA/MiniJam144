@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://cm1x375llkt80"
+path="res://.godot/imported/ShadowBitmask.png-bbb220c1e0c7f6989438e411771b2adc.res"
+
+[deps]
+
+source_file="res://Assets/Mechanics/ShadowBitmask.png"
+dest_files=["res://.godot/imported/ShadowBitmask.png-bbb220c1e0c7f6989438e411771b2adc.res"]
+
+[params]
+
+create_from=1
+threshold=0.5

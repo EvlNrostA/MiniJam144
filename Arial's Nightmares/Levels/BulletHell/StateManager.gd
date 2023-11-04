@@ -32,11 +32,12 @@ const COIN_POS_YRANGE = [121, 553]
 const COIN_POINTS = 5
 
 @onready var player = $Player
+@onready var joystick = $Joystick
 @onready var bullet_timer = $BulletTimer
 @onready var coin_timer = $CoinTimer
 
-@onready var left_hand = $LeftHand
-@onready var right_hand = $RightHand
+@onready var left_hand = $Environment/LeftHand
+@onready var right_hand = $Environment/RightHand
 
 @onready var clothes_scene = preload("res://Nodes/Enemys/Clothes.tscn")
 @onready var coin_scene = preload("res://Nodes/Mechanics/Coin.tscn")
@@ -73,7 +74,7 @@ func spawn_bullets() -> void:
 		var bullet = clothes_scene.instantiate()
 		add_child(bullet)
 		
-		bullet.z_index = 2
+		bullet.z_index = 1
 		
 		bullet.emit_signal("SPAWN", direction, bullet_directions[direction], settings.clothes_speed)
 	
@@ -90,7 +91,7 @@ func _on_coin_timer_timeout():
 	var coin = coin_scene.instantiate()
 	add_child(coin)
 	
-	coin.z_index = 1
+	coin.z_index = -1
 	coin.points = COIN_POINTS
 	coin.global_position = Vector2(GManager.randf_list_range(COIN_POS_XRANGE), GManager.randf_list_range(COIN_POS_YRANGE))
 	

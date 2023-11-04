@@ -13,8 +13,11 @@ func start():
 		GManager.next_level()
 
 func _unhandled_key_input(event):
-	if event.is_action_pressed("space"):
+	if event.is_action_pressed("Space"):
 		start()
 
 func _on_button_pressed():
+	start()
+
+func _on_touch_screen_button_pressed():
 	start()

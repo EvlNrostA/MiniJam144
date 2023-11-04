@@ -31,6 +31,7 @@ func run_animation(given_velocity):
 func Move2D(delta) -> void:
 	vel = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
 		Input.get_action_strength("Down") - Input.get_action_strength("Up"))
+	print(vel)
 	move_and_collide(vel * delta * speed * 100)
 	
 	run_animation(vel)
@@ -50,7 +51,7 @@ func PlatformMove2D(delta) -> void:
 		velocity.y += gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("space") and is_on_floor():
+	if Input.is_action_just_pressed("Space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -70,7 +71,7 @@ func Move2DRight(delta):
 		velocity.x = (speed / 2) * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("space") and is_on_floor():
+	if Input.is_action_just_pressed("Space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.

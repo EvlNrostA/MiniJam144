@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2xl7q7iaufej"]
+
+[ext_resource type="Texture2D" uid="uid://itqy0v14a1e3" path="res://Assets/Mechanics/Shadow.png" id="1_mhnga"]
+[ext_resource type="BitMap" uid="uid://cm1x375llkt80" path="res://Assets/Mechanics/ShadowBitmask.png" id="2_0pmgg"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Joystick.gd" id="3_7icpm"]
+
+[node name="Joystick" type="TouchScreenButton"]
+modulate = Color(1, 1, 1, 0.290196)
+scale = Vector2(6, 6)
+texture_normal = ExtResource("1_mhnga")
+bitmask = ExtResource("2_0pmgg")
+visibility_mode = 1
+script = ExtResource("3_7icpm")
+
+[node name="InputSprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_mhnga")

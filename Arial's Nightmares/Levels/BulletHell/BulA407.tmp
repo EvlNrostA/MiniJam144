@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://hvkvmexukes3"]
+[gd_scene load_steps=20 format=3 uid="uid://hvkvmexukes3"]
 
 [ext_resource type="Script" path="res://Levels/BulletHell/StateManager.gd" id="1_ha5s1"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="2_iyxed"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d57f42n4dyje" path="res://Nodes/Mechanics/Hand.tscn" id="4_2b6pw"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="6_51teh"]
 [ext_resource type="Script" path="res://Levels/BulletHell/BulletHellPlayer.gd" id="7_30vet"]
-[ext_resource type="PackedScene" uid="uid://c2xl7q7iaufej" path="res://Nodes/Mechanics/joystick.tscn" id="7_vhad4"]
+[ext_resource type="BitMap" uid="uid://cm1x375llkt80" path="res://Assets/Mechanics/ShadowBitmask.png" id="7_rcm3j"]
+[ext_resource type="Texture2D" uid="uid://itqy0v14a1e3" path="res://Assets/Mechanics/Shadow.png" id="7_tx6fa"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Joystick.gd" id="8_jsdgx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgs8j"]
 texture = ExtResource("3_ad18a")
@@ -171,8 +173,20 @@ one_shot = true
 [node name="CoinTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Joystick" parent="." instance=ExtResource("7_vhad4")]
-position = Vector2(952, 448)
+[node name="Joystick" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.290196)
+position = Vector2(968, 464)
+scale = Vector2(6, 6)
+texture_normal = ExtResource("7_tx6fa")
+bitmask = ExtResource("7_rcm3j")
+visibility_mode = 1
+script = ExtResource("8_jsdgx")
+
+[node name="InputSprite2D" type="Sprite2D" parent="Joystick"]
+position = Vector2(16, 16.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_tx6fa")
 
 [connection signal="timeout" from="BulletTimer" to="." method="spawn_bullets"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]
+[connection signal="pressed" from="Joystick" to="Joystick" method="_on_pressed"]

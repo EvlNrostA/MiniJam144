@@ -86,6 +86,7 @@ var levels_left : Array
 var difficulty
 var global_music
 var points : int = 0
+var is_mobile = true
 
 func start_level(index):
 	UI.points_set(0)
@@ -139,3 +140,9 @@ func change_scene(scene, is_level):
 	
 func randf_list_range(list_range) -> float:
 	return randf_range(list_range[0], list_range[1])
+
+func add_input(action, pressed):
+	var input = InputEventAction.new()
+	input.action = action
+	input.pressed = pressed
+	Input.parse_input_event(input)
