@@ -27,12 +27,16 @@ var difficulty_settings = {
 const POINT_VALUE = 1
 
 @onready var player = $Player
+@onready var joystick = $Joystick
 @onready var noam_fogles = get_tree().get_nodes_in_group("NoamFogle")
 
 var settings
 var noam_fogle_count
 	
 func _ready():
+	if not GManager.is_mobile:
+		joystick.visible = false
+	
 	if GManager.difficulty == null:
 		GManager.start_level(GManager.difficulties.easy)
 
@@ -44,7 +48,7 @@ func _ready():
 
 func _process(_delta):
 	if UI.timer_running():
-		spawn_noam_fogles()
+		await spawn_noam_fogles()
 	
 func spawn_noam_fogles():
 	var hidden_noam_fogles = noam_fogles.filter(func(noam_fogle): return noam_fogle.hiding)

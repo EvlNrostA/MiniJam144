@@ -46,7 +46,8 @@ var wait_time
 var settings
 
 func _ready():
-	randomize()
+	if not GManager.is_mobile:
+		joystick.visible = false
 	
 	if GManager.difficulty == null:
 		GManager.start_level(GManager.difficulties.easy)

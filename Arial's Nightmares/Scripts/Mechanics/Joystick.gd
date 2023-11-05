@@ -8,7 +8,7 @@ const MIN_OFFSET = 1.5
 @onready var size = Vector2(bitmask.get_size())
 
 func _process(_delta):
-	if visible:
+	if visible and GManager.is_mobile:
 		move()
 
 func move():

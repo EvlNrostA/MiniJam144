@@ -39,6 +39,10 @@ var items_start_position
 var settings
 
 func _ready():
+	if not GManager.is_mobile:
+		up_button.visible = false
+		right_button.visible = false
+	
 	if GManager.difficulty == null:
 		GManager.start_level(GManager.difficulties.easy)
 	

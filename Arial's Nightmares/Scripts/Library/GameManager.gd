@@ -86,7 +86,7 @@ var levels_left : Array
 var difficulty
 var global_music
 var points : int = 0
-var is_mobile = true
+var is_mobile = false
 
 func start_level(index):
 	UI.points_set(0)
