@@ -116,7 +116,7 @@ _data = {
 }
 
 [node name="Arrow" type="Area2D" groups=["Arrows"]]
-scale = Vector2(2, 2)
+scale = Vector2(2.8, 2.8)
 script = ExtResource("1_kd5yn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

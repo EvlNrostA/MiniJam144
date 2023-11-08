@@ -33,8 +33,8 @@ const COIN_POINTS = 5
 @onready var bullet_timer = $BulletTimer
 @onready var coin_timer = $CoinTimer
 
-@onready var left_hand = $Environment/LeftHand
-@onready var right_hand = $Environment/RightHand
+@onready var left_hand = $Environment/HandsLayer/LeftLayout/LeftHand
+@onready var right_hand = $Environment/HandsLayer/RightLayout/RightHand
 
 @onready var clothes_scene = preload("res://Nodes/Enemys/Clothes.tscn")
 @onready var coin_scene = preload("res://Nodes/Mechanics/Coin.tscn")
@@ -67,8 +67,6 @@ func _ready():
 	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
 	start_coin_timer()
 	
-	right_hand.position.x = DisplayServer.window_get_size().x + SCREEN_OFFSET
-	left_hand.position.x = -SCREEN_OFFSET
 	right_hand.start("RightWave")
 	left_hand.start("LeftWave")
 

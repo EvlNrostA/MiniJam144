@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cat12w8nvcmim"]
+[gd_scene load_steps=26 format=3 uid="uid://cat12w8nvcmim"]
 
 [ext_resource type="Script" path="res://Levels/GuitarHero/StateManager.gd" id="1_dkjhl"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_bnid3"]
@@ -13,8 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://ctofbmn51lpss" path="res://Assets/Mechanics/Heart.png" id="13_yewnw"]
 [ext_resource type="PackedScene" uid="uid://65s80w7ritgt" path="res://Nodes/Mechanics/GuitarHeroButtons.tscn" id="15_i6rfy"]
 [ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Environment/Light.png" id="15_nuuwx"]
+[ext_resource type="Texture2D" uid="uid://frdkp0pggvih" path="res://Assets/Mechanics/up.png" id="15_o0l2v"]
 [ext_resource type="Texture2D" uid="uid://dh351jrw3bjr1" path="res://Assets/Environment/Evil_Cloud.png" id="16_c14sj"]
+[ext_resource type="Texture2D" uid="uid://0su8gflp2xt2" path="res://Assets/Mechanics/right.png" id="17_puw1l"]
 [ext_resource type="Texture2D" uid="uid://b8fahc0bwriju" path="res://Assets/Mechanics/Rope.png" id="17_v3jon"]
+[ext_resource type="Texture2D" uid="uid://d017wyqelrtl3" path="res://Assets/Mechanics/down.png" id="19_7shnr"]
+[ext_resource type="Texture2D" uid="uid://dwo4llxmmvtkn" path="res://Assets/Mechanics/left.png" id="21_vlg5b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h8lsw"]
 texture = ExtResource("2_bnid3")
@@ -396,6 +400,30 @@ position = Vector2(1112, 606)
 texture = ExtResource("5_gh8rj")
 hframes = 4
 vframes = 4
+
+[node name="UpEndPosition" type="Sprite2D" parent="Background"]
+modulate = Color(1, 1, 1, 0.176471)
+position = Vector2(288, 248)
+scale = Vector2(2.8, 2.8)
+texture = ExtResource("15_o0l2v")
+
+[node name="LeftEndPosition" type="Sprite2D" parent="Background"]
+modulate = Color(1, 1, 1, 0.176471)
+position = Vector2(480, 248)
+scale = Vector2(2.8, 2.8)
+texture = ExtResource("21_vlg5b")
+
+[node name="DownEndPosition" type="Sprite2D" parent="Background"]
+modulate = Color(1, 1, 1, 0.176471)
+position = Vector2(672, 248)
+scale = Vector2(2.8, 2.8)
+texture = ExtResource("19_7shnr")
+
+[node name="RightEndPosition" type="Sprite2D" parent="Background"]
+modulate = Color(1, 1, 1, 0.176471)
+position = Vector2(864, 248)
+scale = Vector2(2.8, 2.8)
+texture = ExtResource("17_puw1l")
 
 [node name="Player" parent="." instance=ExtResource("5_n5yia")]
 position = Vector2(576, 379)

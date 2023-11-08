@@ -86,9 +86,9 @@ var levels_left : Array
 var difficulty
 var global_music
 var points : int = 0
-var is_mobile = not (OS.has_feature("mobile") or \
+var is_mobile = OS.has_feature("mobile") or \
 				OS.has_feature("web_android") or \
-				OS.has_feature("web_ios"))
+				OS.has_feature("web_ios")
 
 func start_level(selected_difficulty):
 	UI.points_set(0)

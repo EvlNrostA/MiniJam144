@@ -69,10 +69,10 @@ tile_size = Vector2i(32, 32)
 sources/2 = SubResource("TileSetAtlasSource_1pupw")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vtqi"]
-size = Vector2(24.0025, 2080)
+size = Vector2(24.0025, 2664)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hl8y4"]
-size = Vector2(24.0025, 2104)
+size = Vector2(22.9979, 1656)
 
 [node name="EndlessRunner" type="Node2D"]
 script = ExtResource("1_0vqnj")
@@ -144,12 +144,12 @@ position = Vector2(1095, 299)
 shape = SubResource("RectangleShape2D_3vtqi")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(507, 11.0004)
+position = Vector2(283, 11.5041)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_hl8y4")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(487, 498.001)
+position = Vector2(779, 497.999)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_3vtqi")
 
