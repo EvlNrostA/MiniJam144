@@ -129,22 +129,6 @@ scale = Vector2(1.2, 1.2)
 position = Vector2(1293, 157)
 scale = Vector2(1.44, 1.44)
 
-[node name="Father" type="Sprite2D" parent="Environment"]
-modulate = Color(1, 1, 1, 0.431373)
-position = Vector2(1135, 81)
-rotation = -0.661841
-scale = Vector2(1.6, 1.6)
-texture = ExtResource("9_dieqc")
-
-[node name="Hand" type="Sprite2D" parent="Environment/Father"]
-position = Vector2(-40, 40)
-texture = ExtResource("10_4d05j")
-
-[node name="Hand2" type="Sprite2D" parent="Environment/Father"]
-position = Vector2(40, 40)
-texture = ExtResource("10_4d05j")
-flip_h = true
-
 [node name="ItemCollision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemCollision"]
@@ -185,6 +169,39 @@ one_shot = true
 [node name="CoinTimer" type="Timer" parent="."]
 
 [node name="Buttons" parent="." instance=ExtResource("11_l4jyr")]
+
+[node name="FatherCanvas" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Control" type="Control" parent="FatherCanvas"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = 151.0
+offset_right = 24.0
+offset_bottom = 191.0
+grow_horizontal = 0
+rotation = 3.14159
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Father" type="Sprite2D" parent="FatherCanvas/Control"]
+modulate = Color(1, 1, 1, 0.431373)
+position = Vector2(24, 8.00001)
+rotation = 2.35619
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("9_dieqc")
+
+[node name="Hand" type="Sprite2D" parent="FatherCanvas/Control/Father"]
+position = Vector2(-40, 40)
+texture = ExtResource("10_4d05j")
+
+[node name="Hand2" type="Sprite2D" parent="FatherCanvas/Control/Father"]
+position = Vector2(40, 40)
+texture = ExtResource("10_4d05j")
+flip_h = true
 
 [connection signal="timeout" from="TileTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]

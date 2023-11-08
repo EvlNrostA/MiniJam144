@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="8_v0ay6"]
 [ext_resource type="Texture2D" uid="uid://crx1uuh2rdfnr" path="res://Assets/Environment/Light.png" id="9_so80w"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_enoik"]
+[sub_resource type="LabelSettings" id="LabelSettings_uaern"]
 line_spacing = 0.0
 font = ExtResource("2_dxr5k")
 font_size = 32
@@ -59,23 +59,37 @@ _data = {
 script = ExtResource("1_6ms43")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1152.0
+offset_left = -384.0
+offset_right = 1536.0
 offset_bottom = 648.0
 color = Color(0.133333, 0.121569, 0.176471, 1)
 
-[node name="StaffLabel" type="Label" parent="."]
+[node name="Staff" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Staff"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StaffLabel" type="Label" parent="Staff/Control"]
 modulate = Color(1, 1, 1, 0.262745)
-offset_left = 32.0
-offset_top = 464.0
-offset_right = 280.0
-offset_bottom = 624.0
+offset_left = 20.0
+offset_top = -120.0
+offset_right = 234.0
+offset_bottom = 40.0
 text = "STAFF:
 
 Nir Finkelshtein
 Guy Hanan
 Moshe Mina
 "
-label_settings = SubResource("LabelSettings_enoik")
+label_settings = SubResource("LabelSettings_uaern")
 
 [node name="NameLabel" type="Label" parent="."]
 offset_top = 51.0
@@ -131,6 +145,6 @@ libraries = {
 }
 
 [node name="Light" type="Sprite2D" parent="."]
-position = Vector2(576, 254)
+position = Vector2(574, 288)
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("9_so80w")

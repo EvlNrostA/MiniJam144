@@ -11,13 +11,6 @@
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_80su8"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_h2ws0"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_enoik"]
-line_spacing = 0.0
-font = ExtResource("2_l2evf")
-font_size = 32
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_gggme"]
 font = ExtResource("2_l2evf")
 font_size = 64
@@ -29,6 +22,13 @@ shadow_offset = Vector2(3, 3)
 line_spacing = 0.0
 font = ExtResource("2_l2evf")
 font_size = 128
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_enoik"]
+line_spacing = 0.0
+font = ExtResource("2_l2evf")
+font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
@@ -60,23 +60,10 @@ _data = {
 script = ExtResource("1_4tedg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1152.0
+offset_left = -384.0
+offset_right = 1536.0
 offset_bottom = 648.0
 color = Color(0.133333, 0.121569, 0.176471, 1)
-
-[node name="StaffLabel" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0.262745)
-offset_left = 32.0
-offset_top = 464.0
-offset_right = 280.0
-offset_bottom = 624.0
-text = "STAFF:
-
-Nir Finkelshtein
-Guy Hanan
-Moshe Mina
-"
-label_settings = SubResource("LabelSettings_enoik")
 
 [node name="PointsLabel" type="Label" parent="."]
 offset_top = 170.0
@@ -110,6 +97,33 @@ offset_bottom = 190.0
 text = "Game Over"
 label_settings = SubResource("LabelSettings_vxxkr")
 horizontal_alignment = 1
+
+[node name="Staff" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Staff"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StaffLabel" type="Label" parent="Staff/Control"]
+modulate = Color(1, 1, 1, 0.262745)
+offset_left = 20.0
+offset_top = -120.0
+offset_right = 234.0
+offset_bottom = 40.0
+text = "STAFF:
+
+Nir Finkelshtein
+Guy Hanan
+Moshe Mina
+"
+label_settings = SubResource("LabelSettings_enoik")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 576.0

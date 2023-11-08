@@ -95,7 +95,8 @@ script = ExtResource("1_ha5s1")
 z_index = -2
 
 [node name="ColorRect" type="ColorRect" parent="Environment"]
-offset_right = 1152.0
+offset_left = -384.0
+offset_right = 1536.0
 offset_bottom = 648.0
 color = Color(0.133333, 0.121569, 0.176471, 1)
 
@@ -143,11 +144,11 @@ shape = SubResource("RectangleShape2D_qpchm")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-100, 321)
+position = Vector2(-400, 321)
 shape = SubResource("RectangleShape2D_s61pv")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1300, 326)
+position = Vector2(1552, 326)
 shape = SubResource("RectangleShape2D_1miv7")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
