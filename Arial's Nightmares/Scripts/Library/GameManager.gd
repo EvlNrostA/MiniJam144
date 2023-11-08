@@ -1,8 +1,8 @@
 extends Node
 
-var start_menu = "res://Levels/Menu/StartMenu.tscn"
-var game_over_menu = "res://Levels/Menu/GameOverMenu.tscn"
-var win_menu = "res://Levels/Menu/WinMenu.tscn"
+var start_menu = "res://Nodes/Menu/StartMenu.tscn"
+var game_over_menu = "res://Nodes/Menu/GameOverMenu.tscn"
+var win_menu = "res://Nodes/Menu/WinMenu.tscn"
 
 var bullet_hell = "res://Levels/BulletHell/BulletHell.tscn"
 var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
@@ -76,7 +76,7 @@ var levels = [
 	[
 		{
 		"scene": win_menu,
-		#"custom_music": true
+		"custom_music": true
 		}
 	]
 ]
@@ -86,19 +86,23 @@ var levels_left : Array
 var difficulty
 var global_music
 var points : int = 0
-var is_mobile = false
+var is_mobile = not (OS.has_feature("mobile") or \
+				OS.has_feature("web_android") or \
+				OS.has_feature("web_ios"))
 
-func start_level(index):
+func start_level(selected_difficulty):
 	UI.points_set(0)
 	UI.visible = true
 	
-	copy_array(levels_left, levels[index])
+	copy_array(levels_left, levels[difficulties[selected_difficulty]])
 	var scene_path = get_tree().get_current_scene().scene_file_path
 	var level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
 	
 	prepare_level(level_settings)
 
 func prepare_level(level_settings):
+	randomize()
+	
 	levels_left.erase(level_settings)
 	
 	if level_settings.has("difficulty"):
@@ -108,26 +112,17 @@ func prepare_level(level_settings):
 		Audio.play_music(Audio.level_music)
 	
 func next_level():
-	randomize()
-	
 	if levels_left.is_empty():
 		current_batch_index += 1
 		copy_array(levels_left, levels[current_batch_index])
 	
 	var next_level_settings = levels_left.pick_random()
+	
 	prepare_level(next_level_settings)
 	change_scene(next_level_settings.scene, true)
 
 func game_over():
 	change_scene(game_over_menu, false)
-	
-func restart_levels():
-	current_batch_index = 0
-	copy_array(levels_left, levels[current_batch_index])
-
-func copy_array(array, array_to_copy):
-	array.clear()
-	array.append_array(array_to_copy.duplicate(true))
 	
 func change_scene(scene, is_level):
 	UI.level_timer.stop()
@@ -137,6 +132,14 @@ func change_scene(scene, is_level):
 	
 	UI.visible = is_level
 	await Fade.fade_out()
+	
+func restart_levels():
+	current_batch_index = 0
+	copy_array(levels_left, levels[current_batch_index])
+	
+func copy_array(array, array_to_copy):
+	array.clear()
+	array.append_array(array_to_copy.duplicate(true))
 	
 func randf_list_range(list_range) -> float:
 	return randf_range(list_range[0], list_range[1])

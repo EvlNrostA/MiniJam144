@@ -3,6 +3,7 @@ extends Area2D
 @onready var coin_sound = preload("res://Assets/Music/mixkit-coins-sound-2003.wav")
 @onready var audio_stream_player = $AudioStreamPlayer
 
+@onready var sprite = $Pizza
 @onready var animation_player = $AnimationPlayer
 @onready var collision = $CollisionShape2D
 @onready var collected = false

@@ -1,8 +1,8 @@
 extends Area2D
 
 const SHADOW_MULTIPLIER = 350
-const MAX_LEFT = -400
-const MAX_RIGHT = 2000
+const LEFT_OFFSET = -400
+const RIGHT_OFFSET = 900
 
 @onready var sprite = $Sprite2D
 @onready var shadow = $Shadow
@@ -18,8 +18,8 @@ func _process(delta):
 	if speed:
 		position += Vector2.LEFT * delta * speed
 	
-		if position.x < MAX_LEFT:
-			position.x = MAX_RIGHT
+		if position.x < LEFT_OFFSET:
+			position.x =  DisplayServer.window_get_size().x + RIGHT_OFFSET
 			set_speed()
 
 func set_speed():

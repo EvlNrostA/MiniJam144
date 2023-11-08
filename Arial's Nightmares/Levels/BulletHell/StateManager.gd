@@ -50,7 +50,7 @@ func _ready():
 		joystick.visible = false
 	
 	if GManager.difficulty == null:
-		GManager.start_level(GManager.difficulties.easy)
+		GManager.start_level("easy")
 	
 	settings = difficulty_settings[GManager.difficulty]
 	wait_time = settings.wait_time

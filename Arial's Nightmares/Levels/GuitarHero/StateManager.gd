@@ -82,10 +82,7 @@ const MIN_TO_SEC = 60
 }
 @onready var arrows_on_target = []
 
-@onready var up_button = $UpButton
-@onready var left_button = $LeftButton
-@onready var down_button = $DownButton
-@onready var right_button = $RightButton
+@onready var buttons = $Buttons
 
 var settings
 var arrow_time_delay
@@ -95,13 +92,10 @@ var fail_count : int
 
 func _ready():
 	if not GManager.is_mobile:
-		up_button.visible = false
-		left_button.visible = false
-		down_button.visible = false
-		right_button.visible = false
+		buttons.visible = false
 	
 	if GManager.difficulty == null:
-		GManager.start_level(GManager.difficulties.easy)
+		GManager.start_level("easy")
 		
 	Audio.stop()
 		

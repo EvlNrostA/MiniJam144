@@ -40,7 +40,7 @@ func _ready():
 		joystick.visible = false
 	
 	if GManager.difficulty == null:
-		GManager.start_level(GManager.difficulties.hard)
+		GManager.start_level("easy")
 
 	settings = difficulty_settings[GManager.difficulty]
 	noam_fogle_count = settings.count

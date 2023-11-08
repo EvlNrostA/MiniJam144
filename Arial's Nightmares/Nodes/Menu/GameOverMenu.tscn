@@ -1,25 +1,25 @@
 [gd_scene load_steps=17 format=3 uid="uid://og3id2dn88jb"]
 
-[ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_uwa6v"]
-[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="3_edsyu"]
-[ext_resource type="Script" path="res://Scripts/Menu/PointsLabel.gd" id="3_ludx1"]
-[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="4_541qk"]
-[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="5_f441u"]
-[ext_resource type="Texture2D" uid="uid://bqoiaawipbybf" path="res://Assets/Player/Arial_WakeUp.png" id="6_jmsp4"]
-[ext_resource type="Texture2D" uid="uid://dowibwcsjxn7v" path="res://Assets/Player/Arial_WakeUp_Press.png" id="7_fy045"]
-[ext_resource type="Texture2D" uid="uid://biu2qnj4qixse" path="res://Assets/Player/Arial_WakeUp_Hover.png" id="8_2phhn"]
-[ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_s0jq5"]
-[ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_aieul"]
+[ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_4tedg"]
+[ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="2_l2evf"]
+[ext_resource type="Script" path="res://Scripts/Menu/PointsLabel.gd" id="3_e33by"]
+[ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="4_i601v"]
+[ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="5_h72ox"]
+[ext_resource type="Texture2D" uid="uid://bqoiaawipbybf" path="res://Assets/Player/Arial_WakeUp.png" id="6_h6pui"]
+[ext_resource type="Texture2D" uid="uid://dowibwcsjxn7v" path="res://Assets/Player/Arial_WakeUp_Press.png" id="7_caokj"]
+[ext_resource type="Texture2D" uid="uid://biu2qnj4qixse" path="res://Assets/Player/Arial_WakeUp_Hover.png" id="8_j4qvb"]
+[ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_80su8"]
+[ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_h2ws0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_enoik"]
 line_spacing = 0.0
-font = ExtResource("3_edsyu")
+font = ExtResource("2_l2evf")
 font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_gggme"]
-font = ExtResource("3_edsyu")
+font = ExtResource("2_l2evf")
 font_size = 64
 font_color = Color(0.882353, 0.690196, 0, 1)
 shadow_color = Color(0, 0, 0, 0.568627)
@@ -27,7 +27,7 @@ shadow_offset = Vector2(3, 3)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vxxkr"]
 line_spacing = 0.0
-font = ExtResource("3_edsyu")
+font = ExtResource("2_l2evf")
 font_size = 128
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
@@ -57,7 +57,7 @@ _data = {
 }
 
 [node name="GameOverMenu" type="Node2D"]
-script = ExtResource("1_uwa6v")
+script = ExtResource("1_4tedg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -85,23 +85,23 @@ offset_bottom = 275.0
 text = "Points: 20"
 label_settings = SubResource("LabelSettings_gggme")
 horizontal_alignment = 1
-script = ExtResource("3_ludx1")
+script = ExtResource("3_e33by")
 
 [node name="Hand" type="Sprite2D" parent="."]
 position = Vector2(494, 449)
 scale = Vector2(2, 2)
-texture = ExtResource("5_f441u")
+texture = ExtResource("4_i601v")
 
 [node name="Hand2" type="Sprite2D" parent="."]
 position = Vector2(654, 449)
 scale = Vector2(2, 2)
-texture = ExtResource("5_f441u")
+texture = ExtResource("4_i601v")
 flip_h = true
 
 [node name="Father" type="Sprite2D" parent="."]
 position = Vector2(574, 369)
 scale = Vector2(2, 2)
-texture = ExtResource("4_541qk")
+texture = ExtResource("5_h72ox")
 
 [node name="NameLabel" type="Label" parent="."]
 offset_top = 30.0
@@ -118,17 +118,17 @@ offset_right = 704.0
 offset_bottom = 626.0
 scale = Vector2(2, 2)
 pivot_offset = Vector2(128, 128)
-texture_normal = ExtResource("6_jmsp4")
-texture_pressed = ExtResource("7_fy045")
-texture_hover = ExtResource("8_2phhn")
-texture_click_mask = ExtResource("9_s0jq5")
+texture_normal = ExtResource("6_h6pui")
+texture_pressed = ExtResource("7_caokj")
+texture_hover = ExtResource("8_j4qvb")
+texture_click_mask = ExtResource("9_80su8")
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(448, 396)
 scale = Vector2(2, 2)
-texture_normal = ExtResource("6_jmsp4")
-bitmask = ExtResource("9_s0jq5")
+texture_normal = ExtResource("6_h6pui")
+bitmask = ExtResource("9_80su8")
 shape = SubResource("RectangleShape2D_gss25")
 shape_visible = false
 visibility_mode = 1
@@ -136,7 +136,7 @@ visibility_mode = 1
 [node name="StartAnimation" type="Sprite2D" parent="."]
 modulate = Color(0.639216, 0.635294, 0.603922, 0.584314)
 position = Vector2(576, 568)
-texture = ExtResource("10_aieul")
+texture = ExtResource("10_h2ws0")
 hframes = 4
 vframes = 4
 

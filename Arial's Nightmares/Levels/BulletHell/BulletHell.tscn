@@ -172,7 +172,6 @@ one_shot = true
 one_shot = true
 
 [node name="Joystick" parent="." instance=ExtResource("7_vhad4")]
-position = Vector2(952, 448)
 
 [connection signal="timeout" from="BulletTimer" to="." method="spawn_bullets"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]

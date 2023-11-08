@@ -5,11 +5,11 @@ const POINT_ADD_YOFFSET = 70
 const POINT_ADD_SIZE = 32
 const POINT_ADD_COLORHEX = 0xfed447ff
 
-@onready var timer_label = $TimerLabel
-@onready var level_timer = $Timer
+@onready var timer_label = $Layout/TimerLabel
+@onready var level_timer = $Layout/Timer
 
-@onready var point_label = $PointLabel
-@onready var floating_text = $FloatingText
+@onready var point_label = $Layout/PointLabel
+@onready var floating_text = $Layout/FloatingText
 
 var points
 
@@ -38,8 +38,8 @@ func points_set(new_points):
 func points_add(new_points):
 	if new_points > 0:
 		var point_add_text = "+%d" % new_points
-		var point_add_xpos = point_label.global_position.x + point_label.get_theme_font_size(point_label.text) + POINT_ADD_XOFFSET
-		var point_add_ypos = point_label.global_position.y + POINT_ADD_YOFFSET
+		var point_add_xpos = point_label.position.x + point_label.get_theme_font_size(point_label.text) + POINT_ADD_XOFFSET
+		var point_add_ypos = point_label.position.y + POINT_ADD_YOFFSET
 		await floating_text.display(point_add_text, 
 								Vector2(point_add_xpos, point_add_ypos),
 	 							POINT_ADD_SIZE,

@@ -31,20 +31,17 @@ const COIN_POINTS = 5
 @onready var player = $Player
 @onready var tile_timer = $TileTimer
 @onready var coin_timer = $CoinTimer
-
-@onready var up_button = $UpButton
-@onready var right_button = $RightButton
+@onready var buttons = $Buttons
 
 var items_start_position
 var settings
 
 func _ready():
 	if not GManager.is_mobile:
-		up_button.visible = false
-		right_button.visible = false
+		buttons.visible = false
 	
 	if GManager.difficulty == null:
-		GManager.start_level(GManager.difficulties.easy)
+		GManager.start_level("easy")
 	
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
@@ -67,7 +64,9 @@ func _on_timer_timeout():
 	var obstacle = obstacle_scene.instantiate()
 	add_child(obstacle)
 	
+	obstacle.area_entered.connect(Callable(item_delete).bind(obstacle))
 	obstacle.emit_signal("SPAWN", Vector2.LEFT, settings.level_velocity, items_start_position)
+	
 	start_tiles()
 	
 func _on_level_timer_timeout():
@@ -79,13 +78,23 @@ func start_coin_timer():
 
 func _on_coin_timer_timeout():
 	var coin = coin_scene.instantiate()
-	add_child(coin)
-
+	
 	coin.scale.y = 0.5
-	coin.z_index = -1
+	coin.scale *= 1.5
+	
+	coin.z_index = 0
 	coin.movement_function = "endless_runner_movement"
 	coin.velocity = settings.level_velocity
 	coin.points = COIN_POINTS
+	
+	add_child(coin)
+	
 	coin.global_position = items_start_position
+	coin.global_position.y += coin.sprite.get_rect().size.y / 8
+	coin.area_entered.connect(Callable(item_delete).bind(coin))
 	
 	start_coin_timer()
+
+func item_delete(col, item) -> void:
+	if col.name == "ItemCollision":
+		item.queue_free()
