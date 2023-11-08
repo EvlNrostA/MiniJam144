@@ -46,3 +46,6 @@ func points_add(new_points):
 								Color.hex(POINT_ADD_COLORHEX))
 	
 		points_set(points + new_points)
+
+func points_add_time_left(multiplier=1):
+	points_add(round(level_timer.time_left) * multiplier)

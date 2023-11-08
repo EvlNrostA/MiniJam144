@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="5_7mqa1"]
 [ext_resource type="PackedScene" uid="uid://qja4lm0cwpjg" path="res://Nodes/Enemys/NoamFogle.tscn" id="5_aogm1"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="6_n8458"]
-[ext_resource type="PackedScene" uid="uid://c2xl7q7iaufej" path="res://Nodes/Mechanics/joystick.tscn" id="8_08sam"]
+[ext_resource type="PackedScene" uid="uid://c2xl7q7iaufej" path="res://Nodes/Mechanics/Joystick.tscn" id="8_08sam"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vphrw"]
 texture = ExtResource("2_8wqw1")

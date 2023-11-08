@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://qja4lm0cwpjg"]
+[gd_scene load_steps=10 format=3 uid="uid://qja4lm0cwpjg"]
 
 [ext_resource type="Script" path="res://Scripts/Enemys/NoamFogle.gd" id="1_ihpxf"]
 [ext_resource type="Texture2D" uid="uid://r57ua5m7b3rg" path="res://Assets/Enemys/Fogle.png" id="2_7cvli"]
@@ -19,7 +19,7 @@ tracks/0/path = NodePath("NoamFogle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.06, 0.09),
+"times": PackedFloat32Array(0, 0.06, 0.09, 0.12),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [3, 2, 1, 0]
@@ -78,38 +78,10 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_qf5tk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NoamFogle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NoamFogle:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xwpw2"]
 _data = {
 "Death": SubResource("Animation_dwlwc"),
-"Jumping": SubResource("Animation_qu3ij"),
-"RESET": SubResource("Animation_qf5tk")
+"Jumping": SubResource("Animation_qu3ij")
 }
 
 [sub_resource type="AudioStream" id="AudioStream_rs1ut"]
@@ -122,6 +94,7 @@ position = Vector2(0, 10)
 texture = ExtResource("2_aul48")
 
 [node name="NoamFogle" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 texture = ExtResource("2_7cvli")
 hframes = 2
 vframes = 2
@@ -131,6 +104,14 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_1oexi")
 
 [node name="Explosion" parent="." instance=ExtResource("4_cn1kp")]
+
+[node name="GPUParticles2D" parent="Explosion" index="0"]
+amount = 50
+speed_scale = 10.0
+
+[node name="GPUParticles2D2" parent="Explosion" index="1"]
+amount = 50
+speed_scale = 10.0
 
 [node name="HideTimer" type="Timer" parent="."]
 one_shot = true

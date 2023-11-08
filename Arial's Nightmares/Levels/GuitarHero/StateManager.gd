@@ -4,40 +4,52 @@ var difficulty_settings = {
 	"easy": {
 		"speed": 100,
 		"song_path": "res://Assets/Music/Ed-Sheeran-Perfect-Easy.mp3",
-		"fail_count": 5
+		"fail_count": 5,
+		"scores": {
+			"PERFECT": 1,
+			"GREAT": 0,
+			"OKAY": 0
+		}
 	},
 	"normal": {
 		"speed": 300,
 		"song_path": "res://Assets/Music/Ed-Sheeran-Perfect-Normal.mp3",
-		"fail_count": 5
+		"fail_count": 5,
+		"scores": {
+			"PERFECT": 2,
+			"GREAT": 1,
+			"OKAY": 0
+		}
 	},
 	"hard": {
 		"speed": 400,
 		"song_path": "res://Assets/Music/Ed-Sheeran-Perfect-Hard.mp3",
-		"fail_count": 5
+		"fail_count": 5,
+		"scores": {
+			"PERFECT": 2,
+			"GREAT": 1,
+			"OKAY": 0
+		}
 	},
 }
 
 const SCORE_TEXT_OPTIONS = {
 	"PERFECT": {
 		"text": "perfect",
-		"score": 2,
 		"colorhex": 0x08B6F7FF
 	},
 	"GREAT": {
 		"text": "great",
-		"score": 1,
 		"colorhex": 0x27BF28FF
 	},
 	"OKAY": {
 		"text": "okay",
-		"score": 0,
 		"colorhex": 0xEBBD14FF
 	}
 }
 
-const GREAT_DISTANCE = 10
-const PERFECT_DISTANCE = 5
+const GREAT_DISTANCE = 15
+const PERFECT_DISTANCE = 7
 
 const FLOATING_TEXT_OFFSET = Vector2(5, -20)
 const FLOATING_TEXT_SIZE = 32
@@ -160,25 +172,26 @@ func score(area):
 	var area_size = area.sprite.get_rect().size.y
 	var distance = pressing_bar.global_position.y - area.global_position.y 
 
-	var options
+	var scoring
 	if distance > GREAT_DISTANCE or distance < 0:
-		options = SCORE_TEXT_OPTIONS.OKAY
+		scoring = "OKAY"
 	elif distance <= PERFECT_DISTANCE:
-		options = SCORE_TEXT_OPTIONS.PERFECT
+		scoring = "PERFECT"
 	elif distance <= GREAT_DISTANCE:
-		options = SCORE_TEXT_OPTIONS.GREAT	
+		scoring = "GREAT"	
 	
+	var options = SCORE_TEXT_OPTIONS[scoring]
 	var floating_text = floating_text_scene.instantiate()
 	add_child(floating_text)
 	
 	var floating_text_position = Vector2(area.global_position.x, pressing_bar.global_position.y) + FLOATING_TEXT_OFFSET
 	await floating_text.display(options.text,
-									 floating_text_position,
-									 FLOATING_TEXT_SIZE,
-									 Color.hex(options.colorhex))
+								floating_text_position,
+								FLOATING_TEXT_SIZE,
+								Color.hex(options.colorhex))
 	floating_text.queue_free()
 	
-	UI.points_add(options.score)
+	UI.points_add(settings.scores[scoring])
 				
 func _on_bpm_timer_timeout():
 	var time_remaining = Audio.stream.get_length() - Audio.get_playback_position()

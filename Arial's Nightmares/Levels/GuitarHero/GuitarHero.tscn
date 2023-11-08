@@ -483,7 +483,8 @@ libraries = {
 
 [node name="Light" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.486275)
-position = Vector2(583, 208)
+position = Vector2(582, 249)
+scale = Vector2(1, 1.00391)
 texture = ExtResource("15_nuuwx")
 
 [node name="UpButton" type="TouchScreenButton" parent="."]

@@ -22,6 +22,12 @@ func play_sound(sound):
 	audio_stream_player.stream = sound
 	audio_stream_player.play()
 
+func death_animation():
+	shadow.hide()
+	play_sound(death_sound)
+	animationPlayer.play("Fall")
+	#await animationPlayer.animation_finished
+
 func run_animation(given_velocity):
 	if given_velocity != Vector2.ZERO:
 		animationPlayer.play("Run_Right")

@@ -11,12 +11,14 @@ func _physics_process(delta):
 			play_sound(footstep_sound)
 	else:
 		position = position.move_toward(yam.position, manager.settings.level_velocity * delta)
-		animationPlayer.play("Fall")
 
 func pushed():
 	hit = true
-	play_sound(death_sound)
+	await death_animation()
 
 func death():
+	if not hit:
+		hit = true
+		await death_animation()
 	GManager.game_over()
 
