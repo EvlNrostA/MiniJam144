@@ -48,11 +48,11 @@ var max_right
 var max_bottom
 
 func _ready():
-	if not GManager.is_mobile:
-		joystick.visible = false
-	
 	if GManager.difficulty == null:
 		GManager.start_level("easy")
+		
+	if not GManager.is_mobile:
+		joystick.visible = false
 	
 	settings = difficulty_settings[GManager.difficulty]
 	wait_time = settings.wait_time

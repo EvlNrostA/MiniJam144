@@ -21,7 +21,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="JoystickButton" type="TouchScreenButton" parent="RightLayout"]
-modulate = Color(1, 1, 1, 0.290196)
+modulate = Color(1, 1, 1, 0.501961)
 position = Vector2(-196, -196)
 scale = Vector2(8, 8)
 texture_normal = ExtResource("1_mhnga")
@@ -36,3 +36,4 @@ texture_normal = ExtResource("1_mhnga")
 visibility_mode = 1
 
 [connection signal="released" from="RightLayout/JoystickButton" to="RightLayout/JoystickButton" method="_on_released"]
+[connection signal="tree_exiting" from="RightLayout/JoystickButton" to="RightLayout/JoystickButton" method="_on_tree_exiting"]

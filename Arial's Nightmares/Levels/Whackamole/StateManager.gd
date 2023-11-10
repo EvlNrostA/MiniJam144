@@ -36,11 +36,11 @@ var noam_fogle_count
 var hidden_noam_fogles : Array
 	
 func _ready():
-	if not GManager.is_mobile:
-		joystick.visible = false
-	
 	if GManager.difficulty == null:
 		GManager.start_level("easy")
+		
+	if not GManager.is_mobile:
+		joystick.visible = false
 
 	settings = difficulty_settings[GManager.difficulty]
 	noam_fogle_count = settings.count

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0gs5qe7lvv4j"]
+[gd_scene load_steps=17 format=3 uid="uid://0gs5qe7lvv4j"]
 
 [ext_resource type="Script" path="res://Levels/EndlessRunner/StateManager.gd" id="1_0vqnj"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="3_64vg2"]
@@ -73,6 +73,9 @@ size = Vector2(24.0025, 2664)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hl8y4"]
 size = Vector2(22.9979, 1656)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yeqpg"]
+font_size = 48
 
 [node name="EndlessRunner" type="Node2D"]
 script = ExtResource("1_0vqnj")
@@ -202,6 +205,13 @@ texture = ExtResource("10_4d05j")
 position = Vector2(40, 40)
 texture = ExtResource("10_4d05j")
 flip_h = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 560.0
+offset_top = 192.0
+offset_right = 600.0
+offset_bottom = 205.0
+label_settings = SubResource("LabelSettings_yeqpg")
 
 [connection signal="timeout" from="TileTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]

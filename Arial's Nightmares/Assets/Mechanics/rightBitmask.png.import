@@ -13,4 +13,4 @@ dest_files=["res://.godot/imported/rightBitmask.png-078861df110fac9be48170029c77
 [params]
 
 create_from=0
-threshold=0.5
+threshold=0.0

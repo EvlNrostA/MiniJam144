@@ -37,16 +37,17 @@ var items_start_position
 var settings
 
 func _ready():
-	if not GManager.is_mobile:
-		buttons.visible = false
-	
 	if GManager.difficulty == null:
 		GManager.start_level("easy")
+	
+	if not GManager.is_mobile:
+		buttons.visible = false
 	
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
 	
 	items_start_position = GManager.get_shown_window_rect().size + ITEMS_START_OFFSET
+	#$Label.text = str(items_start_position)
 	
 	var clouds = get_tree().get_nodes_in_group("Clouds")
 	for cloud in clouds:

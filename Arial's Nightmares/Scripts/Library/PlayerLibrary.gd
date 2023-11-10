@@ -44,9 +44,9 @@ func Move2D(delta) -> void:
 	if vel != Vector2.ZERO and not audio_stream_player.playing:
 		play_sound(footstep_sound)
 		
-	if vel.x >= 1:
+	if vel.x >= 0.1:
 		sprite.flip_h = false
-	elif vel.x <= -1:
+	elif vel.x <= -0.1:
 		sprite.flip_h = true
 	pass
 

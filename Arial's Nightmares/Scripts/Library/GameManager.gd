@@ -99,7 +99,7 @@ func start_level(selected_difficulty):
 	copy_array(levels_left, levels[difficulties[selected_difficulty]])
 	var scene_path = get_tree().get_current_scene().scene_file_path
 	var level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
-
+	GManager.is_mobile = true
 	prepare_level(level_settings)
 
 func prepare_level(level_settings):
