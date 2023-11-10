@@ -171,11 +171,11 @@ shape = SubResource("RectangleShape2D_qpchm")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-400, 321)
+position = Vector2(-592, 320)
 shape = SubResource("RectangleShape2D_s61pv")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1552, 326)
+position = Vector2(1744, 320)
 shape = SubResource("RectangleShape2D_1miv7")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
@@ -200,6 +200,8 @@ one_shot = true
 one_shot = true
 
 [node name="Joystick" parent="." instance=ExtResource("7_vhad4")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="timeout" from="BulletTimer" to="." method="spawn_bullets"]
 [connection signal="timeout" from="CoinTimer" to="." method="_on_coin_timer_timeout"]

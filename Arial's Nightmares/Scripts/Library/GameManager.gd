@@ -1,5 +1,7 @@
 extends Node
 
+const DEFAULT_WINDOW_SIZE = Vector2i(1152, 648)
+
 var start_menu = "res://Nodes/Menu/StartMenu.tscn"
 var game_over_menu = "res://Nodes/Menu/GameOverMenu.tscn"
 var win_menu = "res://Nodes/Menu/WinMenu.tscn"
@@ -97,7 +99,7 @@ func start_level(selected_difficulty):
 	copy_array(levels_left, levels[difficulties[selected_difficulty]])
 	var scene_path = get_tree().get_current_scene().scene_file_path
 	var level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
-	
+
 	prepare_level(level_settings)
 
 func prepare_level(level_settings):
@@ -149,3 +151,7 @@ func add_input(action, pressed):
 	input.action = action
 	input.pressed = pressed
 	Input.parse_input_event(input)
+	
+func get_shown_window_rect() -> Rect2:
+	var start_pos = (DEFAULT_WINDOW_SIZE - DisplayServer.window_get_size()) / 2
+	return Rect2(start_pos, start_pos + DisplayServer.window_get_size())

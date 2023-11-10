@@ -58,10 +58,11 @@ func _ready():
 	wait_time = settings.wait_time
 	player.speed = settings.speed
 	
-	max_left = -SCREEN_OFFSET
-	max_top = -SCREEN_OFFSET
-	max_right = DisplayServer.window_get_size().x + SCREEN_OFFSET
-	max_bottom = DisplayServer.window_get_size().y + SCREEN_OFFSET
+	var rect = GManager.get_shown_window_rect()
+	max_left = rect.position.x
+	max_top = rect.position.y
+	max_right = rect.size.x
+	max_bottom = rect.size.y
 	
 	bullet_timer.start(wait_time)
 	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
@@ -72,16 +73,15 @@ func _ready():
 
 func spawn_bullets() -> void:
 	var bullet_directions = {
-		Vector2.UP: Vector2(randf_range(max_left, max_right), max_bottom),
-		Vector2.DOWN: Vector2(randf_range(max_left, max_right), max_top),
-		Vector2.LEFT: Vector2(max_right, randf_range(max_top, max_bottom)),
-		Vector2.RIGHT: Vector2(max_left, randf_range(max_top, max_bottom))
+		Vector2.UP: Vector2(randf_range(max_left, max_right), max_bottom + SCREEN_OFFSET),
+		Vector2.DOWN: Vector2(randf_range(max_left, max_right), max_top - SCREEN_OFFSET),
+		Vector2.LEFT: Vector2(max_right + SCREEN_OFFSET, randf_range(max_top, max_bottom)),
+		Vector2.RIGHT: Vector2(max_left - SCREEN_OFFSET, randf_range(max_top, max_bottom))
 	}
 	
 	for direction in bullet_directions.keys():
 		var bullet = clothes_scene.instantiate()
 		add_child(bullet)
-		
 		bullet.z_index = 1
 		
 		bullet.emit_signal("SPAWN", direction, bullet_directions[direction], settings.clothes_speed)

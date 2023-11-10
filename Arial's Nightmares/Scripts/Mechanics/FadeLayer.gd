@@ -1,12 +1,10 @@
 extends CanvasLayer
 
-const DEFAULT_WINDOW_SIZE = Vector2i(1152, 648)
-
 @onready var shadow = $Control/Shadow
 @onready var animation_player = $AnimationPlayer
 
 func _ready():
-	shadow.scale *= Vector2(DisplayServer.window_get_size() / DEFAULT_WINDOW_SIZE)
+	shadow.scale *= Vector2(DisplayServer.window_get_size() / GManager.DEFAULT_WINDOW_SIZE)
 
 func fading() -> bool:
 	return Fade.animation_player.is_playing()

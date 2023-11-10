@@ -22,7 +22,7 @@ var difficulty_settings = {
 }
 
 const COIN_WAIT_RANGE = [3, 5]
-const ITEMS_START_OFFSET = Vector2i(50, -180)
+const ITEMS_START_OFFSET = Vector2(50, -180)
 const COIN_POINTS = 5
 
 @onready var obstacle_scene = preload("res://Levels/EndlessRunner/Obstacle.tscn")
@@ -45,9 +45,8 @@ func _ready():
 	
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
-	player.shadow.visible = false
-
-	items_start_position = DisplayServer.window_get_size() + ITEMS_START_OFFSET
+	
+	items_start_position = GManager.get_shown_window_rect().size + ITEMS_START_OFFSET
 	
 	var clouds = get_tree().get_nodes_in_group("Clouds")
 	for cloud in clouds:

@@ -164,6 +164,7 @@ collision_mask = 31
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.403922)
+z_index = -1
 position = Vector2(0, 18)
 texture = ExtResource("1_tvcsq")
 

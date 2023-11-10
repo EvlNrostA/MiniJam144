@@ -1,13 +1,13 @@
 extends Area2D
 
 const SHADOW_MULTIPLIER = 350
-const LEFT_OFFSET = -400
-const RIGHT_OFFSET = 900
+const SCREEN_OFFSET = 300
 
 @onready var sprite = $Sprite2D
 @onready var shadow = $Shadow
 @onready var manager = get_tree().current_scene
-
+@onready var start_xposition = GManager.get_shown_window_rect().size.x + SCREEN_OFFSET
+@onready var end_xposition = GManager.get_shown_window_rect().position.x - SCREEN_OFFSET
 var speed
 
 func start():
@@ -18,8 +18,8 @@ func _process(delta):
 	if speed:
 		position += Vector2.LEFT * delta * speed
 	
-		if position.x < LEFT_OFFSET:
-			position.x =  DisplayServer.window_get_size().x + RIGHT_OFFSET
+		if position.x < end_xposition:
+			position.x =  start_xposition
 			set_speed()
 
 func set_speed():
