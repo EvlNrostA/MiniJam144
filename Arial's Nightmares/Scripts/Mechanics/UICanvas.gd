@@ -14,6 +14,7 @@ const POINT_ADD_COLORHEX = 0xfed447ff
 @onready var floating_text = $Layout/FloatingText
 
 var points : int = 0
+var highscore : int = 0
 
 func _ready():
 	visible = false
@@ -40,16 +41,24 @@ func points_set(new_points):
 	set_highscore()
 
 func set_highscore():
-	var highscore_file = FileAccess.open(highscore_file_path, FileAccess.READ_WRITE)
+	if FileAccess.file_exists(highscore_file_path):
+		var highscore_file = FileAccess.open(highscore_file_path, FileAccess.READ_WRITE)
 
-	var highscore = int(highscore_file.get_as_text())
-	if  highscore < points:
-		highscore_file.store_string(str(UI.points))
-		
-	highscore_file.close()
+		var current_highscore = int(highscore_file.get_as_text())
+		if current_highscore < points:
+			highscore_file.store_string(str(points))
+	
+		highscore_file.close()
+	
+	elif highscore < points:
+		highscore = points
 	
 func get_highscore() -> int:
-	return int(FileAccess.get_file_as_string(highscore_file_path))
+	if FileAccess.file_exists(highscore_file_path) and highscore == 0:
+		return int(FileAccess.get_file_as_string(highscore_file_path))
+		
+	else:
+		return highscore
 
 func points_add(new_points : int):
 	if new_points > 0:
