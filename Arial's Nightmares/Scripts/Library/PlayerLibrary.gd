@@ -76,12 +76,8 @@ func Move2DRight(delta):
 		velocity.y += gravity * delta
 		velocity.x = (speed / 2) * delta
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("Up") and is_on_floor():
+	if Input.is_action_pressed("Up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	
 	if is_on_floor():
 		if Input.is_action_pressed("Right"):

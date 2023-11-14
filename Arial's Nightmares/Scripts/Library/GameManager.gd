@@ -87,10 +87,9 @@ var current_batch_index : int = 0
 var levels_left : Array
 var difficulty
 var global_music
-var points : int = 0
-var is_mobile = not (OS.has_feature("mobile") or \
+var is_mobile = OS.has_feature("mobile") or \
 				OS.has_feature("web_android") or \
-				OS.has_feature("web_ios"))
+				OS.has_feature("web_ios")
 
 func start_level(selected_difficulty):
 	UI.points_set(0)
@@ -153,5 +152,14 @@ func add_input(action, pressed):
 	Input.parse_input_event(input)
 	
 func get_shown_window_rect() -> Rect2:
-	var start_pos = (DEFAULT_WINDOW_SIZE - DisplayServer.window_get_size()) / 2
-	return Rect2(start_pos, start_pos + DisplayServer.window_get_size())
+	var window_size = DisplayServer.window_get_size()
+
+	var default_gcd = gcd(DEFAULT_WINDOW_SIZE.x, DEFAULT_WINDOW_SIZE.y)
+	var current_gcd = gcd(window_size.x, window_size.y)
+	var shrunk_window_size = (window_size / current_gcd) * default_gcd
+	
+	var start_pos = (DEFAULT_WINDOW_SIZE - shrunk_window_size) / 2
+	return Rect2(start_pos, start_pos + shrunk_window_size)
+
+func gcd(a: int, b: int) -> int:
+	return a if b == 0.0 else gcd(b, a % b)

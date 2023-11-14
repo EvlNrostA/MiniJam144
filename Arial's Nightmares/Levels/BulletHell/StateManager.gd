@@ -22,10 +22,10 @@ var difficulty_settings = {
 }
 
 const SCREEN_OFFSET = 50
+const ITEM_POS_XRANGE = [152, 1000]
+const ITEM_POS_YRANGE = [121, 553]
 
 const COIN_WAIT_RANGE = [3, 5]
-const COIN_POS_XRANGE = [152, 1000]
-const COIN_POS_YRANGE = [121, 553]
 const COIN_POINTS = 5
 
 @onready var player = $Player
@@ -59,10 +59,11 @@ func _ready():
 	player.speed = settings.speed
 	
 	var rect = GManager.get_shown_window_rect()
-	max_left = rect.position.x
-	max_top = rect.position.y
-	max_right = rect.size.x
-	max_bottom = rect.size.y
+
+	max_left = rect.position.x - SCREEN_OFFSET
+	max_top = rect.position.y - SCREEN_OFFSET
+	max_right = rect.size.x + SCREEN_OFFSET
+	max_bottom = rect.size.y + SCREEN_OFFSET
 	
 	bullet_timer.start(wait_time)
 	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
@@ -73,17 +74,17 @@ func _ready():
 
 func spawn_bullets() -> void:
 	var bullet_directions = {
-		Vector2.UP: Vector2(randf_range(max_left, max_right), max_bottom + SCREEN_OFFSET),
-		Vector2.DOWN: Vector2(randf_range(max_left, max_right), max_top - SCREEN_OFFSET),
-		Vector2.LEFT: Vector2(max_right + SCREEN_OFFSET, randf_range(max_top, max_bottom)),
-		Vector2.RIGHT: Vector2(max_left - SCREEN_OFFSET, randf_range(max_top, max_bottom))
+		Vector2.UP: Vector2(GManager.randf_list_range(ITEM_POS_XRANGE), max_bottom),
+		Vector2.DOWN: Vector2(GManager.randf_list_range(ITEM_POS_XRANGE), max_top),
+		Vector2.LEFT: Vector2(max_right, GManager.randf_list_range(ITEM_POS_YRANGE)),
+		Vector2.RIGHT: Vector2(max_left, GManager.randf_list_range(ITEM_POS_YRANGE))
 	}
 	
 	for direction in bullet_directions.keys():
 		var bullet = clothes_scene.instantiate()
 		add_child(bullet)
-		bullet.z_index = 1
 		
+		bullet.z_index = 1
 		bullet.emit_signal("SPAWN", direction, bullet_directions[direction], settings.clothes_speed)
 	
 	bullet_timer.start(wait_time)
@@ -101,6 +102,6 @@ func _on_coin_timer_timeout():
 	
 	coin.z_index = -1
 	coin.points = COIN_POINTS
-	coin.global_position = Vector2(GManager.randf_list_range(COIN_POS_XRANGE), GManager.randf_list_range(COIN_POS_YRANGE))
+	coin.global_position = Vector2(GManager.randf_list_range(ITEM_POS_XRANGE), GManager.randf_list_range(ITEM_POS_YRANGE))
 	
 	start_coin_timer()

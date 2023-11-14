@@ -11,35 +11,6 @@
 
 [node name="Buttons" type="CanvasLayer"]
 
-[node name="LeftLayout" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="UpButton" type="TouchScreenButton" parent="LeftLayout"]
-modulate = Color(1, 1, 1, 0.564706)
-position = Vector2(144, -96)
-scale = Vector2(4, 4)
-texture_normal = ExtResource("1_csuhq")
-bitmask = ExtResource("2_4n0i0")
-action = "Up"
-visibility_mode = 1
-
-[node name="LeftButton" type="TouchScreenButton" parent="LeftLayout"]
-modulate = Color(1, 1, 1, 0.564706)
-position = Vector2(304, -96)
-scale = Vector2(4, 4)
-texture_normal = ExtResource("3_1rbbi")
-bitmask = ExtResource("4_6kmv7")
-action = "Left"
-visibility_mode = 1
-
 [node name="RightLayout" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 3
@@ -54,20 +25,50 @@ grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DownButton" type="TouchScreenButton" parent="RightLayout"]
+[node name="UpButton" type="TouchScreenButton" parent="RightLayout"]
 modulate = Color(1, 1, 1, 0.564706)
-position = Vector2(-392, -96)
+position = Vector2(-256, -172)
 scale = Vector2(4, 4)
-texture_normal = ExtResource("5_wjpt2")
-bitmask = ExtResource("6_6wh0e")
-action = "Down"
+texture_normal = ExtResource("1_csuhq")
+bitmask = ExtResource("2_4n0i0")
+action = "Up"
 visibility_mode = 1
 
 [node name="RightButton" type="TouchScreenButton" parent="RightLayout"]
 modulate = Color(1, 1, 1, 0.564706)
-position = Vector2(-231, -96)
+position = Vector2(-168, -96)
 scale = Vector2(4, 4)
 texture_normal = ExtResource("7_c14d8")
 bitmask = ExtResource("8_xorld")
 action = "Right"
+visibility_mode = 1
+
+[node name="LeftLayout" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LeftButton" type="TouchScreenButton" parent="LeftLayout"]
+modulate = Color(1, 1, 1, 0.564706)
+position = Vector2(80, -172)
+rotation = -0.000113529
+scale = Vector2(4, 4)
+texture_normal = ExtResource("3_1rbbi")
+bitmask = ExtResource("4_6kmv7")
+action = "Left"
+visibility_mode = 1
+
+[node name="DownButton" type="TouchScreenButton" parent="LeftLayout"]
+modulate = Color(1, 1, 1, 0.564706)
+position = Vector2(168, -96)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("5_wjpt2")
+bitmask = ExtResource("6_6wh0e")
+action = "Down"
 visibility_mode = 1

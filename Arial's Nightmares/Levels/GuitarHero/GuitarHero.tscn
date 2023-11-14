@@ -403,19 +403,19 @@ vframes = 4
 
 [node name="UpEndPosition" type="Sprite2D" parent="Background"]
 modulate = Color(1, 1, 1, 0.176471)
-position = Vector2(288, 248)
+position = Vector2(672, 248)
 scale = Vector2(2.8, 2.8)
 texture = ExtResource("15_o0l2v")
 
 [node name="LeftEndPosition" type="Sprite2D" parent="Background"]
 modulate = Color(1, 1, 1, 0.176471)
-position = Vector2(480, 248)
+position = Vector2(288, 248)
 scale = Vector2(2.8, 2.8)
 texture = ExtResource("21_vlg5b")
 
 [node name="DownEndPosition" type="Sprite2D" parent="Background"]
 modulate = Color(1, 1, 1, 0.176471)
-position = Vector2(672, 248)
+position = Vector2(480, 248)
 scale = Vector2(2.8, 2.8)
 texture = ExtResource("19_7shnr")
 
@@ -458,13 +458,13 @@ texture = ExtResource("6_msk2n")
 texture_mode = 1
 
 [node name="UpArrowPosition" type="Node2D" parent="."]
-position = Vector2(288, -64)
+position = Vector2(672, -64)
 
 [node name="LeftArrowPosition" type="Node2D" parent="."]
-position = Vector2(480, -64)
+position = Vector2(288, -64)
 
 [node name="DownArrowPosition" type="Node2D" parent="."]
-position = Vector2(672, -64)
+position = Vector2(480, -64)
 
 [node name="RightArrowPosition" type="Node2D" parent="."]
 position = Vector2(864, -64)
@@ -499,7 +499,7 @@ libraries = {
 
 [node name="Light" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.486275)
-position = Vector2(582, 249)
+position = Vector2(584, 248)
 scale = Vector2(1, 1.00391)
 texture = ExtResource("15_nuuwx")
 

@@ -4,7 +4,7 @@ var difficulty_settings = {
 	"easy": {
 		"count": 2,
 		"hide_delay": [1, 2],
-		"reveal_delay": [0.7, 1.2],
+		"reveal_delay": [1, 1.5],
 		"level_timer": 15,
 		"speed": 2.5,
 		"score_multiplier": 1
@@ -12,7 +12,7 @@ var difficulty_settings = {
 	"normal": {
 		"count": 4,
 		"hide_delay": [1, 2],
-		"reveal_delay": [0.7, 1.2],
+		"reveal_delay": [1, 1.5],
 		"level_timer": 20,
 		"speed": 2.5,
 		"score_multiplier": 1
@@ -20,10 +20,10 @@ var difficulty_settings = {
 	"hard": {
 		"count": 8,
 		"hide_delay": [1, 2],
-		"reveal_delay": [0.7, 1.2],
+		"reveal_delay": [1, 1.5],
 		"level_timer": 20,
 		"speed": 2.5,
-		"score_multiplier": 2
+		"score_multiplier": 1.5
 	},
 }
 

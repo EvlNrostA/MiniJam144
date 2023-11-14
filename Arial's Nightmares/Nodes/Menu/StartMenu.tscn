@@ -10,17 +10,17 @@
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_gqfqk"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_k4lsl"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_28lkd"]
-line_spacing = 0.0
-font = ExtResource("4_dv4uc")
-font_size = 128
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_3khs1"]
 line_spacing = 0.0
 font = ExtResource("4_dv4uc")
 font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_28lkd"]
+line_spacing = 0.0
+font = ExtResource("4_dv4uc")
+font_size = 128
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
@@ -76,16 +76,6 @@ position = Vector2(576, 368)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("2_1almj")
 
-[node name="NameLabel" type="Label" parent="."]
-offset_left = 232.0
-offset_top = 56.0
-offset_right = 945.0
-offset_bottom = 216.0
-text = "Ariel's
-Nightmare"
-label_settings = SubResource("LabelSettings_28lkd")
-horizontal_alignment = 1
-
 [node name="Staff" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="Staff"]
@@ -101,6 +91,7 @@ size_flags_vertical = 3
 
 [node name="StaffLabel" type="Label" parent="Staff/Control"]
 modulate = Color(1, 1, 1, 0.262745)
+layout_mode = 0
 offset_left = 20.0
 offset_top = -120.0
 offset_right = 234.0
@@ -112,6 +103,16 @@ Guy Hanan
 Moshe Mina
 "
 label_settings = SubResource("LabelSettings_3khs1")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = 232.0
+offset_top = 56.0
+offset_right = 945.0
+offset_bottom = 216.0
+text = "Ariel's
+Nightmare"
+label_settings = SubResource("LabelSettings_28lkd")
+horizontal_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 576.0
@@ -149,4 +150,3 @@ libraries = {
 }
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

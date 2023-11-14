@@ -18,6 +18,3 @@ func _unhandled_key_input(event):
 
 func _on_button_pressed():
 	start()
-
-func _on_touch_screen_button_pressed():
-	start()

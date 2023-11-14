@@ -33,6 +33,8 @@ const COIN_POINTS = 5
 @onready var coin_timer = $CoinTimer
 @onready var buttons = $Buttons
 
+@onready var window_rect = GManager.get_shown_window_rect()
+
 var items_start_position
 var settings
 
@@ -45,9 +47,9 @@ func _ready():
 	
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
+	player.shadow.hide()
 	
-	items_start_position = GManager.get_shown_window_rect().size + ITEMS_START_OFFSET
-	#$Label.text = str(items_start_position)
+	items_start_position = window_rect.size + ITEMS_START_OFFSET
 	
 	var clouds = get_tree().get_nodes_in_group("Clouds")
 	for cloud in clouds:

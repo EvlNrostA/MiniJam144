@@ -11,7 +11,7 @@ const POINT_ADD_COLORHEX = 0xfed447ff
 @onready var point_label = $Layout/PointLabel
 @onready var floating_text = $Layout/FloatingText
 
-var points
+var points : int = 0
 
 func _ready():
 	visible = false
@@ -35,7 +35,7 @@ func points_set(new_points):
 	points = new_points
 	point_label.text = str(points)
 	
-func points_add(new_points):
+func points_add(new_points : int):
 	if new_points > 0:
 		var point_add_text = "+%d" % new_points
 		var point_add_xpos = point_label.position.x + point_label.get_theme_font_size(point_label.text) + POINT_ADD_XOFFSET

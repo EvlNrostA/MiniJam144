@@ -79,6 +79,7 @@ size_flags_vertical = 3
 
 [node name="StaffLabel" type="Label" parent="Staff/Control"]
 modulate = Color(1, 1, 1, 0.262745)
+layout_mode = 0
 offset_left = 20.0
 offset_top = -120.0
 offset_right = 234.0
@@ -121,6 +122,11 @@ texture_pressed = ExtResource("5_r4fn4")
 texture_hover = ExtResource("6_xaxwr")
 texture_click_mask = ExtResource("7_7xcee")
 
+[node name="Light" type="Sprite2D" parent="."]
+position = Vector2(574, 288)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("9_so80w")
+
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(448, 396)
@@ -129,6 +135,7 @@ texture_normal = ExtResource("4_1liwx")
 bitmask = ExtResource("7_7xcee")
 shape = SubResource("RectangleShape2D_lsukk")
 shape_visible = false
+action = "Space"
 visibility_mode = 1
 
 [node name="StartAnimation" type="Sprite2D" parent="."]
@@ -144,7 +151,4 @@ libraries = {
 "": SubResource("AnimationLibrary_2jrvt")
 }
 
-[node name="Light" type="Sprite2D" parent="."]
-position = Vector2(574, 288)
-scale = Vector2(1.4, 1.4)
-texture = ExtResource("9_so80w")
+[connection signal="pressed" from="TextureButton" to="." method="_on_button_pressed"]
