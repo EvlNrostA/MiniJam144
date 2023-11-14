@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var button = $TextureButton
+
 var delay_timer
 
 func _ready():
@@ -9,8 +10,7 @@ func _ready():
 
 func start():
 	if not Fade.fading():
-		UI.points_set(0)
-		GManager.next_level()
+		GManager.start()
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("Space"):

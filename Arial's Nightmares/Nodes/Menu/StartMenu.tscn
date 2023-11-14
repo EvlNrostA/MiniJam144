@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://brc1mptaep23d"]
+[gd_scene load_steps=18 format=3 uid="uid://brc1mptaep23d"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_80c1p"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="2_1almj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bb06dslurhegc" path="res://Assets/Player/Arial_Sleep_Hover.png" id="4_30bvw"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="4_dv4uc"]
 [ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="4_f18p2"]
+[ext_resource type="Script" path="res://Scripts/Menu/HighscoreLabel.gd" id="5_sare4"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Button.gd" id="9_d0vov"]
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_gqfqk"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_k4lsl"]
@@ -24,6 +25,10 @@ font = ExtResource("4_dv4uc")
 font_size = 128
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yrjmh"]
+font_size = 48
+font_color = Color(0.882353, 0.690196, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfnn8"]
 
@@ -114,6 +119,15 @@ text = "Ariel's
 Nightmare"
 label_settings = SubResource("LabelSettings_28lkd")
 horizontal_alignment = 1
+
+[node name="HighscoreLabel" type="Label" parent="."]
+offset_left = 864.0
+offset_top = 324.0
+offset_right = 948.0
+offset_bottom = 365.0
+label_settings = SubResource("LabelSettings_yrjmh")
+horizontal_alignment = 1
+script = ExtResource("5_sare4")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 576.0

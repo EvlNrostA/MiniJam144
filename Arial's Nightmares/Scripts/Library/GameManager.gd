@@ -91,6 +91,12 @@ var is_mobile = OS.has_feature("mobile") or \
 				OS.has_feature("web_android") or \
 				OS.has_feature("web_ios")
 
+func start():
+	UI.points_set(0)
+	
+	
+	next_level()
+
 func start_level(selected_difficulty):
 	UI.points_set(0)
 	UI.visible = true

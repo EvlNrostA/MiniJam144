@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cjudxdxss06qe"]
+[gd_scene load_steps=19 format=3 uid="uid://cjudxdxss06qe"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_6ms43"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="2_dxr5k"]
 [ext_resource type="Script" path="res://Scripts/Menu/PointsLabel.gd" id="3_benae"]
 [ext_resource type="Texture2D" uid="uid://dqugsctmmpo4h" path="res://Assets/Player/Arial_Sleep.png" id="4_1liwx"]
+[ext_resource type="Script" path="res://Scripts/Menu/HighscoreLabel.gd" id="4_jnp2g"]
 [ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="5_r4fn4"]
 [ext_resource type="Texture2D" uid="uid://bb06dslurhegc" path="res://Assets/Player/Arial_Sleep_Hover.png" id="6_xaxwr"]
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="7_7xcee"]
@@ -31,6 +32,10 @@ font_size = 64
 font_color = Color(0.882353, 0.690196, 0, 1)
 shadow_color = Color(0, 0, 0, 0.568627)
 shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ei14"]
+font_size = 48
+font_color = Color(0.882353, 0.690196, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lsukk"]
 
@@ -110,6 +115,15 @@ offset_bottom = 374.0
 label_settings = SubResource("LabelSettings_f3xrc")
 horizontal_alignment = 1
 script = ExtResource("3_benae")
+
+[node name="HighscoreLabel" type="Label" parent="."]
+offset_left = 864.0
+offset_top = 324.0
+offset_right = 904.0
+offset_bottom = 362.0
+label_settings = SubResource("LabelSettings_4ei14")
+horizontal_alignment = 1
+script = ExtResource("4_jnp2g")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 576.0
