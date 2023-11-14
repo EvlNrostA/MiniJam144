@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://og3id2dn88jb"]
+[gd_scene load_steps=18 format=3 uid="uid://og3id2dn88jb"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_4tedg"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="2_l2evf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://biu2qnj4qixse" path="res://Assets/Player/Arial_WakeUp_Hover.png" id="8_j4qvb"]
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_80su8"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_h2ws0"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Button.gd" id="10_j4vvq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_enoik"]
 line_spacing = 0.0
@@ -147,6 +148,7 @@ bitmask = ExtResource("9_80su8")
 shape = SubResource("RectangleShape2D_gss25")
 shape_visible = false
 visibility_mode = 1
+script = ExtResource("10_j4vvq")
 
 [node name="StartAnimation" type="Sprite2D" parent="."]
 modulate = Color(0.639216, 0.635294, 0.603922, 0.584314)

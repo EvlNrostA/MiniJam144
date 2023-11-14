@@ -98,6 +98,7 @@ func start_level(selected_difficulty):
 	copy_array(levels_left, levels[difficulties[selected_difficulty]])
 	var scene_path = get_tree().get_current_scene().scene_file_path
 	var level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
+	
 	#GManager.is_mobile = true
 	prepare_level(level_settings)
 
@@ -163,3 +164,7 @@ func get_shown_window_rect() -> Rect2:
 
 func gcd(a: int, b: int) -> int:
 	return a if b == 0.0 else gcd(b, a % b)
+	
+func vibrate():
+	Input.start_joy_vibration(1, 0.2, 0.2, 0.2)
+	Input.vibrate_handheld(40)

@@ -154,13 +154,18 @@ func check_arrows(direction):
 		area.pressed = true
 		
 func count_miss():
-	fail_count -= 1
+	if fail_count > 0:
+		fail_count -= 1
 	
-	player.play_sound(player.death_sound)
-	heart_animation_player.play("Beat")
+		player.play_sound(player.death_sound)
+		heart_animation_player.play("Beat")
 	
-	if fail_count == 0:
-		GManager.game_over()
+		if fail_count == 0:
+			game_over()
+		
+func game_over():
+	await player.death_animation()
+	GManager.game_over()
 
 func score(area):
 	var area_size = area.sprite.get_rect().size.y

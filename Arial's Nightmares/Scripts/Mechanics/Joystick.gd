@@ -42,3 +42,7 @@ func reset_input():
 	Input.action_release("Down")
 	Input.action_release("Left")
 	Input.action_release("Up")
+
+
+func _on_pressed():
+	GManager.vibrate()

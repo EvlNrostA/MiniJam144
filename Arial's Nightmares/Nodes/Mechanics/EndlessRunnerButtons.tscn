@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmfm74505gv6i"]
+[gd_scene load_steps=6 format=3 uid="uid://cmfm74505gv6i"]
 
 [ext_resource type="Texture2D" uid="uid://frdkp0pggvih" path="res://Assets/Mechanics/up.png" id="1_fmhuh"]
 [ext_resource type="BitMap" uid="uid://ch55way23u4te" path="res://Assets/Mechanics/upBitmask.png" id="2_ree5k"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Button.gd" id="3_dpxnq"]
 [ext_resource type="Texture2D" uid="uid://0su8gflp2xt2" path="res://Assets/Mechanics/right.png" id="7_2hcjm"]
 [ext_resource type="BitMap" uid="uid://wv11qjavc6dr" path="res://Assets/Mechanics/rightBitmask.png" id="8_781td"]
 
@@ -26,6 +27,7 @@ texture_normal = ExtResource("1_fmhuh")
 bitmask = ExtResource("2_ree5k")
 action = "Up"
 visibility_mode = 1
+script = ExtResource("3_dpxnq")
 
 [node name="RightLayout" type="Control" parent="."]
 layout_mode = 3
@@ -49,3 +51,4 @@ texture_normal = ExtResource("7_2hcjm")
 bitmask = ExtResource("8_781td")
 action = "Right"
 visibility_mode = 1
+script = ExtResource("3_dpxnq")

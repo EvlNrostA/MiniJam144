@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brc1mptaep23d"]
+[gd_scene load_steps=16 format=3 uid="uid://brc1mptaep23d"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_80c1p"]
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="2_1almj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bb06dslurhegc" path="res://Assets/Player/Arial_Sleep_Hover.png" id="4_30bvw"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="4_dv4uc"]
 [ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="4_f18p2"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Button.gd" id="9_d0vov"]
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_gqfqk"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_k4lsl"]
 
@@ -135,6 +136,7 @@ bitmask = ExtResource("9_gqfqk")
 shape = SubResource("RectangleShape2D_nfnn8")
 shape_visible = false
 visibility_mode = 1
+script = ExtResource("9_d0vov")
 
 [node name="StartAnimation" type="Sprite2D" parent="."]
 modulate = Color(0.639216, 0.635294, 0.603922, 0.584314)

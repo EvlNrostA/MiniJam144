@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://65s80w7ritgt"]
+[gd_scene load_steps=10 format=3 uid="uid://65s80w7ritgt"]
 
 [ext_resource type="Texture2D" uid="uid://frdkp0pggvih" path="res://Assets/Mechanics/up.png" id="1_csuhq"]
 [ext_resource type="BitMap" uid="uid://ch55way23u4te" path="res://Assets/Mechanics/upBitmask.png" id="2_4n0i0"]
 [ext_resource type="Texture2D" uid="uid://dwo4llxmmvtkn" path="res://Assets/Mechanics/left.png" id="3_1rbbi"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Button.gd" id="3_44i8h"]
 [ext_resource type="BitMap" uid="uid://ermpvym7lkrs" path="res://Assets/Mechanics/leftBitmask.png" id="4_6kmv7"]
 [ext_resource type="Texture2D" uid="uid://d017wyqelrtl3" path="res://Assets/Mechanics/down.png" id="5_wjpt2"]
 [ext_resource type="BitMap" uid="uid://cuwp4e7aauhil" path="res://Assets/Mechanics/downBitmask.png" id="6_6wh0e"]
@@ -33,6 +34,7 @@ texture_normal = ExtResource("1_csuhq")
 bitmask = ExtResource("2_4n0i0")
 action = "Up"
 visibility_mode = 1
+script = ExtResource("3_44i8h")
 
 [node name="RightButton" type="TouchScreenButton" parent="RightLayout"]
 modulate = Color(1, 1, 1, 0.564706)
@@ -42,6 +44,7 @@ texture_normal = ExtResource("7_c14d8")
 bitmask = ExtResource("8_xorld")
 action = "Right"
 visibility_mode = 1
+script = ExtResource("3_44i8h")
 
 [node name="LeftLayout" type="Control" parent="."]
 layout_mode = 3
@@ -63,6 +66,7 @@ texture_normal = ExtResource("3_1rbbi")
 bitmask = ExtResource("4_6kmv7")
 action = "Left"
 visibility_mode = 1
+script = ExtResource("3_44i8h")
 
 [node name="DownButton" type="TouchScreenButton" parent="LeftLayout"]
 modulate = Color(1, 1, 1, 0.564706)
@@ -72,3 +76,4 @@ texture_normal = ExtResource("5_wjpt2")
 bitmask = ExtResource("6_6wh0e")
 action = "Down"
 visibility_mode = 1
+script = ExtResource("3_44i8h")

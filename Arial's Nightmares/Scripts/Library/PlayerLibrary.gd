@@ -26,7 +26,7 @@ func death_animation():
 	shadow.hide()
 	play_sound(death_sound)
 	animationPlayer.play("Fall")
-	#await animationPlayer.animation_finished
+	await animationPlayer.animation_finished
 
 func run_animation(given_velocity):
 	if given_velocity != Vector2.ZERO:
@@ -57,7 +57,7 @@ func PlatformMove2D(delta) -> void:
 		velocity.y += gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("Space") and is_on_floor():
+	if Input.is_action_pressed("Space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
