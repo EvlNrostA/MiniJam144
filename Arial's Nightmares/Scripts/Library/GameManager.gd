@@ -37,10 +37,10 @@ var levels = [
 		"scene": yam_level,
 		"difficulty": "easy"
 		},
-		{
-		"scene": nir_level,
-		"difficulty": "easy"
-		}
+		#{
+		#"scene": nir_level,
+		#"difficulty": "easy"
+		#}
 	],
 	[
 		{
@@ -60,10 +60,10 @@ var levels = [
 		"scene": yam_level,
 		"difficulty": "normal"
 		},
-		{
-		"scene": nir_level,
-		"difficulty": "normal"
-		}
+		#{
+		#"scene": nir_level,
+		#"difficulty": "normal"
+		#}
 	],
 	[
 		{
@@ -83,10 +83,10 @@ var levels = [
 		"scene": yam_level,
 		"difficulty": "hard"
 		},
-		{
-		"scene": nir_level,
-		"difficulty": "hard"
-		}
+		#{
+		#"scene": nir_level,
+		#"difficulty": "hard"
+		#}
 	],
 	[
 		{
@@ -178,15 +178,6 @@ func add_input(action, pressed):
 	Input.parse_input_event(input)
 	
 func get_shown_window_rect() -> Rect2:
-	#var window_size = DisplayServer.window_get_size()
-	
-	#var default_gcd = gcd(DEFAULT_WINDOW_SIZE.x, DEFAULT_WINDOW_SIZE.y)
-	#var current_gcd = gcd(window_size.x, window_size.y)
-	#var shrunk_window_size = (window_size / current_gcd) * default_gcd
-	
-	#var start_pos = (DEFAULT_WINDOW_SIZE - shrunk_window_size) / 2
-	#var shown_window_rect = Rect2(start_pos, start_pos + shrunk_window_size)
-
 	var expansion = (Vector2i(get_viewport_rect().size) - DEFAULT_WINDOW_SIZE) / 2
 	var shown_window_rect = Rect2(-expansion, DEFAULT_WINDOW_SIZE + expansion)
 	
