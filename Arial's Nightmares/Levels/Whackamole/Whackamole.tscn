@@ -139,20 +139,20 @@ position = Vector2(448, 432)
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(376, 336)
+position = Vector2(288, 336)
 shape = SubResource("RectangleShape2D_40ig5")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(776, 336)
+position = Vector2(864, 336)
 shape = SubResource("RectangleShape2D_rvsnh")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 136)
+position = Vector2(576, 100)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_60ceq")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 536)
+position = Vector2(576, 580)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_dwswl")
 

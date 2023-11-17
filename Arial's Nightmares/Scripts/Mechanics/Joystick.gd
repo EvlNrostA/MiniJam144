@@ -1,13 +1,13 @@
 extends TouchScreenButton
 
-const LIMIT_MULTIPLIER = 0.1667
+const LIMIT_MULTIPLIER = 0.5
 const START_POS = Vector2(6, 6)
 const MIN_OFFSET = 0.2
 
 @onready var input = $InputButton
 @onready var size = Vector2(bitmask.get_size())
 @onready var max_distance = size / 2
-@onready var max_length = max_distance.x
+@onready var max_length = max_distance.x * LIMIT_MULTIPLIER
 
 func _process(_delta):
 	if visible and GManager.is_mobile:

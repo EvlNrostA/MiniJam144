@@ -123,7 +123,7 @@ func start():
 	next_level()
 
 func prepare_level(level_settings):
-	#GManager.is_mobile = true
+	GManager.is_mobile = true
 	randomize()
 	
 	levels_left.erase(level_settings)
