@@ -10,6 +10,7 @@ var bullet_hell = "res://Levels/BulletHell/BulletHell.tscn"
 var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
 var yam_level = "res://Levels/EndlessRunner/EndlessRunner.tscn"
+var nir_level = "res://Levels/nirodef/nir_level.tscn"
 
 var difficulties = {
 	"easy": 0,
@@ -35,6 +36,10 @@ var levels = [
 		{
 		"scene": yam_level,
 		"difficulty": "easy"
+		},
+		{
+		"scene": nir_level,
+		"difficulty": "easy"
 		}
 	],
 	[
@@ -54,6 +59,10 @@ var levels = [
 		{
 		"scene": yam_level,
 		"difficulty": "normal"
+		},
+		{
+		"scene": nir_level,
+		"difficulty": "normal"
 		}
 	],
 	[
@@ -72,6 +81,10 @@ var levels = [
 		},
 		{
 		"scene": yam_level,
+		"difficulty": "hard"
+		},
+		{
+		"scene": nir_level,
 		"difficulty": "hard"
 		}
 	],
