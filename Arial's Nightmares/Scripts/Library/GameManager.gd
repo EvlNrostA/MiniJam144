@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 const DEFAULT_WINDOW_SIZE = Vector2i(1152, 648)
 
@@ -91,25 +91,21 @@ var levels = [
 	[
 		{
 		"scene": win_menu,
-		"custom_music": true
+		"custom_music": true,
+		"playing": false
 		}
 	]
 ]
 
+var playing : bool = false
 var current_batch_index : int = 0
 var levels_left : Array
 var difficulty
-var global_music
 var is_mobile = OS.has_feature("mobile") or \
 				OS.has_feature("web_android") or \
 				OS.has_feature("web_ios")
 
-func start():
-	UI.points_set(0)
-	
-	
-	next_level()
-
+# DEBUGGING FUNCTION
 func start_level(selected_difficulty):
 	UI.points_set(0)
 	UI.visible = true
@@ -118,10 +114,16 @@ func start_level(selected_difficulty):
 	var scene_path = get_tree().get_current_scene().scene_file_path
 	var level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
 	
-	#GManager.is_mobile = true
 	prepare_level(level_settings)
 
+func start():
+	playing = true
+	UI.points_set(0)
+	
+	next_level()
+
 func prepare_level(level_settings):
+	#GManager.is_mobile = true
 	randomize()
 	
 	levels_left.erase(level_settings)
@@ -131,6 +133,9 @@ func prepare_level(level_settings):
 	
 	if Audio.stream != Audio.level_music and not level_settings.has("custom_music"):
 		Audio.play_music(Audio.level_music)
+		
+	if level_settings.has("playing"):
+		playing = level_settings.playing
 	
 func next_level():
 	if levels_left.is_empty():
@@ -140,18 +145,19 @@ func next_level():
 	var next_level_settings = levels_left.pick_random()
 	
 	prepare_level(next_level_settings)
-	change_scene(next_level_settings.scene, true)
+	change_scene(next_level_settings.scene)
 
 func game_over():
-	change_scene(game_over_menu, false)
+	playing = false
+	change_scene(game_over_menu)
 	
-func change_scene(scene, is_level):
+func change_scene(scene):
 	UI.level_timer.stop()
 	
 	await Fade.fade_in()
 	get_tree().change_scene_to_file(scene)
 	
-	UI.visible = is_level
+	UI.visible = playing
 	await Fade.fade_out()
 	
 func restart_levels():
@@ -172,14 +178,19 @@ func add_input(action, pressed):
 	Input.parse_input_event(input)
 	
 func get_shown_window_rect() -> Rect2:
-	var window_size = DisplayServer.window_get_size()
-
-	var default_gcd = gcd(DEFAULT_WINDOW_SIZE.x, DEFAULT_WINDOW_SIZE.y)
-	var current_gcd = gcd(window_size.x, window_size.y)
-	var shrunk_window_size = (window_size / current_gcd) * default_gcd
+	#var window_size = DisplayServer.window_get_size()
 	
-	var start_pos = (DEFAULT_WINDOW_SIZE - shrunk_window_size) / 2
-	return Rect2(start_pos, start_pos + shrunk_window_size)
+	#var default_gcd = gcd(DEFAULT_WINDOW_SIZE.x, DEFAULT_WINDOW_SIZE.y)
+	#var current_gcd = gcd(window_size.x, window_size.y)
+	#var shrunk_window_size = (window_size / current_gcd) * default_gcd
+	
+	#var start_pos = (DEFAULT_WINDOW_SIZE - shrunk_window_size) / 2
+	#var shown_window_rect = Rect2(start_pos, start_pos + shrunk_window_size)
+
+	var expansion = (Vector2i(get_viewport_rect().size) - DEFAULT_WINDOW_SIZE) / 2
+	var shown_window_rect = Rect2(-expansion, DEFAULT_WINDOW_SIZE + expansion)
+	
+	return shown_window_rect
 
 func gcd(a: int, b: int) -> int:
 	return a if b == 0.0 else gcd(b, a % b)
