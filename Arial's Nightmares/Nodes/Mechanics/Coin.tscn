@@ -37,10 +37,10 @@ script = ExtResource("1_80ubp")
 
 [node name="Pizza" type="Sprite2D" parent="."]
 modulate = Color(1, 0.572549, 0.419608, 1)
-scale = Vector2(1.03333, 1.03333)
 texture = ExtResource("1_jjahr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_q5p1d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

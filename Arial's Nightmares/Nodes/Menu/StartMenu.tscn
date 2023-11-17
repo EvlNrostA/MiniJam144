@@ -4,20 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="2_1almj"]
 [ext_resource type="Texture2D" uid="uid://dqugsctmmpo4h" path="res://Assets/Player/Arial_Sleep.png" id="3_f280y"]
 [ext_resource type="Texture2D" uid="uid://dshf4t57oydcb" path="res://Assets/Mechanics/Hand.png" id="3_r6glw"]
-[ext_resource type="Texture2D" uid="uid://bb06dslurhegc" path="res://Assets/Player/Arial_Sleep_Hover.png" id="4_30bvw"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="4_dv4uc"]
 [ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="4_f18p2"]
 [ext_resource type="Script" path="res://Scripts/Menu/HighscoreLabel.gd" id="5_sare4"]
+[ext_resource type="Texture2D" uid="uid://dgto6f8ou4wok" path="res://Assets/Player/Arial_Sleep_Hover .png" id="8_xmyig"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Button.gd" id="9_d0vov"]
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_gqfqk"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_k4lsl"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_3khs1"]
-line_spacing = 0.0
-font = ExtResource("4_dv4uc")
-font_size = 32
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_28lkd"]
 line_spacing = 0.0
@@ -32,6 +25,13 @@ font_color = Color(0.882353, 0.690196, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfnn8"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_3khs1"]
+line_spacing = 0.0
+font = ExtResource("4_dv4uc")
+font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_2vk8y"]
 resource_name = "Start"
 length = 1.2
@@ -39,7 +39,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StartAnimation:frame")
+tracks/0/path = NodePath("CenterLayout/StartAnimation:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,39 +63,103 @@ offset_right = 1536.0
 offset_bottom = 648.0
 color = Color(0.133333, 0.121569, 0.176471, 1)
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="CenterLayout" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 556.0
+offset_top = 304.0
+offset_right = 596.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CanvasGroup" type="CanvasGroup" parent="CenterLayout"]
 self_modulate = Color(1, 1, 1, 0.0666667)
 
-[node name="Hand" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(396, 548)
+[node name="LeftHand" type="Sprite2D" parent="CenterLayout/CanvasGroup"]
+position = Vector2(-156, 224)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("3_r6glw")
 
-[node name="Hand2" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(756, 548)
+[node name="RightHand" type="Sprite2D" parent="CenterLayout/CanvasGroup"]
+position = Vector2(176, 224)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("3_r6glw")
 flip_h = true
 
-[node name="Father" type="Sprite2D" parent="CanvasGroup"]
-position = Vector2(576, 368)
+[node name="Father" type="Sprite2D" parent="CenterLayout/CanvasGroup"]
+position = Vector2(20, 64)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("2_1almj")
 
-[node name="Staff" type="CanvasLayer" parent="."]
+[node name="NameLabel" type="Label" parent="CenterLayout"]
+layout_mode = 0
+offset_left = -316.0
+offset_top = -288.0
+offset_right = 397.0
+offset_bottom = -84.0
+text = "Ariel's
+Nightmare"
+label_settings = SubResource("LabelSettings_28lkd")
+horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="Staff"]
+[node name="HighscoreLabel" type="Label" parent="CenterLayout"]
+layout_mode = 0
+offset_left = 288.0
+offset_right = 372.0
+offset_bottom = 41.0
+label_settings = SubResource("LabelSettings_yrjmh")
+horizontal_alignment = 1
+script = ExtResource("5_sare4")
+
+[node name="TextureButton" type="TextureButton" parent="CenterLayout"]
+layout_mode = 0
+offset_left = -108.0
+offset_right = 148.0
+offset_bottom = 256.0
+scale = Vector2(1.6, 1.6)
+pivot_offset = Vector2(128, 128)
+texture_normal = ExtResource("3_f280y")
+texture_pressed = ExtResource("4_f18p2")
+texture_hover = ExtResource("8_xmyig")
+texture_click_mask = ExtResource("9_gqfqk")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CenterLayout"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-142, 39)
+scale = Vector2(2, 2)
+bitmask = ExtResource("9_gqfqk")
+shape = SubResource("RectangleShape2D_nfnn8")
+shape_visible = false
+visibility_mode = 1
+script = ExtResource("9_d0vov")
+
+[node name="StartAnimation" type="Sprite2D" parent="CenterLayout"]
+modulate = Color(0.639216, 0.635294, 0.603922, 0.584314)
+position = Vector2(16, 224)
+texture = ExtResource("10_k4lsl")
+hframes = 4
+vframes = 4
+
+[node name="LeftLayout" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
+offset_top = 608.0
 offset_right = 40.0
+offset_bottom = 648.0
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="StaffLabel" type="Label" parent="Staff/Control"]
+[node name="StaffLabel" type="Label" parent="LeftLayout"]
 modulate = Color(1, 1, 1, 0.262745)
 layout_mode = 0
 offset_left = 20.0
@@ -110,58 +174,10 @@ Moshe Mina
 "
 label_settings = SubResource("LabelSettings_3khs1")
 
-[node name="NameLabel" type="Label" parent="."]
-offset_left = 232.0
-offset_top = 56.0
-offset_right = 945.0
-offset_bottom = 216.0
-text = "Ariel's
-Nightmare"
-label_settings = SubResource("LabelSettings_28lkd")
-horizontal_alignment = 1
-
-[node name="HighscoreLabel" type="Label" parent="."]
-offset_left = 864.0
-offset_top = 324.0
-offset_right = 948.0
-offset_bottom = 365.0
-label_settings = SubResource("LabelSettings_yrjmh")
-horizontal_alignment = 1
-script = ExtResource("5_sare4")
-
-[node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 576.0
-offset_top = 524.0
-offset_right = 704.0
-offset_bottom = 652.0
-scale = Vector2(2, 2)
-pivot_offset = Vector2(128, 128)
-texture_normal = ExtResource("3_f280y")
-texture_pressed = ExtResource("4_f18p2")
-texture_hover = ExtResource("4_30bvw")
-texture_click_mask = ExtResource("9_gqfqk")
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(448, 396)
-scale = Vector2(2, 2)
-bitmask = ExtResource("9_gqfqk")
-shape = SubResource("RectangleShape2D_nfnn8")
-shape_visible = false
-visibility_mode = 1
-script = ExtResource("9_d0vov")
-
-[node name="StartAnimation" type="Sprite2D" parent="."]
-modulate = Color(0.639216, 0.635294, 0.603922, 0.584314)
-position = Vector2(576, 568)
-texture = ExtResource("10_k4lsl")
-hframes = 4
-vframes = 4
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Start"
 libraries = {
 "": SubResource("AnimationLibrary_2jrvt")
 }
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CenterLayout/TextureButton" to="." method="_on_button_pressed"]

@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var button = $TextureButton
-
 var delay_timer
 
 func _ready():
