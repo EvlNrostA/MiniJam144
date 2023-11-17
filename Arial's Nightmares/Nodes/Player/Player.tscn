@@ -192,3 +192,4 @@ parameters/Run/blend_position = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_hqaxm")
+bus = &"Sound Effects"

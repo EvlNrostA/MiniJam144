@@ -157,7 +157,6 @@ texture_click_mask = ExtResource("9_80su8")
 modulate = Color(1, 1, 1, 0)
 position = Vector2(448, 396)
 scale = Vector2(2, 2)
-texture_normal = ExtResource("6_h6pui")
 bitmask = ExtResource("9_80su8")
 shape = SubResource("RectangleShape2D_gss25")
 shape_visible = false

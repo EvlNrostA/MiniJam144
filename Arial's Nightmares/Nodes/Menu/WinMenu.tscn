@@ -146,7 +146,6 @@ texture = ExtResource("9_so80w")
 modulate = Color(1, 1, 1, 0)
 position = Vector2(448, 396)
 scale = Vector2(2, 2)
-texture_normal = ExtResource("4_1liwx")
 bitmask = ExtResource("7_7xcee")
 shape = SubResource("RectangleShape2D_lsukk")
 shape_visible = false
