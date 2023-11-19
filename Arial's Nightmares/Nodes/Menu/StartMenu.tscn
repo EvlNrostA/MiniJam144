@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="4_dv4uc"]
 [ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="4_f18p2"]
 [ext_resource type="Script" path="res://Scripts/Menu/HighscoreLabel.gd" id="5_sare4"]
-[ext_resource type="Texture2D" uid="uid://dgto6f8ou4wok" path="res://Assets/Player/Arial_Sleep_Hover .png" id="8_xmyig"]
+[ext_resource type="Texture2D" uid="uid://dgto6f8ou4wok" path="res://Assets/Player/Arial_Sleep_Hover.png" id="8_xmyig"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Button.gd" id="9_d0vov"]
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_gqfqk"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="10_k4lsl"]

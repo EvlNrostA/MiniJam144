@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://og3id2dn88jb"]
+[gd_scene load_steps=20 format=3 uid="uid://og3id2dn88jb"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/Menu.gd" id="1_4tedg"]
 [ext_resource type="FontFile" uid="uid://m0chc754s7es" path="res://Assets/Bitfantasy.ttf" id="2_l2evf"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b5vbhsfmc6h7b" path="res://Assets/Mechanics/Father.png" id="5_h72ox"]
 [ext_resource type="Script" path="res://Scripts/Menu/HighscoreLabel.gd" id="6_afxfr"]
 [ext_resource type="Texture2D" uid="uid://bqoiaawipbybf" path="res://Assets/Player/Arial_WakeUp.png" id="6_h6pui"]
-[ext_resource type="Texture2D" uid="uid://dbufa78dm4bty" path="res://Assets/Mechanics/Pizza.png" id="7_08cqq"]
 [ext_resource type="Texture2D" uid="uid://dowibwcsjxn7v" path="res://Assets/Player/Arial_WakeUp_Press.png" id="7_caokj"]
 [ext_resource type="Texture2D" uid="uid://biu2qnj4qixse" path="res://Assets/Player/Arial_WakeUp_Hover.png" id="8_j4qvb"]
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="9_80su8"]
@@ -106,6 +105,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("5_h72ox")
 
 [node name="NameLabel" type="Label" parent="CenterLayout"]
+layout_mode = 0
 offset_left = -556.0
 offset_top = -274.0
 offset_right = 596.0
@@ -115,6 +115,7 @@ label_settings = SubResource("LabelSettings_vxxkr")
 horizontal_alignment = 1
 
 [node name="HighscoreLabel" type="Label" parent="CenterLayout"]
+layout_mode = 0
 offset_left = 308.0
 offset_top = 20.0
 offset_right = 348.0
@@ -133,12 +134,6 @@ text = "Points: 20"
 label_settings = SubResource("LabelSettings_gggme")
 horizontal_alignment = 1
 script = ExtResource("3_e33by")
-
-[node name="Pizza" type="Sprite2D" parent="CenterLayout"]
-modulate = Color(1, 0.670588, 0.580392, 1)
-position = Vector2(340, 0)
-scale = Vector2(4, 4)
-texture = ExtResource("7_08cqq")
 
 [node name="TextureButton" type="TextureButton" parent="CenterLayout"]
 layout_mode = 0

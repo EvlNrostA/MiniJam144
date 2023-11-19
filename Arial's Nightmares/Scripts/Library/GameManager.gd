@@ -107,6 +107,7 @@ var is_mobile = OS.has_feature("mobile") or \
 
 # DEBUGGING FUNCTION
 func start_level(selected_difficulty):
+	playing = true
 	UI.points_set(0)
 	UI.visible = true
 	
@@ -117,10 +118,11 @@ func start_level(selected_difficulty):
 	prepare_level(level_settings)
 
 func start():
-	playing = true
-	UI.points_set(0)
+	if not Fade.fading():
+		playing = true
+		UI.points_set(0)
 	
-	next_level()
+		next_level()
 
 func prepare_level(level_settings):
 	GManager.is_mobile = true

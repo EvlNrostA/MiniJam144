@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqugsctmmpo4h" path="res://Assets/Player/Arial_Sleep.png" id="4_1liwx"]
 [ext_resource type="Script" path="res://Scripts/Menu/HighscoreLabel.gd" id="4_jnp2g"]
 [ext_resource type="Texture2D" uid="uid://djej555701urv" path="res://Assets/Player/Arial_Sleep_Press.png" id="5_r4fn4"]
-[ext_resource type="Texture2D" uid="uid://dgto6f8ou4wok" path="res://Assets/Player/Arial_Sleep_Hover .png" id="7_7l84w"]
+[ext_resource type="Texture2D" uid="uid://dgto6f8ou4wok" path="res://Assets/Player/Arial_Sleep_Hover.png" id="7_7l84w"]
 [ext_resource type="BitMap" uid="uid://dxxh31823lxy7" path="res://Assets/Menu/Arial_Sleep_bitmap.png" id="7_7xcee"]
 [ext_resource type="Texture2D" uid="uid://bsnry8ncm6wcg" path="res://Assets/Menu/Start_Animation.png" id="8_v0ay6"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Button.gd" id="9_r711s"]

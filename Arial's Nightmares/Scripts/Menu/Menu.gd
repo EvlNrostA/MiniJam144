@@ -4,15 +4,11 @@ var delay_timer
 
 func _ready():
 	Audio.play_music(Audio.menu_music)
-	GManager.restart_levels()
-
-func start():
-	if not Fade.fading():
-		GManager.start()
+	GManager.restart_levels()	
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("Space"):
-		start()
+		GManager.start()
 
 func _on_button_pressed():
-	start()
+	GManager.start()
