@@ -118,9 +118,9 @@ shape = SubResource("RectangleShape2D_dwswl")
 [node name="Coin" parent="." instance=ExtResource("6_ibjlh")]
 position = Vector2(960, 356)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="EndLine" type="Area2D" parent="."]
 
-[node name="Line2D" type="Line2D" parent="Area2D"]
+[node name="Line2D" type="Line2D" parent="EndLine"]
 modulate = Color(1, 1, 1, 0.54902)
 texture_repeat = 2
 position = Vector2(376, -29.7357)
@@ -131,6 +131,8 @@ width = 64.0
 texture = ExtResource("7_okmb1")
 texture_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndLine"]
 position = Vector2(96.125, 332.5)
 shape = SubResource("RectangleShape2D_mtkbs")
+
+[connection signal="body_entered" from="EndLine" to="." method="_on_end_line_body_entered"]

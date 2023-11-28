@@ -45,10 +45,11 @@ func _ready():
 func pickup_coin():
 	coin_taken = true
 	
-func won_game():
-	UI.points_add_time_left()
-	GManager.next_level()
-
+func _on_end_line_body_entered(body):
+	if coin_taken:
+		UI.points_add_time_left()
+		GManager.next_level()
+	
 func _on_level_timer_timeout():
 	player.lost = true
 	await player.death_animation()
