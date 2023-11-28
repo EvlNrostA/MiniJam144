@@ -1,22 +1,28 @@
 extends Node2D
 
+const PLAYER_SPEED = 1.5
+
 var difficulty_settings = {
 	"easy": {
-		"level_timer": 15,
-		"speed": 2.5,
+		"level_timer": 30,
+		"cameras": []
 	},
 	"normal": {
-		"level_timer": 20,
-		"speed": 2.5,
+		"level_timer": 30,
+		"cameras": []
 	},
 	"hard": {
-		"level_timer": 20,
-		"speed": 2.5,
+		"level_timer": 30,
+		"cameras": []
 	}
 }
 
 @onready var player = $Player
 @onready var joystick = $Joystick
+@onready var coin = $Coin
+
+@onready var coin_taken = false
+@onready var should_move = false
 
 var settings
 	
@@ -25,11 +31,19 @@ func _ready():
 		GManager.start_level("easy")
 
 	settings = difficulty_settings[GManager.difficulty]
-	player.speed = settings.speed
+	
+	player.speed = PLAYER_SPEED
+	coin.pickup_function = Callable(pickup_coin)
 
 	UI.set_timer(settings.level_timer, _on_level_timer_timeout)
+	
 	await GManager.show_tooltip()
+	
+	should_move = true
 	UI.start_timer()
+	
+func pickup_coin():
+	coin_taken = true
 	
 func won_game():
 	UI.points_add_time_left()

@@ -57,13 +57,12 @@ func spawn_noam_fogle():
 	var revealed_noam_fogle_count = noam_fogles.size() - hidden_noam_fogles.size()
 	
 	if not hidden_noam_fogles.is_empty() and revealed_noam_fogle_count < available_noam_fogles:
-		#print("revealed: ", revealed_noam_fogle_count)
 		var noam_fogle = hidden_noam_fogles.pick_random()
 		noam_fogle.hide_and_reveal(GManager.randf_list_range(settings.reveal_delay),
 								   GManager.randf_list_range(settings.hide_delay))
 	
 	elif revealed_noam_fogle_count > available_noam_fogles:
-		print(revealed_noam_fogle_count, " more than ", noam_fogle_count)
+		pass
 	
 func won_game():
 	UI.points_add_time_left(settings.score_multiplier)

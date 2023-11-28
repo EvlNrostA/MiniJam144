@@ -28,5 +28,7 @@ func _on_body_entered(_body):
 		await animation_player.animation_finished
 		visible = false
 		
-		await pickup_function.call()
+		if pickup_function:
+			await pickup_function.call()
+			
 		queue_free()

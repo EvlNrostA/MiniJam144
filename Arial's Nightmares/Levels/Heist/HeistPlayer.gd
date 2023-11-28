@@ -5,4 +5,4 @@ extends Player_library
 	
 func _process(delta):
 	if not lost:
-		Move2D(delta)
+		Move2D(delta, manager.should_move)

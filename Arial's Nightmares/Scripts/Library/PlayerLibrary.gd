@@ -27,12 +27,10 @@ func death_animation():
 	animationPlayer.play("Fall")
 	await animationPlayer.animation_finished
 
-func Move2D(delta) -> void:
+func Move2D(delta, should_move=true) -> void:
 	vel = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
-		Input.get_action_strength("Down") - Input.get_action_strength("Up"))
-	
-	move_and_collide(vel * delta * speed * 100)
-	
+				  Input.get_action_strength("Down") - Input.get_action_strength("Up"))
+
 	if vel != Vector2.ZERO:
 		animationPlayer.play("Run_Right")
 		
@@ -45,8 +43,13 @@ func Move2D(delta) -> void:
 		sprite.flip_h = false
 	elif vel.x <= -0.1:
 		sprite.flip_h = true
+		
+	if not should_move:
+		vel = Vector2.ZERO
+		
+	move_and_collide(vel * delta * speed * 100)
 
-func PlatformMove2D(delta) -> void:
+func PlatformMove2D(delta, should_move=true) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -65,7 +68,7 @@ func PlatformMove2D(delta) -> void:
 	
 	move_and_slide()
 
-func Move2DRight(delta, should_move):
+func Move2DRight(delta, should_move=true):
 	if is_on_floor():
 		var xvelocity = -10000 * delta
 	

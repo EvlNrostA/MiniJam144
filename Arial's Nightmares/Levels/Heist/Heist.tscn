@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjyegd3qakfcc"]
+[gd_scene load_steps=15 format=3 uid="uid://cjyegd3qakfcc"]
 
 [ext_resource type="Script" path="res://Levels/Heist/StateManager.gd" id="1_mjklp"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_j61o6"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="3_mygbg"]
 [ext_resource type="Script" path="res://Levels/Heist/HeistPlayer.gd" id="4_oddor"]
 [ext_resource type="PackedScene" uid="uid://c2xl7q7iaufej" path="res://Nodes/Mechanics/Joystick.tscn" id="5_byup1"]
+[ext_resource type="PackedScene" uid="uid://dkl762skexmar" path="res://Nodes/Mechanics/Coin.tscn" id="6_ibjlh"]
+[ext_resource type="Texture2D" uid="uid://u1xk7eglcfok" path="res://Assets/Environment/Line.png" id="7_okmb1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vphrw"]
 texture = ExtResource("2_j61o6")
@@ -74,6 +76,9 @@ size = Vector2(22.0006, 1168)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwswl"]
 size = Vector2(22.0006, 1168)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtkbs"]
+size = Vector2(32.25, 665)
+
 [node name="Heist" type="Node2D"]
 script = ExtResource("1_mjklp")
 
@@ -84,7 +89,7 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 1, 65536, 65536, 1, 131072, 65536
 
 [node name="Player" parent="." instance=ExtResource("3_mygbg")]
 z_index = 1
-position = Vector2(576, 336)
+position = Vector2(192, 336)
 script = ExtResource("4_oddor")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -109,3 +114,23 @@ rotation = 1.57079
 shape = SubResource("RectangleShape2D_dwswl")
 
 [node name="Joystick" parent="." instance=ExtResource("5_byup1")]
+
+[node name="Coin" parent="." instance=ExtResource("6_ibjlh")]
+position = Vector2(960, 356)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Area2D"]
+modulate = Color(1, 1, 1, 0.54902)
+texture_repeat = 2
+position = Vector2(376, -29.7357)
+rotation = 1.5708
+scale = Vector2(0.626423, 1)
+points = PackedVector2Array(0, 280, 1196.85, 280)
+width = 64.0
+texture = ExtResource("7_okmb1")
+texture_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(96.125, 332.5)
+shape = SubResource("RectangleShape2D_mtkbs")

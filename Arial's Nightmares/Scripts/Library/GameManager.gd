@@ -145,7 +145,7 @@ func start():
 		next_level()
 
 func prepare_level():
-	GManager.is_mobile = true
+	#GManager.is_mobile = true
 	randomize()
 	
 	levels_left.erase(level_settings)
@@ -176,7 +176,6 @@ func next_level():
 	
 func show_mobile():
 	var mobile_nodes = get_tree().get_nodes_in_group("Mobile")
-	print(mobile_nodes)
 	for node in mobile_nodes:
 		node.visible = is_mobile
 
