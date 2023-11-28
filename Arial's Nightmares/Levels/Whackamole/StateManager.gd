@@ -45,8 +45,12 @@ func _ready():
 	settings = difficulty_settings[GManager.difficulty]
 	noam_fogle_count = settings.count
 	player.speed = settings.speed
+	
+	UI.set_timer(settings.level_timer, _on_level_timer_timeout)
+	
+	await GManager.show_tooltip()
 
-	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
+	UI.start_timer()
 
 func _process(_delta):
 	if UI.timer_running():

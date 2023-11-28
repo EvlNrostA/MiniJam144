@@ -105,22 +105,25 @@ func _ready():
 	
 	Audio.stream = load(settings.song_path)
 	var audio_length = Audio.stream.get_length()
-	UI.set_time(audio_length)
+	UI.set_timer(audio_length, _on_level_timer_timeout)
 	
 	beat_per_sec = Audio.stream.get_bpm() / MIN_TO_SEC
+	
 	var arrow_offset = beat_per_sec * ARROW_DELAY * settings.speed
 	for arrow in arrow_positions.values():
 		arrow.position.y = pressing_bar.position.y - arrow_offset
 		
-	bpm_timer.start(beat_per_sec)
-	
 	var audio_delay = AudioServer.get_time_to_next_mix() + AudioServer.get_output_latency()
 	arrow_time_delay = ARROW_DELAY + audio_delay
+	
+	await GManager.show_tooltip()
+		
+	bpm_timer.start(beat_per_sec)
 	delay_timer.start(arrow_time_delay)
 	await delay_timer.timeout
 	
 	Audio.play()
-	UI.start_timer(audio_length, _on_level_timer_timeout)
+	UI.start_timer()
 
 func _process(_delta):
 	heart_label.text = str(fail_count)

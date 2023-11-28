@@ -30,7 +30,7 @@ func _ready():
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
 
-	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
+	UI.set_and_start_timer(settings.level_timer, _on_level_timer_timeout)
 	
 func won_game():
 	UI.points_add_time_left(settings.score_multiplier)

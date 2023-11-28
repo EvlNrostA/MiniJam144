@@ -54,8 +54,15 @@ func _ready():
 	var clouds = get_tree().get_nodes_in_group("Clouds")
 	for cloud in clouds:
 		cloud.start()
+		
+	UI.set_timer(settings.level_timer, _on_level_timer_timeout)
+		
+	await GManager.show_tooltip()
 	
-	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
+	#enable player movement forward
+	#enable player pushback
+	
+	UI.start_timer()
 	start_coin_timer()
 	start_tiles()
 

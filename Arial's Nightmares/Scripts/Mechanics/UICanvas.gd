@@ -1,31 +1,48 @@
 extends CanvasLayer
 
-var highscore_file_path = "user://highscore.save"
+const HIGHSCORE_FILE_PATH = "user://highscore.save"
 
 const POINT_ADD_XOFFSET = 100
 const POINT_ADD_YOFFSET = 70
 const POINT_ADD_SIZE = 32
 const POINT_ADD_COLORHEX = 0xfed447ff
 
-@onready var timer_label = $Layout/TimerLabel
-@onready var level_timer = $Layout/Timer
+const TOOLTIP_OFFSET = Vector2(144, 144)
+const TOOLTIP_FADEIN_TIME = 0.3
+const TOOLTIP_FADEOUT_TIME = 0.2
+const TOOLTIP_WAIT_TIME = 3
 
-@onready var point_label = $Layout/PointLabel
-@onready var floating_text = $Layout/FloatingText
+@onready var timer_label = $RightLayout/TimerPanel/TimerLabel
+@onready var level_timer = $Timer
+
+@onready var point_label = $RightLayout/PointPanel/PointLabel
+@onready var floating_text = $RightLayout/FloatingText
+
+@onready var tooltip_panel = $LeftLayout/TooltipPanel
+@onready var tooltip_sprite = $LeftLayout/TooltipPanel/Sprite2D
+@onready var tooltip_timer = $LeftLayout/TooltipPanel/Timer
 
 var points : int = 0
 var highscore : int = 0
+var tween
 
 func _ready():
 	visible = false
-	pass
 	
 func timer_running() -> bool:
 	return UI.level_timer.time_left > 0
 
-func start_timer(time, function):
+func set_timer(time, function):
 	level_timer.timeout.connect(function)
-	level_timer.start(time)
+	level_timer.wait_time = time
+	set_time(time)
+	
+func start_timer():
+	level_timer.start()
+
+func set_and_start_timer(time, function):
+	set_timer(time, function)
+	start_timer()
 	
 func set_time(time):
 	timer_label.text = str(round(time))
@@ -41,11 +58,10 @@ func points_set(new_points):
 	set_highscore()
 
 func set_highscore():
-	if FileAccess.file_exists(highscore_file_path):
-		var highscore_file = FileAccess.open(highscore_file_path, FileAccess.READ_WRITE)
+	if FileAccess.file_exists(HIGHSCORE_FILE_PATH):
+		var highscore_file = FileAccess.open(HIGHSCORE_FILE_PATH, FileAccess.READ_WRITE)
 
-		var current_highscore = int(highscore_file.get_as_text())
-		if current_highscore < points:
+		if int(highscore_file.get_as_text()) < points:
 			highscore_file.store_string(str(points))
 	
 		highscore_file.close()
@@ -54,8 +70,8 @@ func set_highscore():
 		highscore = points
 	
 func get_highscore() -> int:
-	if FileAccess.file_exists(highscore_file_path) and highscore == 0:
-		return int(FileAccess.get_file_as_string(highscore_file_path))
+	if FileAccess.file_exists(HIGHSCORE_FILE_PATH):
+		return int(FileAccess.get_file_as_string(HIGHSCORE_FILE_PATH))
 		
 	else:
 		return highscore
@@ -74,3 +90,23 @@ func points_add(new_points : int):
 
 func points_add_time_left(multiplier=1):
 	points_add(round(level_timer.time_left) * multiplier)
+
+func show_tooltip(tooltip_scene):
+	var tooltip_foreground = load(tooltip_scene).instantiate()
+	tooltip_panel.add_child(tooltip_foreground)
+	
+	var window_position = GManager.get_shown_window_rect().position
+	var texture_xsize = tooltip_sprite.texture.get_size().x * tooltip_sprite.scale.x
+	
+	var start_position = window_position + Vector2(-texture_xsize, TOOLTIP_OFFSET.y)
+	var end_position = window_position + TOOLTIP_OFFSET
+	
+	tooltip_panel.position = start_position
+	tooltip_panel.show()
+	
+	await GManager.tween_and_wait(tooltip_panel, "position:x", end_position.x, TOOLTIP_FADEIN_TIME, tooltip_timer)
+	tooltip_timer.start(TOOLTIP_WAIT_TIME)
+	await tooltip_timer.timeout
+	await GManager.tween_and_wait(tooltip_panel, "position:x", start_position.x, TOOLTIP_FADEOUT_TIME, tooltip_timer)
+	
+	tooltip_panel.hide()

@@ -16,7 +16,9 @@ var speed
 var velocity
 
 func _ready():
-	sprite.set_texture(arrow_directions[direction])
+	if direction:
+		sprite.set_texture(arrow_directions[direction])
 
 func _process(delta):
-	position += velocity * delta * speed
+	if speed and velocity:
+		position += velocity * delta * speed

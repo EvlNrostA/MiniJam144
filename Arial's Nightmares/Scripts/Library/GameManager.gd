@@ -9,8 +9,12 @@ var win_menu = "res://Nodes/Menu/WinMenu.tscn"
 var bullet_hell = "res://Levels/BulletHell/BulletHell.tscn"
 var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
-var yam_level = "res://Levels/EndlessRunner/EndlessRunner.tscn"
-var nir_level = "res://Levels/nirodef/nir_level.tscn"
+var endless_runner = "res://Levels/EndlessRunner/EndlessRunner.tscn"
+
+var bullet_hell_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/BulletHellTooltip.tscn"
+var whackamole_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/WhackamoleTooltip.tscn"
+var guitar_hero_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/GuitarHeroTooltip.tscn"
+var endless_runner_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/EndlessRunnerTooltip.tscn"
 
 var difficulties = {
 	"easy": 0,
@@ -22,25 +26,25 @@ var levels = [
 	[
 		{
 		"scene": bullet_hell,
-		"difficulty": "easy"
+		"difficulty": "easy",
+		"tooltip": bullet_hell_tooltip
 		},
 		{
 		"scene": whackamole,
-		"difficulty": "easy"
+		"difficulty": "easy",
+		"tooltip": whackamole_tooltip
 		},
 		{
 		"scene": guitar_hero,
 		"difficulty": "easy",
-		"custom_music": true
+		"custom_music": true,
+		"tooltip": guitar_hero_tooltip
 		},
 		{
-		"scene": yam_level,
-		"difficulty": "easy"
-		},
-		#{
-		#"scene": nir_level,
-		#"difficulty": "easy"
-		#}
+		"scene": endless_runner,
+		"difficulty": "easy",
+		"tooltip": endless_runner_tooltip
+		}
 	],
 	[
 		{
@@ -57,13 +61,9 @@ var levels = [
 		"custom_music": true
 		},
 		{
-		"scene": yam_level,
+		"scene": endless_runner,
 		"difficulty": "normal"
-		},
-		#{
-		#"scene": nir_level,
-		#"difficulty": "normal"
-		#}
+		}
 	],
 	[
 		{
@@ -80,13 +80,9 @@ var levels = [
 		"custom_music": true
 		},
 		{
-		"scene": yam_level,
+		"scene": endless_runner,
 		"difficulty": "hard"
-		},
-		#{
-		#"scene": nir_level,
-		#"difficulty": "hard"
-		#}
+		}
 	],
 	[
 		{
@@ -101,6 +97,7 @@ var playing : bool = false
 var current_batch_index : int = 0
 var levels_left : Array
 var difficulty
+var level_settings
 var is_mobile = OS.has_feature("mobile") or \
 				OS.has_feature("web_android") or \
 				OS.has_feature("web_ios")
@@ -108,24 +105,25 @@ var is_mobile = OS.has_feature("mobile") or \
 # DEBUGGING FUNCTION
 func start_level(selected_difficulty):
 	playing = true
+	
 	UI.points_set(0)
 	UI.visible = true
 	
 	copy_array(levels_left, levels[difficulties[selected_difficulty]])
 	var scene_path = get_tree().get_current_scene().scene_file_path
-	var level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
+	level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
 	
-	prepare_level(level_settings)
+	prepare_level()
 
 func start():
 	if not Fade.fading():
 		playing = true
+		
 		UI.points_set(0)
-	
 		next_level()
 
-func prepare_level(level_settings):
-	GManager.is_mobile = true
+func prepare_level():
+	#GManager.is_mobile = true
 	randomize()
 	
 	levels_left.erase(level_settings)
@@ -139,15 +137,19 @@ func prepare_level(level_settings):
 	if level_settings.has("playing"):
 		playing = level_settings.playing
 	
+func show_tooltip():
+	if level_settings.has("tooltip"):
+		await UI.show_tooltip(level_settings.tooltip)
+	
 func next_level():
 	if levels_left.is_empty():
 		current_batch_index += 1
 		copy_array(levels_left, levels[current_batch_index])
 	
-	var next_level_settings = levels_left.pick_random()
+	level_settings = levels_left.pick_random()
 	
-	prepare_level(next_level_settings)
-	change_scene(next_level_settings.scene)
+	prepare_level()
+	change_scene(level_settings.scene)
 
 func game_over():
 	playing = false
@@ -191,3 +193,10 @@ func gcd(a: int, b: int) -> int:
 func vibrate():
 	Input.start_joy_vibration(1, 0.2, 0.2, 0.2)
 	Input.vibrate_handheld(40)
+
+func tween_and_wait(object, property, final_val, duration, timer):
+	var tween = create_tween()
+	tween.tween_property(object, property, final_val, duration)
+	
+	timer.start(duration)
+	await timer.timeout

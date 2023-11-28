@@ -65,8 +65,12 @@ func _ready():
 	max_right = rect.size.x + SCREEN_OFFSET
 	max_bottom = rect.size.y + SCREEN_OFFSET
 	
+	UI.set_timer(settings.level_timer, _on_level_timer_timeout)
+	
+	await GManager.show_tooltip()
+	
 	bullet_timer.start(wait_time)
-	UI.start_timer(settings.level_timer, _on_level_timer_timeout)
+	UI.start_timer()
 	start_coin_timer()
 	
 	right_hand.start("RightWave")

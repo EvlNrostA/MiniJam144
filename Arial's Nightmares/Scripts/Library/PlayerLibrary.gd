@@ -14,7 +14,6 @@ class_name Player_library
 @export var speed : float = 1
 var vel := Vector2.ZERO
 
-
 var JUMP_VELOCITY = -400
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -48,8 +47,6 @@ func Move2D(delta) -> void:
 		sprite.flip_h = false
 	elif vel.x <= -0.1:
 		sprite.flip_h = true
-	pass
-
 
 func PlatformMove2D(delta) -> void:
 	# Add the gravity.
@@ -69,7 +66,6 @@ func PlatformMove2D(delta) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed * 100)
 
 	move_and_slide()
-	pass
 	
 func Move2DRight(delta):
 	if not is_on_floor():
