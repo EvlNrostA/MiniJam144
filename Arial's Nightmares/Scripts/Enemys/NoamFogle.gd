@@ -7,6 +7,7 @@ extends Area2D
 @onready var reveal_timer = $RevealTimer
 @onready var sprite = $NoamFogle
 @onready var animation_player = $AnimationPlayer
+@onready var explosion = $Explosion
 
 @onready var hiding = true
 @onready var hit = false
@@ -48,10 +49,13 @@ func _on_body_entered(body):
 		hide_timer.stop()
 	
 		audio_stream_player.play()
-		animation_player.play("Death")
-		await animation_player.animation_finished
-		reset_sprite()
+		explosion.explode()
 		
+		if not animation_player.is_playing():
+			animation_player.play_backwards("Jumping")
+			await animation_player.animation_finished
+		
+		reset_sprite()
 		body.killed_noam_fogle()
 		
 		hiding = true

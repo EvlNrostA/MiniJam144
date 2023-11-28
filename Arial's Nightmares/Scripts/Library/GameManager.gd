@@ -11,10 +11,11 @@ var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
 var endless_runner = "res://Levels/EndlessRunner/EndlessRunner.tscn"
 
-var bullet_hell_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/BulletHellTooltip.tscn"
-var whackamole_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/WhackamoleTooltip.tscn"
-var guitar_hero_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/GuitarHeroTooltip.tscn"
-var endless_runner_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/EndlessRunnerTooltip.tscn"
+# joystick is for nir & heist level
+var arrows_wasd_tooltip = "res://Nodes/Mechanics/Coin.tscn" #"res://Nodes/Tooltips/ArrowsWASDTooltip.tscn"
+var joystick_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/JoystickTooltip.tscn"
+var guitar_hero_mobile_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/GuitarHeroTooltip.tscn"
+var endless_runner_mobile_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/EndlessRunnerTooltip.tscn"
 
 var difficulties = {
 	"easy": 0,
@@ -27,23 +28,27 @@ var levels = [
 		{
 		"scene": bullet_hell,
 		"difficulty": "easy",
-		"tooltip": bullet_hell_tooltip
+		"desktop_tooltip": arrows_wasd_tooltip,
+		"mobile_tooltip": joystick_tooltip
 		},
 		{
 		"scene": whackamole,
 		"difficulty": "easy",
-		"tooltip": whackamole_tooltip
+		"desktop_tooltip": arrows_wasd_tooltip,
+		"mobile_tooltip": joystick_tooltip
 		},
 		{
 		"scene": guitar_hero,
 		"difficulty": "easy",
 		"custom_music": true,
-		"tooltip": guitar_hero_tooltip
+		"desktop_tooltip": arrows_wasd_tooltip,
+		"mobile_tooltip": guitar_hero_mobile_tooltip
 		},
 		{
 		"scene": endless_runner,
 		"difficulty": "easy",
-		"tooltip": endless_runner_tooltip
+		"desktop_tooltip": arrows_wasd_tooltip,
+		"mobile_tooltip": endless_runner_mobile_tooltip
 		}
 	],
 	[
@@ -93,14 +98,15 @@ var levels = [
 	]
 ]
 
+var is_mobile = OS.has_feature("mobile") or \
+				OS.has_feature("web_android") or \
+				OS.has_feature("web_ios")
+
 var playing : bool = false
 var current_batch_index : int = 0
 var levels_left : Array
 var difficulty
 var level_settings
-var is_mobile = OS.has_feature("mobile") or \
-				OS.has_feature("web_android") or \
-				OS.has_feature("web_ios")
 
 # DEBUGGING FUNCTION
 func start_level(selected_difficulty):
@@ -123,7 +129,7 @@ func start():
 		next_level()
 
 func prepare_level():
-	#GManager.is_mobile = true
+	GManager.is_mobile = true
 	randomize()
 	
 	levels_left.erase(level_settings)
@@ -138,8 +144,9 @@ func prepare_level():
 		playing = level_settings.playing
 	
 func show_tooltip():
-	if level_settings.has("tooltip"):
-		await UI.show_tooltip(level_settings.tooltip)
+	var tooltip_setting = "mobile_tooltip" if is_mobile else "desktop_tooltip"
+	if level_settings.has(tooltip_setting):
+		await UI.show_tooltip(level_settings[tooltip_setting])
 	
 func next_level():
 	if levels_left.is_empty():

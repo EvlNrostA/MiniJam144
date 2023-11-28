@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qja4lm0cwpjg"]
+[gd_scene load_steps=9 format=3 uid="uid://qja4lm0cwpjg"]
 
 [ext_resource type="Script" path="res://Scripts/Enemys/NoamFogle.gd" id="1_ihpxf"]
 [ext_resource type="Texture2D" uid="uid://r57ua5m7b3rg" path="res://Assets/Enemys/Fogle.png" id="2_7cvli"]
@@ -8,62 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1oexi"]
 size = Vector2(50, 54)
 
-[sub_resource type="Animation" id="Animation_dwlwc"]
-resource_name = "Death"
-length = 0.5
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NoamFogle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.09, 0.12),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [3, 2, 1, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Explosion/GPUParticles2D:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.01),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Explosion/GPUParticles2D2:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.01),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("NoamFogle:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.11, 0.19),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_qu3ij"]
 resource_name = "Jumping"
-length = 0.1
+length = 0.2
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -72,15 +19,26 @@ tracks/0/path = NodePath("NoamFogle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.06, 0.09),
+"times": PackedFloat32Array(0.1, 0.13, 0.16, 0.19),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NoamFogle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xwpw2"]
 _data = {
-"Death": SubResource("Animation_dwlwc"),
 "Jumping": SubResource("Animation_qu3ij")
 }
 
@@ -94,6 +52,7 @@ position = Vector2(0, 10)
 texture = ExtResource("2_aul48")
 
 [node name="NoamFogle" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 texture = ExtResource("2_7cvli")
 hframes = 2
@@ -104,14 +63,6 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_1oexi")
 
 [node name="Explosion" parent="." instance=ExtResource("4_cn1kp")]
-
-[node name="GPUParticles2D" parent="Explosion" index="0"]
-amount = 50
-speed_scale = 10.0
-
-[node name="GPUParticles2D2" parent="Explosion" index="1"]
-amount = 50
-speed_scale = 10.0
 
 [node name="HideTimer" type="Timer" parent="."]
 one_shot = true
@@ -129,5 +80,3 @@ stream = SubResource("AudioStream_rs1ut")
 bus = &"Sound Effects"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-
-[editable path="Explosion"]
