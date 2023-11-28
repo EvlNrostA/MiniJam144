@@ -110,3 +110,4 @@ func show_tooltip(tooltip_scene):
 	await GManager.tween_and_wait(tooltip_panel, "position:x", start_position.x, TOOLTIP_FADEOUT_TIME, tooltip_timer)
 	
 	tooltip_panel.hide()
+	tooltip_foreground.queue_free()

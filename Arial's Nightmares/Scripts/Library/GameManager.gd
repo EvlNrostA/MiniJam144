@@ -12,10 +12,10 @@ var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
 var endless_runner = "res://Levels/EndlessRunner/EndlessRunner.tscn"
 
 # joystick is for nir & heist level
-var arrows_wasd_tooltip = "res://Nodes/Mechanics/Coin.tscn" #"res://Nodes/Tooltips/ArrowsWASDTooltip.tscn"
-var joystick_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/JoystickTooltip.tscn"
-var guitar_hero_mobile_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/GuitarHeroTooltip.tscn"
-var endless_runner_mobile_tooltip = "res://Nodes/Mechanics/Arrow.tscn" #"res://Nodes/Tooltips/EndlessRunnerTooltip.tscn"
+var arrows_wasd_tooltip = "res://Nodes/Mechanics/TemplateTooltip.tscn" #"res://Nodes/Tooltips/ArrowsWASDTooltip.tscn"
+var joystick_tooltip = "res://Nodes/Mechanics/TemplateTooltip.tscn" #"res://Nodes/Tooltips/JoystickTooltip.tscn"
+var guitar_hero_mobile_tooltip = "res://Nodes/Mechanics/TemplateTooltip.tscn" #"res://Nodes/Tooltips/GuitarHeroTooltip.tscn"
+var endless_runner_mobile_tooltip = "res://Nodes/Mechanics/TemplateTooltip.tscn" #"res://Nodes/Tooltips/EndlessRunnerTooltip.tscn"
 
 var difficulties = {
 	"easy": 0,
