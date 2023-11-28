@@ -74,7 +74,7 @@ size = Vector2(22.0006, 1168)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwswl"]
 size = Vector2(22.0006, 1168)
 
-[node name="Whackamole" type="Node2D"]
+[node name="TemplateLevel" type="Node2D"]
 script = ExtResource("1_lbxxj")
 
 [node name="TileMap" type="TileMap" parent="."]

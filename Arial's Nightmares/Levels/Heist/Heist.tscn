@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjyegd3qakfcc"]
 
-[ext_resource type="Script" path="res://Levels/TemplateLevel/StateManager.gd" id="1_wlscm"]
+[ext_resource type="Script" path="res://Levels/Heist/StateManager.gd" id="1_mjklp"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_j61o6"]
 [ext_resource type="PackedScene" uid="uid://b11hooauu7282" path="res://Nodes/Player/Player.tscn" id="3_mygbg"]
-[ext_resource type="Script" path="res://Levels/TemplateLevel/TemplatePlayer.gd" id="4_yfk1b"]
+[ext_resource type="Script" path="res://Levels/Heist/HeistPlayer.gd" id="4_oddor"]
 [ext_resource type="PackedScene" uid="uid://c2xl7q7iaufej" path="res://Nodes/Mechanics/Joystick.tscn" id="5_byup1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vphrw"]
@@ -74,8 +74,8 @@ size = Vector2(22.0006, 1168)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwswl"]
 size = Vector2(22.0006, 1168)
 
-[node name="Whackamole" type="Node2D"]
-script = ExtResource("1_wlscm")
+[node name="Heist" type="Node2D"]
+script = ExtResource("1_mjklp")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2khyp")
@@ -85,7 +85,7 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 1, 65536, 65536, 1, 131072, 65536
 [node name="Player" parent="." instance=ExtResource("3_mygbg")]
 z_index = 1
 position = Vector2(576, 336)
-script = ExtResource("4_yfk1b")
+script = ExtResource("4_oddor")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 16
