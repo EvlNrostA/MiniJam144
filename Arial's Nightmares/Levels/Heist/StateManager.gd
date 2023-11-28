@@ -24,16 +24,11 @@ func _ready():
 	if GManager.difficulty == null:
 		GManager.start_level("easy")
 
-	if not GManager.is_mobile:
-		joystick.visible = false
-
 	settings = difficulty_settings[GManager.difficulty]
 	player.speed = settings.speed
 
 	UI.set_timer(settings.level_timer, _on_level_timer_timeout)
-	
 	await GManager.show_tooltip()
-
 	UI.start_timer()
 	
 func won_game():

@@ -93,10 +93,7 @@ var fail_count : int
 func _ready():
 	if GManager.difficulty == null:
 		GManager.start_level("easy")
-	
-	if not GManager.is_mobile:
-		buttons.visible = false
-
+		
 	Audio.stop()
 		
 	settings = difficulty_settings[GManager.difficulty]

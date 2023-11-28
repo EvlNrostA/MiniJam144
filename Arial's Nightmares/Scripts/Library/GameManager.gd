@@ -135,6 +135,7 @@ func start_level(selected_difficulty):
 	level_settings = levels_left.filter(func(settings): return settings.scene == scene_path)[0]
 	
 	prepare_level()
+	show_mobile()
 
 func start():
 	if not Fade.fading():
@@ -144,7 +145,7 @@ func start():
 		next_level()
 
 func prepare_level():
-	#GManager.is_mobile = true
+	GManager.is_mobile = true
 	randomize()
 	
 	levels_left.erase(level_settings)
@@ -172,6 +173,12 @@ func next_level():
 	
 	prepare_level()
 	change_scene(level_settings.scene)
+	
+func show_mobile():
+	var mobile_nodes = get_tree().get_nodes_in_group("Mobile")
+	print(mobile_nodes)
+	for node in mobile_nodes:
+		node.visible = is_mobile
 
 func game_over():
 	playing = false
@@ -184,6 +191,7 @@ func change_scene(scene):
 	get_tree().change_scene_to_file(scene)
 	
 	UI.visible = playing
+	show_mobile()
 	await Fade.fade_out()
 	
 func restart_levels():

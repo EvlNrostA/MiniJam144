@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://0su8gflp2xt2" path="res://Assets/Mechanics/right.png" id="7_2hcjm"]
 [ext_resource type="BitMap" uid="uid://wv11qjavc6dr" path="res://Assets/Mechanics/rightBitmask.png" id="8_781td"]
 
-[node name="Buttons" type="CanvasLayer"]
+[node name="Buttons" type="CanvasLayer" groups=["Mobile"]]
 
 [node name="LeftLayout" type="Control" parent="."]
 layout_mode = 3

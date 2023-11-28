@@ -4,7 +4,7 @@
 [ext_resource type="BitMap" uid="uid://bnjadejv7cnkl" path="res://Assets/Mechanics/ShadowBitmap.png" id="2_borpn"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Joystick.gd" id="3_7icpm"]
 
-[node name="Joystick" type="CanvasLayer"]
+[node name="Joystick" type="CanvasLayer" groups=["Mobile"]]
 
 [node name="RightLayout" type="Control" parent="."]
 layout_mode = 3
