@@ -157,6 +157,7 @@ shape = SubResource("RectangleShape2D_3vtqi")
 z_index = 1
 position = Vector2(576, 458)
 script = ExtResource("5_x4nk5")
+speed = null
 
 [node name="Yam" parent="." instance=ExtResource("7_6d3rd")]
 position = Vector2(144, 460)

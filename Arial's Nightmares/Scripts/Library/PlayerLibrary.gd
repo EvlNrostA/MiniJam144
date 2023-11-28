@@ -11,7 +11,7 @@ class_name Player_library
 @onready var shadow = $Shadow
 @onready var sprite = $Sprite2D
 
-@export var speed : float = 1
+@export var speed : float = 0
 var vel := Vector2.ZERO
 
 var JUMP_VELOCITY = -400
@@ -27,21 +27,19 @@ func death_animation():
 	animationPlayer.play("Fall")
 	await animationPlayer.animation_finished
 
-func run_animation(given_velocity):
-	if given_velocity != Vector2.ZERO:
-		animationPlayer.play("Run_Right")
-	else:
-		animationPlayer.play("Idle_Right")
-
 func Move2D(delta) -> void:
 	vel = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
 		Input.get_action_strength("Down") - Input.get_action_strength("Up"))
-
+	
 	move_and_collide(vel * delta * speed * 100)
 	
-	run_animation(vel)
-	if vel != Vector2.ZERO and not audio_stream_player.playing:
-		play_sound(footstep_sound)
+	if vel != Vector2.ZERO:
+		animationPlayer.play("Run_Right")
+		
+		if not audio_stream_player.playing:
+			play_sound(footstep_sound)
+	else:
+		animationPlayer.play("Idle_Right")
 		
 	if vel.x >= 0.1:
 		sprite.flip_h = false
@@ -52,11 +50,11 @@ func PlatformMove2D(delta) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
+	
 	# Handle Jump.
 	if Input.is_action_pressed("Space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("Left", "Right")
@@ -64,23 +62,27 @@ func PlatformMove2D(delta) -> void:
 		velocity.x = direction * speed * 100
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * 100)
-
+	
 	move_and_slide()
-	
-func Move2DRight(delta):
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		velocity.x = (speed / 2) * delta
 
-	if Input.is_action_pressed("Up") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
+func Move2DRight(delta, should_move):
 	if is_on_floor():
-		if Input.is_action_pressed("Right"):
-			velocity.x = speed * delta
-		else:
-			velocity.x = -10000 * delta
-			
-	run_animation(velocity)
+		var xvelocity = -10000 * delta
 	
+		if Input.is_action_pressed("Right"):
+			xvelocity = speed * delta
+		
+		if Input.is_action_pressed("Up"):
+			velocity.y = JUMP_VELOCITY
+			xvelocity = (speed / 2) * delta
+	
+		velocity.x = xvelocity if should_move else 0
+	
+	else:
+		velocity.y += gravity * delta
+	
+	if not audio_stream_player.playing:
+		play_sound(footstep_sound)
+	
+	animationPlayer.play("Run_Right")
 	move_and_slide()

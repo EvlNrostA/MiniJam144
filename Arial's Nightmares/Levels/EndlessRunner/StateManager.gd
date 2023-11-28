@@ -34,6 +34,7 @@ const COIN_POINTS = 5
 @onready var buttons = $Buttons
 
 @onready var window_rect = GManager.get_shown_window_rect()
+@onready var should_move = false
 
 var items_start_position
 var settings
@@ -54,14 +55,12 @@ func _ready():
 	var clouds = get_tree().get_nodes_in_group("Clouds")
 	for cloud in clouds:
 		cloud.start()
-		
+	
 	UI.set_timer(settings.level_timer, _on_level_timer_timeout)
-		
+	
 	await GManager.show_tooltip()
 	
-	#enable player movement forward
-	#enable player pushback
-	
+	should_move = true
 	UI.start_timer()
 	start_coin_timer()
 	start_tiles()
@@ -79,7 +78,7 @@ func _on_timer_timeout():
 	start_tiles()
 	
 func _on_level_timer_timeout():
-	if not player.hit:
+	if player.running:
 		GManager.next_level()
 
 func start_coin_timer():
