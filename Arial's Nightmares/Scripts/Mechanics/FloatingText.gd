@@ -9,6 +9,5 @@ func display(text, label_position, size, color):
 	label.label_settings.font_size = size
 	label.label_settings.font_color = color
 	
-	#visible = true
 	animation_player.play("Float")
 	await animation_player.animation_finished

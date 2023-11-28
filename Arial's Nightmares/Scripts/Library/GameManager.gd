@@ -10,6 +10,7 @@ var bullet_hell = "res://Levels/BulletHell/BulletHell.tscn"
 var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
 var endless_runner = "res://Levels/EndlessRunner/EndlessRunner.tscn"
+var heist = "res://Levels/Heist/Heist.tscn"
 
 # joystick is for nir & heist level
 var arrows_wasd_tooltip = "res://Nodes/Mechanics/TemplateTooltip.tscn" #"res://Nodes/Tooltips/ArrowsWASDTooltip.tscn"
@@ -49,6 +50,12 @@ var levels = [
 		"difficulty": "easy",
 		"desktop_tooltip": arrows_wasd_tooltip,
 		"mobile_tooltip": endless_runner_mobile_tooltip
+		},
+		{
+		"scene": heist,
+		"difficulty": "easy",
+		"desktop_tooltip": arrows_wasd_tooltip,
+		"mobile_tooltip": joystick_tooltip
 		}
 	],
 	[
@@ -68,6 +75,10 @@ var levels = [
 		{
 		"scene": endless_runner,
 		"difficulty": "normal"
+		},
+		{
+		"scene": heist,
+		"difficulty": "normal",
 		}
 	],
 	[
@@ -87,6 +98,10 @@ var levels = [
 		{
 		"scene": endless_runner,
 		"difficulty": "hard"
+		},
+		{
+		"scene": heist,
+		"difficulty": "hard",
 		}
 	],
 	[
@@ -129,7 +144,7 @@ func start():
 		next_level()
 
 func prepare_level():
-	GManager.is_mobile = true
+	#GManager.is_mobile = true
 	randomize()
 	
 	levels_left.erase(level_settings)

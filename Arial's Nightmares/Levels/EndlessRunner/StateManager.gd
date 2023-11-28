@@ -84,7 +84,10 @@ func _on_level_timer_timeout():
 
 func start_coin_timer():
 	coin_timer.start(GManager.randf_list_range(COIN_WAIT_RANGE))
-
+	
+func coin_movement(coin_position, delta) -> Vector2:
+	return coin_position + Vector2.LEFT * settings.level_velocity * delta
+	
 func _on_coin_timer_timeout():
 	var coin = coin_scene.instantiate()
 	
@@ -92,9 +95,8 @@ func _on_coin_timer_timeout():
 	coin.scale *= 1.5
 	
 	coin.z_index = 0
-	coin.movement_function = "endless_runner_movement"
-	coin.velocity = settings.level_velocity
-	coin.points = COIN_POINTS
+	coin.movement_function = Callable(coin_movement) 
+	coin.pickup_function = Callable(coin_pickup)
 	
 	add_child(coin)
 	
@@ -103,6 +105,9 @@ func _on_coin_timer_timeout():
 	coin.area_entered.connect(Callable(item_delete).bind(coin))
 	
 	start_coin_timer()
+
+func coin_pickup():
+	UI.points_add(COIN_POINTS)
 
 func item_delete(col, item) -> void:
 	if col.name == "ItemCollision":

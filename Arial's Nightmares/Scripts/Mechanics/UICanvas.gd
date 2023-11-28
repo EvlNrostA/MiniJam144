@@ -2,7 +2,7 @@ extends CanvasLayer
 
 const HIGHSCORE_FILE_PATH = "user://highscore.save"
 
-const POINT_ADD_XOFFSET = 100
+const POINT_ADD_XOFFSET = 50
 const POINT_ADD_YOFFSET = 70
 const POINT_ADD_SIZE = 32
 const POINT_ADD_COLORHEX = 0xfed447ff
@@ -77,16 +77,18 @@ func get_highscore() -> int:
 		return highscore
 
 func points_add(new_points : int):
-	if new_points > 0:
-		var point_add_text = "+%d" % new_points
-		var point_add_xpos = point_label.position.x + point_label.get_theme_font_size(point_label.text) + POINT_ADD_XOFFSET
-		var point_add_ypos = point_label.position.y + POINT_ADD_YOFFSET
-		await floating_text.display(point_add_text, 
+	if new_points <= 0:
+		return 
+		
+	var point_add_text = "+%d" % new_points
+	var point_add_xpos = point_label.position.x + point_label.get_theme_font_size(point_label.text) + POINT_ADD_XOFFSET
+	var point_add_ypos = point_label.position.y + POINT_ADD_YOFFSET
+	await floating_text.display(point_add_text, 
 								Vector2(point_add_xpos, point_add_ypos),
 	 							POINT_ADD_SIZE,
 								Color.hex(POINT_ADD_COLORHEX))
 	
-		points_set(points + new_points)
+	points_set(points + new_points)
 
 func points_add_time_left(multiplier=1):
 	points_add(round(level_timer.time_left) * multiplier)

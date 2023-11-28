@@ -100,12 +100,15 @@ func _on_level_timer_timeout():
 func start_coin_timer():
 	coin_timer.start(GManager.randf_list_range(COIN_WAIT_RANGE))
 
+func coin_pickup():
+	UI.points_add(COIN_POINTS)
+
 func _on_coin_timer_timeout():
 	var coin = coin_scene.instantiate()
 	add_child(coin)
 	
 	coin.z_index = -1
-	coin.points = COIN_POINTS
+	coin.pickup_function = Callable(coin_pickup)
 	coin.global_position = Vector2(GManager.randf_list_range(ITEM_POS_XRANGE), GManager.randf_list_range(ITEM_POS_YRANGE))
 	
 	start_coin_timer()
