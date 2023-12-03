@@ -15,7 +15,7 @@ func _process(delta):
 	if not lost:
 		Move2D(delta)
 		
-	if Input.is_action_just_pressed("dash") and is_cooldown == true:
+	if Input.is_action_just_pressed("Space") and is_cooldown == true:
 		is_dash = true
 		is_cooldown = false
 		$speed_on_dash.start()
@@ -24,18 +24,14 @@ func _process(delta):
 	# dashes
 	if is_dash:
 		speed = base_speed * 3
-		print(speed)
 	else:
 		speed = base_speed
-		print(speed)
-
 
 func death():
-	shadow.hide
-	play_sound(death_sound)
-	animationPlayer.play("Fall")
-	await animationPlayer.animation_finished
-	GManager.game_over()
+	if not lost:
+		lost = true 
+		await death_animation()
+		GManager.game_over()
 
 func _on_cooldown_timeout():
 	is_cooldown = true

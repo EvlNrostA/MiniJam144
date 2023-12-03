@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjyegd3qakfcc"]
+[gd_scene load_steps=16 format=3 uid="uid://cjyegd3qakfcc"]
 
 [ext_resource type="Script" path="res://Levels/Heist/StateManager.gd" id="1_mjklp"]
 [ext_resource type="Texture2D" uid="uid://rnepadpt3m54" path="res://Assets/Tileset/Tileset.png" id="2_j61o6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2xl7q7iaufej" path="res://Nodes/Mechanics/Joystick.tscn" id="5_byup1"]
 [ext_resource type="PackedScene" uid="uid://dkl762skexmar" path="res://Nodes/Mechanics/Coin.tscn" id="6_ibjlh"]
 [ext_resource type="Texture2D" uid="uid://u1xk7eglcfok" path="res://Assets/Environment/Line.png" id="7_okmb1"]
+[ext_resource type="PackedScene" uid="uid://2y80grl3ysnk" path="res://Nodes/Enemys/Camera.tscn" id="8_fgie7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vphrw"]
 texture = ExtResource("2_j61o6")
@@ -104,12 +105,12 @@ position = Vector2(1152, 336)
 shape = SubResource("RectangleShape2D_rvsnh")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(576, 8)
+position = Vector2(576, 100)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_60ceq")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(584, 664)
+position = Vector2(584, 548)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_dwswl")
 
@@ -134,5 +135,17 @@ texture_mode = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndLine"]
 position = Vector2(96.125, 332.5)
 shape = SubResource("RectangleShape2D_mtkbs")
+
+[node name="Camera1" parent="." groups=["Cameras"] instance=ExtResource("8_fgie7")]
+position = Vector2(304, 544)
+rotation = 3.14159
+
+[node name="Camera2" parent="." groups=["Cameras"] instance=ExtResource("8_fgie7")]
+position = Vector2(480, 112)
+rotation = 3.14159
+
+[node name="Camera3" parent="." groups=["Cameras"] instance=ExtResource("8_fgie7")]
+position = Vector2(696, 552)
+rotation = 3.14159
 
 [connection signal="body_entered" from="EndLine" to="." method="_on_end_line_body_entered"]

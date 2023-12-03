@@ -2,18 +2,54 @@ extends Node2D
 
 const PLAYER_SPEED = 1.5
 
+#const CAMERA_SPEED = 3
+#const 
+
 var difficulty_settings = {
 	"easy": {
 		"level_timer": 30,
-		"cameras": []
+		"cameras": {
+			"Camera1": {
+				"min_deg": 89,
+				"max_deg": -89,
+				"speed": 0.2
+			},
+		}
 	},
 	"normal": {
 		"level_timer": 30,
-		"cameras": []
+		"cameras": {
+			"Camera1": {
+				"min_deg": 0,
+				"max_deg": 180,
+				"speed": 0.2
+			},
+			"Camera2": {
+				"min_deg": 0,
+				"max_deg": 180,
+				"speed": 0.2
+			},
+		}
 	},
 	"hard": {
 		"level_timer": 30,
-		"cameras": []
+		"cameras": {
+			"Camera1": {
+				"min_deg": 0,
+				"max_deg": 180,
+				"speed": 0.2
+			},
+			"Camera2": {
+				"min_deg": 0,
+				"max_deg": 180,
+				"speed": 0.2
+			},
+			"Camera3": {
+				"min_deg": 0,
+				"max_deg": 180,
+				"speed": 0.2
+			}
+		}
 	}
 }
 
@@ -34,6 +70,12 @@ func _ready():
 	
 	player.speed = PLAYER_SPEED
 	coin.pickup_function = Callable(pickup_coin)
+	
+	var cameras = get_tree().get_nodes_in_group("Cameras")
+	for camera in cameras:
+		if camera.name in settings.cameras:
+			var camera_settings = settings.cameras[camera.name]
+			camera.start(camera_settings.min_deg, camera_settings.max_deg, camera_settings.speed)
 
 	UI.set_timer(settings.level_timer, _on_level_timer_timeout)
 	

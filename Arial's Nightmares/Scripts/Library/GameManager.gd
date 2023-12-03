@@ -11,6 +11,7 @@ var whackamole = "res://Levels/Whackamole/Whackamole.tscn"
 var guitar_hero = "res://Levels/GuitarHero/GuitarHero.tscn"
 var endless_runner = "res://Levels/EndlessRunner/EndlessRunner.tscn"
 var heist = "res://Levels/Heist/Heist.tscn"
+var nir_level = "res://Levels/nirodef/nir_level.tscn"
 
 # joystick is for nir & heist level
 var arrows_wasd_tooltip = "res://Nodes/Mechanics/TemplateTooltip.tscn" #"res://Nodes/Tooltips/ArrowsWASDTooltip.tscn"
@@ -56,6 +57,12 @@ var levels = [
 		"difficulty": "easy",
 		"desktop_tooltip": arrows_wasd_tooltip,
 		"mobile_tooltip": joystick_tooltip
+		},
+		{
+		"scene": nir_level,
+		"difficulty": "easy",
+		"desktop_tooltip": arrows_wasd_tooltip,
+		"mobile_tooltip": joystick_tooltip
 		}
 	],
 	[
@@ -78,6 +85,10 @@ var levels = [
 		},
 		{
 		"scene": heist,
+		"difficulty": "normal",
+		},
+		{
+		"scene": nir_level,
 		"difficulty": "normal",
 		}
 	],
@@ -101,6 +112,10 @@ var levels = [
 		},
 		{
 		"scene": heist,
+		"difficulty": "hard",
+		},
+		{
+		"scene": nir_level,
 		"difficulty": "hard",
 		}
 	],
@@ -145,7 +160,6 @@ func start():
 		next_level()
 
 func prepare_level():
-	#GManager.is_mobile = true
 	randomize()
 	
 	levels_left.erase(level_settings)
@@ -175,6 +189,7 @@ func next_level():
 	change_scene(level_settings.scene)
 	
 func show_mobile():
+	#GManager.is_mobile = true
 	var mobile_nodes = get_tree().get_nodes_in_group("Mobile")
 	for node in mobile_nodes:
 		node.visible = is_mobile

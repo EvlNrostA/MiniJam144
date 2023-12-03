@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://dvk7x8lxpa712"]
-
-[node name="Camera2D" type="Camera2D"]
-offset = Vector2(576, 324)
